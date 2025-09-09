@@ -28,9 +28,13 @@ gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
 
+# Front-end
 gem "sassc-rails"
 gem "bootstrap", "~> 5.3.3"
 gem "font-awesome-sass", "~> 6.1"
+
+# HTTP requests
+gem "httparty"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
