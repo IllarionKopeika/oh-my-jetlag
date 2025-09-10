@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:15
+    container_name: oh_my_jetlag_db
+    environment:
+      POSTGRES_USER: bunnyhop_92
+      POSTGRES_PASSWORD: Fyv@pr0ld+347
+      POSTGRES_DB: oh_my_jetlag_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    container_name: oh_my_jetlag_web
+    command: bin/rails server -b 0.0.0.0 -p 3000
+    environment:
+      RAILS_ENV: production
+      POSTGRESQL_HOST: c782fdb9909a055b26ff4102.twc1.net
+      POSTGRESQL_PORT: "5432"
+      POSTGRESQL_USER: bunnyhop_92
+      POSTGRESQL_PASSWORD: Fyv@pr0ld+347
+      POSTGRESQL_DBNAME: oh_my_jetlag_db
+      SECRET_KEY_BASE: 965a8517d4b00759ba07ca04a0ff67824e239488430b48a92719a0d0aed9b80be7254413e842900cc5cc5124cd5ed88c9132f109ed1f3f72c8cba68d7c4ed92d
+      RAILS_MASTER_KEY: e428f10277572e3d05b3759e90865723
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    volumes:
+      - .:/rails
+
+volumes:
+  db_data:
