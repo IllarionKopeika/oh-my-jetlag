@@ -1,0 +1,11 @@
+ru:
+  pages:
+    home:
+      hi: Здарова, народ!
+  shared:
+    navbar:
+      search: Поиск рейсов
+      my_flights: Мои рейсы
+      map: Карта
+      stats: Статистика
+      profile: Мой профиль

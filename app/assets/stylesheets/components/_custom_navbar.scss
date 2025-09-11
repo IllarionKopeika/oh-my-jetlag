@@ -1,0 +1,18 @@
+.custom-navbar {
+  border-bottom: 1px solid $primary;
+  background: rgba(white,0.7);
+  .nav-link {
+    font-size: 16px;
+    color: $primary;
+    font-weight: 600;
+    &:after {
+      content: none;
+    }
+  }
+  @media(max-width: 991px) {
+    .sidebar {
+      background-color: rgba(white,0.7);
+      backdrop-filter: blur(10px);
+    }
+  }
+}

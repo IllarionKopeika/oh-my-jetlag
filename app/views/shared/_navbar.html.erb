@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg custom-navbar">
+  <div class="container">
+    <%= link_to root_path, class: 'navbar-brand' do %>
+      <%= image_tag('logo.png', alt: 'logo', width: 30, height: 30, class: 'd-inline-block align-text-top') %>
+      Oh My Jetlag!
+    <% end %>
+    <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header border-primary border-bottom">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+          Oh My Jetlag!
+        </h5>
+        <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
+        <ul class="navbar-nav justify-content-center align-items-center fs-5 flex-grow-1 pe-3">
+          <li class="nav-item mx-2">
+            <%= link_to t('.search'), '#', class: 'nav-link' %>
+          </li>
+          <li class="nav-item mx-2">
+            <%= link_to t('.my_flights'), '#', class: 'nav-link' %>
+          </li>
+          <li class="nav-item mx-2">
+            <%= link_to t('.map'), '#', class: 'nav-link' %>
+          </li>
+          <li class="nav-item mx-2">
+            <%= link_to t('.stats'), '#', class: 'nav-link' %>
+          </li>
+          <li class="nav-item mx-2">
+            <%= link_to t('.profile'), '#', class: 'nav-link' %>
+          </li>
+        </ul>
+        <div class="d-flex justify-content-center align-items-center gap-4">
+          <% I18n.available_locales.each do |locale| %>
+            <%= link_to locale_to_flag(locale), url_for(locale: locale), class: 'nav-link', style: "font-size: 18px; opacity: #{locale == I18n.locale ? '1' : '0.3'};" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
