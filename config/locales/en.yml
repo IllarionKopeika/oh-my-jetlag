@@ -16,7 +16,7 @@ en:
       taken_nickname: is already taken
   pages:
     home:
-      hi: Hi there!
+      hi: Working hard on the app!
   passwords:
     change_password:
       title: Change password

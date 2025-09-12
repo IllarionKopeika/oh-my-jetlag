@@ -16,7 +16,7 @@ ru:
       taken_nickname: уже занят
   pages:
     home:
-      hi: Всем приветы!
+      hi: Работаем над приложением!
   passwords:
     change_password:
       title: Изменить пароль
