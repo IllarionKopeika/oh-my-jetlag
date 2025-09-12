@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Authentication
+
   before_action :set_locale
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   allow_browser versions: :modern
@@ -15,6 +17,6 @@ class ApplicationController < ActionController::Base
 
   def not_found(exception)
     logger.warn exception
-    render file: 'public/404.html', status: :not_found, layout: false
+    render file: "public/404.html", status: :not_found, layout: false
   end
 end

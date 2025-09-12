@@ -1,0 +1,24 @@
+<div class="row justify-content-center">
+  <div class="col-lg-6 col-md-8 col-sm-10 col-12">
+    <div class="custom-form p-4">
+
+      <h1 class="text-center mb-3"><%= t(".title") %></h1>
+
+      <%= form_with url: session_path do |f| %>
+        <div class="mb-3">
+          <%= f.email_field :email_address, placeholder: t(".email_address"), value: params[:email_address], class: "form-control" %>
+        </div>
+        <div class="mb-3">
+          <%= f.password_field :password, placeholder: t(".password"), class: "form-control" %>
+        </div>
+        <%= f.submit t(".log_in"), class: "btn btn-primary w-100 mb-3" %>
+      <% end %>
+
+      <div class="form-footer d-flex justify-content-center align-items-center">
+        <p class="mb-0 me-2"><%= t(".no_account") %></p>
+        <strong><%= link_to t(".sign_up"), sign_up_path %></strong>
+      </div>
+
+    </div>
+  </div>
+</div>

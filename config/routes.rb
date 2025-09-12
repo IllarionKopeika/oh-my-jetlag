@@ -1,8 +1,21 @@
 Rails.application.routes.draw do
-  scope '(:locale)', locale: /ru|en/ do
-    root 'pages#home'
-    get 'pages/home'
+  scope "(:locale)", locale: /ru|en/ do
+    root "pages#home"
+
+    # sessions
+    resource :session, only: :create
+    get "login", to: "sessions#new", as: "login"
+    delete "logout", to: "sessions#destroy", as: "logout"
+
+    # change password
+    get "change_password", to: "passwords#change_password", as: "change_password"
+    patch "update_password", to: "passwords#update_password", as: "update_password"
+
+    # users
+    resources :users, only: :create
+    get "sign_up", to: "users#new", as: "sign_up"
+    get "profile", to: "users#show", as: "profile"
   end
 
-  get 'up' => 'rails/health#show', as: :rails_health_check
+  get "up" => "rails/health#show", as: :rails_health_check
 end

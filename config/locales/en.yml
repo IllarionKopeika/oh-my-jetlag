@@ -1,11 +1,66 @@
 en:
+  activerecord:
+    attributes:
+      user:
+        email_address: Email
+        password: Password
+        password_challenge: Current password
+        password_confirmation: ''
+        nickname: Nickname
+  errors:
+    messages:
+      blank_email_address: can't be blank
+      blank: can't be blank
+      confirmation: Passwords don't match
+      taken_email_address: is already taken
+      taken_nickname: is already taken
   pages:
     home:
       hi: Hi there!
+  passwords:
+    change_password:
+      title: Change password
+      current_password: Current password
+      new_password: New password
+      password_confirmation: Password confirmation
+      change_password: Change password
+    update_password:
+      change_password_success: Password has been successfully changed!
+  sessions:
+    new:
+      already_logged_in: You're already logged in!
+      title: Log in
+      email_address: Email
+      password: Password
+      log_in: Log in
+      no_account: No account?
+      sign_up: Sign up
+    create:
+      login_success: Successfully logged in!
+      login_fail: Incorrect email and/or password!
+      try_later: Suspicious activity, please try to log in later!
+    destroy:
+      logout_success: Successfully logged out!
   shared:
     navbar:
+      hello: Hey
       search: Search flights
       my_flights: My flights
       map: Map
       stats: Stats
-      profile: My profile
+      profile: Profile
+      change_password: Change password
+      log_out: Log out
+  users:
+    new:
+      already_signed_up: You're already signed up!
+      title: Sign up
+      email_address: Email
+      nickname: Nickname
+      password: Password
+      password_confirmation: Password confirmation
+      sign_up: Sign up
+      have_account: Already signed up?
+      log_in: Log in
+    create:
+      signup_success: Successfully signed up. Please log in!
