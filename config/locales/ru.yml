@@ -34,7 +34,7 @@ ru:
       password: Пароль
       log_in: Войти
       no_account: Нет аккаунта?
-      sign_up: Зарегистрироваться
+      sign_up: Зарегистрируйтесь!
     create:
       login_success: Вы вошли в систему!
       login_fail: Неверная электронная почта и/или пароль!

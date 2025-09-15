@@ -3,6 +3,7 @@
 ARG RUBY_VERSION=3.3.5
 FROM ruby:$RUBY_VERSION-slim AS base
 
+COPY entrypoint.sh /app/entrypoint.sh
 WORKDIR /rails
 
 # Устанавливаем зависимости
@@ -39,4 +40,4 @@ USER 1000:1000
 EXPOSE 3000
 
 # Запуск Rails
-CMD ["bin/rails", "server", "-b", "0.0.0.0", "-p", "3000"]
+ENTRYPOINT ["./entrypoint.sh"]

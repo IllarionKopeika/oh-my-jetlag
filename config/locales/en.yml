@@ -34,7 +34,7 @@ en:
       password: Password
       log_in: Log in
       no_account: No account?
-      sign_up: Sign up
+      sign_up: Sign up!
     create:
       login_success: Successfully logged in!
       login_fail: Incorrect email and/or password!
