@@ -14,6 +14,17 @@ ru:
       confirmation: Пароли не совпадают
       taken_email_address: уже используется
       taken_nickname: уже занят
+  flights:
+    fetch:
+      title: Результат поиска
+      add_flight: Добавить
+      date: Сен 28, 2025
+      duration: 4 ч 45 мин
+    search:
+      title: Поиск рейсов
+      flight_number: Номер рейса
+      date: Дата вылета
+      search: Поиск
   pages:
     home:
       hi: Работаем над приложением!
@@ -23,7 +34,7 @@ ru:
       current_password: Текущий пароль
       new_password: Новый пароль
       password_confirmation: Подтверждение пароля
-      change_password: Изменить пароль
+      change_password: Подтвердить
     update_password:
       change_password_success: Пароль успешно изменен!
   sessions:

@@ -15,6 +15,10 @@ Rails.application.routes.draw do
     resources :users, only: :create
     get "sign_up", to: "users#new", as: "sign_up"
     get "profile", to: "users#show", as: "profile"
+
+    # flights
+    get "search", to: "flights#search", as: "search"
+    get "fetch_flight", to: "flights#fetch", as: "fetch_flight"
   end
 
   get "up" => "rails/health#show", as: :rails_health_check

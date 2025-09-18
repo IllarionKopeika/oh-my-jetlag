@@ -14,6 +14,17 @@ en:
       confirmation: Passwords don't match
       taken_email_address: is already taken
       taken_nickname: is already taken
+  flights:
+    fetch:
+      title: Search result
+      add_flight: Add flight
+      date: Sep 28, 2025
+      duration: 4 h 45 mins
+    search:
+      title: Search flights
+      flight_number: Flight number
+      date: Departure date
+      search: Search
   pages:
     home:
       hi: Working hard on the app!
@@ -23,7 +34,7 @@ en:
       current_password: Current password
       new_password: New password
       password_confirmation: Password confirmation
-      change_password: Change password
+      change_password: Submit
     update_password:
       change_password_success: Password has been successfully changed!
   sessions:
