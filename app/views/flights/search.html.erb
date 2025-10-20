@@ -5,13 +5,15 @@
       <h1 class="text-center mb-3"><%= t(".title") %></h1>
 
       <%= form_with url: fetch_flight_path, method: :get, id: "flight-search-form", data: { turbo_frame: "flight_result" } do |f| %>
-          <div class="mb-3">
-            <%= f.text_field :flight_number, placeholder: t(".flight_number"), class: "form-control" %>
-          </div>
-          <div class="mb-3">
-            <%= f.date_field :date, placeholder: t(".date"), class: "form-control" %>
-          </div>
-          <%= f.submit t(".search"), class: "btn btn-primary w-100 mb-3" %>
+        <div class="mb-3">
+          <%= f.text_field :flight_number, placeholder: t(".flight_number"), class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.text_field :date, placeholder: t(".date"), class: "form-control", data: { controller: 'datepicker', locale: I18n.locale } %>
+        </div>
+
+        <%= f.submit t(".search"), class: "btn btn-primary w-100 mb-3" %>
       <% end %>
 
       <%= turbo_frame_tag "flight_result" do %>

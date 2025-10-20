@@ -8,9 +8,14 @@
         <div class="mb-3">
           <%= f.email_field :email_address, placeholder: t(".email_address"), value: params[:email_address], class: "form-control" %>
         </div>
-        <div class="mb-3">
-          <%= f.password_field :password, placeholder: t(".password"), class: "form-control" %>
+
+        <div class="position-relative mb-3" data-controller="password-visibility">
+          <%= f.password_field :password, placeholder: t(".password"), class: "form-control pe-5", data: { password_visibility_target: "input" } %>
+          <button type="button" class="btn btn-link position-absolute end-0 top-50 translate-middle-y text-muted" data-action="password-visibility#toggle" tabindex="-1">
+            <i data-password-visibility-target="icon" class="eye-icon fa-solid fa-eye"></i>
+          </button>
         </div>
+
         <%= f.submit t(".log_in"), class: "btn btn-primary w-100 mb-3" %>
       <% end %>
 
