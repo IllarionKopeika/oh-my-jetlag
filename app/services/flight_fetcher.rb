@@ -9,6 +9,7 @@ class FlightFetcher
   def call
     url = "https://aerodatabox.p.rapidapi.com/flights/number/#{@flight_number}/#{@departure_date}"
     response = HTTParty.get(url, headers: headers, query: query_params)
+    Rails.logger.info "Response > #{response}"
     if response.success?
       parse_response(response)
     else
