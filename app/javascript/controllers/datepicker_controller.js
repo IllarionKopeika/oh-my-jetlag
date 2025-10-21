@@ -13,8 +13,18 @@ export default class extends Controller {
       maxDate: new Date().fp_incr(365),
       altInput: true,
       altFormat: locale === "en" ? "M j, Y" : "j M Y",
-      dateFormat: "d-M-Y",
-      disableMobile: "true"
+      dateFormat: "Y-m-d",
+      disableMobile: "true",
+
+      onChange: (selectedDates, dateStr, instance) => {
+        const input = instance.altInput
+        if (dateStr) {
+          input.classList.remove("is-invalid")
+          input.classList.add("is-valid")
+        } else {
+          input.classList.remove("is-valid")
+        }
+      }
     })
   }
 }

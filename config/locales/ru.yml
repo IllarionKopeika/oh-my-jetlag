@@ -1,4 +1,8 @@
 ru:
+  flight_not_found: Рейс не найден :(
+  date:
+    formats:
+      flight: "%-d %b %Y"
   activerecord:
     attributes:
       user:
@@ -15,15 +19,17 @@ ru:
       taken_email_address: уже используется
       taken_nickname: уже занят
   flights:
+    hours: ч
+    mins: мин
     fetch:
       title: Результат поиска
       add_flight: Добавить
-      date: Сен 28, 2025
-      duration: 4 ч 45 мин
     search:
       title: Поиск рейсов
       flight_number: Номер рейса
-      date: Дата вылета
+      enter_flight_number: Введите номер рейса
+      departure_date: Дата вылета
+      choose_departure_date: Выберите дату вылета
       search: Поиск
   pages:
     home:

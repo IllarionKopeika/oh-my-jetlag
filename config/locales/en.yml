@@ -1,4 +1,8 @@
 en:
+  flight_not_found: Flight not found :(
+  date:
+    formats:
+      flight: "%b %d, %Y"
   activerecord:
     attributes:
       user:
@@ -15,15 +19,17 @@ en:
       taken_email_address: is already taken
       taken_nickname: is already taken
   flights:
+    hours: h
+    mins: mins
     fetch:
       title: Search result
       add_flight: Add flight
-      date: Sep 28, 2025
-      duration: 4 h 45 mins
     search:
       title: Search flights
       flight_number: Flight number
-      date: Departure date
+      enter_flight_number: Enter a flight number
+      departure_date: Departure date
+      choose_departure_date: Choose a departure date
       search: Search
   pages:
     home:

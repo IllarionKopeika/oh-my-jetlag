@@ -1,52 +1,57 @@
 <%= turbo_frame_tag "flight_result" do %>
-  <div class="search-flight-card p-3">
+  <h2 class="text-center mb-3"><%= t(".title") %></h2>
 
-    <h2 class="text-center mb-3"><%= t(".title") %></h2>
-    <div class="d-flex justify-content-between align-items-center mb-3">
+  <% if @flight_data.is_a?(Hash) && @flight_data[:message] %>
+    <h4 class="text-center text-secondary mb-3"><%= @flight_data[:message] %></h4>
+  <% else %>
+    <% @flight_data.each do |flight| %>
+      <div class="search-flight-card p-3 mb-3">
+        <div class="d-flex justify-content-between align-items-center mb-3">
 
-      <!-- departure info -->
-      <div class="d-flex justify-content-center align-items-center">
-        <img class="me-xl-2 me-1" src="https://flagcdn.com/cn.svg" alt="CN">
-        <div class="d-flex flex-column align-items-center">
-          <h4 class="my-0"><strong>PVG</strong></h4>
-          <p class="my-0">02:00</p>
+          <!-- departure info -->
+          <div class="d-flex justify-content-center align-items-center">
+            <img class="me-xl-2 me-1" src="https://flagcdn.com/<%= flight[:departure_country_code].downcase %>.svg" alt="<%= flight[:departure_country_code] %>">
+            <div class="d-flex flex-column align-items-center">
+              <h4 class="my-0"><strong><%= flight[:departure_airport_code] %></strong></h4>
+              <p class="my-0"><%= format_time(flight[:departure_local]) %></p>
+            </div>
+          </div>
+
+          <!-- departure icon -->
+          <div>
+            <i class="aircraft-icon fa-solid fa-plane-departure"></i>
+          </div>
+
+          <!-- number, date, duration -->
+          <div class="d-flex flex-column align-items-center">
+            <p class="my-0"><%= flight[:flight_number] %></p>
+            <p class="my-0"><%= format_departure_date(flight[:departure_local]) %></p>
+            <p class="my-0"><%= format_duration(flight[:departure_utc], flight[:arrival_utc]) %></p>
+          </div>
+
+          <!-- arrival icon -->
+          <div>
+            <i class="aircraft-icon fa-solid fa-plane-arrival"></i>
+          </div>
+
+          <!-- arrival info -->
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="d-flex flex-column align-items-center">
+              <h4 class="my-0"><strong><%= flight[:arrival_airport_code] %></strong></h4>
+              <p class="my-0"><%= format_time(flight[:arrival_local]) %></p>
+            </div>
+            <img class="ms-xl-2 ms-1" src="https://flagcdn.com/<%= flight[:arrival_country_code].downcase %>.svg" alt="<%= flight[:arrival_country_code] %>">
+          </div>
+
+        </div>
+
+        <!-- button -->
+        <div class="row justify-content-center">
+          <div class="col-lg-6 col-sm-8 col-12">
+            <button class="btn btn-info w-100 text-white" style="font-size: 16px;"><%= t(".add_flight") %></button>
+          </div>
         </div>
       </div>
-
-      <!-- departure icon -->
-      <div>
-        <i class="aircraft-icon fa-solid fa-plane-departure"></i>
-      </div>
-
-      <!-- number, date, duration -->
-      <div class="d-flex flex-column align-items-center">
-        <p class="my-0">VJ3901</p>
-        <p class="my-0"><%= t(".date") %></p>
-        <p class="my-0"><%= t(".duration") %></p>
-      </div>
-
-      <!-- arrival icon -->
-      <div>
-        <i class="aircraft-icon fa-solid fa-plane-arrival"></i>
-      </div>
-
-      <!-- arrival info -->
-      <div class="d-flex justify-content-center align-items-center">
-        <div class="d-flex flex-column align-items-center">
-          <h4 class="my-0"><strong>SGN</strong></h4>
-          <p class="my-0">05:45</p>
-        </div>
-        <img class="ms-xl-2 ms-1" src="https://flagcdn.com/vn.svg" alt="VN">
-      </div>
-
-    </div>
-
-    <!-- button -->
-    <div class="row justify-content-center">
-      <div class="col-lg-6 col-sm-8 col-12">
-        <button class="btn btn-info w-100 text-white" style="font-size: 16px;"><%= t(".add_flight") %></button>
-      </div>
-    </div>
-  </div>
-
+    <% end %>
+  <% end %>
 <% end %>
