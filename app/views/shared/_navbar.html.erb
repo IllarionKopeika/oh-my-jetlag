@@ -62,7 +62,7 @@
             </li>
           <% end %>
         </ul>
-        <div class="d-flex justify-content-center align-items-center gap-4">
+        <div class="locales d-flex justify-content-center align-items-center gap-4">
           <% I18n.available_locales.each do |locale| %>
             <%= link_to locale_to_flag(locale), url_for(locale: locale), class: "nav-link", style: "font-size: 18px; opacity: #{locale == I18n.locale ? "1" : "0.3"};" %>
           <% end %>
