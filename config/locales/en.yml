@@ -61,11 +61,15 @@ en:
   shared:
     navbar:
       hello: Hey
-      search: Search flights
+      flights: Flights
       my_flights: My flights
+      search_flights: Search flights
+      manual_add: Manual add
       map: Map
       stats: Stats
+      rating: Rating
       profile: Profile
+      id: Jetlagger ID
       change_password: Change password
       log_out: Log out
   users:

@@ -61,11 +61,15 @@ ru:
   shared:
     navbar:
       hello: Ку
-      search: Поиск рейсов
+      flights: Рейсы
       my_flights: Мои рейсы
+      search_flights: Поиск рейсов
+      manual_add: Добавить вручную
       map: Карта
       stats: Статистика
+      rating: Рейтинг
       profile: Профиль
+      id: Джетлаггер ID
       change_password: Изменить пароль
       log_out: Выйти
   users:

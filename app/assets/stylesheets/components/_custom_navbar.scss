@@ -2,17 +2,92 @@
   border-bottom: 1px solid $primary;
   background: rgba(white,0.7);
   .nav-link {
-    font-size: 14px;
+    font-size: 16px;
     color: $primary;
     font-weight: 600;
     &:after {
       content: none;
     }
   }
-  @media(max-width: 991px) {
+  .dropdown {
+    position: relative;
+    .dropdown-toggle {
+      color: $primary !important;
+      &:focus, &:active, &.show {
+        color: $primary !important;
+        background: transparent !important;
+        box-shadow: none !important;
+      }
+    }
+    .dropdown-menu {
+      background: whitesmoke;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 100%;
+      border: 1px solid $secondary;
+      border-radius: 5px;
+      .dropdown-item {
+        font-size: 14px;
+        color: $secondary;
+        &:hover {
+          background: whitesmoke;
+        }
+      }
+    }
+    .dropdown-divider {
+      opacity: 50%;
+    }
+  }
+  @media (max-width: 991px) {
     .sidebar {
-      background-color: rgba(white,0.7);
+      background-color: rgba(white, 0.85);
       backdrop-filter: blur(10px);
+      .navbar-nav {
+        align-items: center !important;
+        text-align: center;
+        width: 100%;
+      }
+      .nav-link {
+        width: 100%;
+        color: $primary;
+        font-size: 14px;
+      }
+      .dropdown {
+        width: 100%;
+        .dropdown-toggle {
+          display: inline-block;
+          width: auto;
+          color: $primary !important;
+          background: transparent;
+          border: none;
+          font-weight: 600;
+          text-align: center;
+          &::after {
+            vertical-align: middle;
+          }
+        }
+        .dropdown-menu {
+          position: static;
+          transform: none;
+          background: transparent;
+          border: none;
+          box-shadow: none;
+          text-align: center;
+          width: 100%;
+          margin-top: 0;
+          .dropdown-item {
+            display: block;
+            font-size: 12px;
+            color: $secondary;
+            padding: 0;
+            text-align: center;
+            width: 100%;
+            &:hover {
+              background: transparent;
+            }
+          }
+        }
+      }
     }
   }
 }
