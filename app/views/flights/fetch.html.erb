@@ -24,7 +24,7 @@
 
           <!-- number, date, duration -->
           <div class="d-flex flex-column align-items-center">
-            <p class="my-0"><%= flight[:flight_number] %></p>
+            <p class="my-0"><%= flight[:number] %></p>
             <p class="my-0"><%= format_departure_date(flight[:departure_local]) %></p>
             <p class="my-0"><%= format_duration(flight[:departure_utc], flight[:arrival_utc]) %></p>
           </div>
@@ -48,7 +48,25 @@
         <!-- button -->
         <div class="row justify-content-center">
           <div class="col-lg-6 col-sm-8 col-12">
-            <button class="btn btn-info w-100 text-white" style="font-size: 16px;"><%= t(".add_flight") %></button>
+            <%= form_with model: Flight.new, url: flights_path, method: :post, data: { turbo: false } do |f| %>
+
+              <div class="d-none">
+                <%= f.hidden_field :number, value: flight[:number] %>
+                <%= f.hidden_field :departure_airport_code, value: flight[:departure_airport_code] %>
+                <%= f.hidden_field :departure_country_code, value: flight[:departure_country_code] %>
+                <%= f.hidden_field :departure_utc, value: flight[:departure_utc] %>
+                <%= f.hidden_field :departure_local, value: flight[:departure_local] %>
+                <%= f.hidden_field :arrival_airport_code, value: flight[:arrival_airport_code] %>
+                <%= f.hidden_field :arrival_country_code, value: flight[:arrival_country_code] %>
+                <%= f.hidden_field :arrival_utc, value: flight[:arrival_utc] %>
+                <%= f.hidden_field :arrival_local, value: flight[:arrival_local] %>
+                <%= f.hidden_field :distance, value: flight[:distance] %>
+                <%= f.hidden_field :airline_code, value: flight[:airline_code] %>
+                <%= f.hidden_field :aircraft_model, value: flight[:aircraft_model] %>
+              </div>
+
+              <%= f.submit t(".add_flight"), class: "btn btn-info w-100 text-white", style: "font-size: 16px;" %>
+            <% end %>
           </div>
         </div>
       </div>

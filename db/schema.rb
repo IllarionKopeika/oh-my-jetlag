@@ -10,9 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_12_062743) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_30_041620) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "aircrafts", force: :cascade do |t|
+    t.string "name"
+    t.string "manufacturer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "airlines", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.string "logo_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "airports", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.string "timezone"
+    t.float "latitude"
+    t.float "longitude"
+    t.bigint "country_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_airports_on_country_id"
+  end
 
   create_table "continents", force: :cascade do |t|
     t.jsonb "name", default: {}, null: false
@@ -30,6 +57,29 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_12_062743) do
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_countries_on_name", using: :gin
     t.index ["region_id"], name: "index_countries_on_region_id"
+  end
+
+  create_table "flights", force: :cascade do |t|
+    t.string "number"
+    t.datetime "departure_utc"
+    t.datetime "departure_local"
+    t.datetime "arrival_utc"
+    t.datetime "arrival_local"
+    t.integer "duration"
+    t.float "distance"
+    t.integer "status"
+    t.integer "type"
+    t.bigint "airline_id", null: false
+    t.bigint "aircraft_id", null: false
+    t.bigint "departure_airport_id", null: false
+    t.bigint "arrival_airport_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["aircraft_id"], name: "index_flights_on_aircraft_id"
+    t.index ["airline_id"], name: "index_flights_on_airline_id"
+    t.index ["arrival_airport_id"], name: "index_flights_on_arrival_airport_id"
+    t.index ["departure_airport_id"], name: "index_flights_on_departure_airport_id"
+    t.index ["number", "departure_utc", "airline_id", "departure_airport_id", "arrival_airport_id"], name: "idx_on_number_departure_utc_airline_id_departure_ai_07d1add2ea", unique: true
   end
 
   create_table "regions", force: :cascade do |t|
@@ -50,6 +100,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_12_062743) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
+  create_table "user_flights", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "flight_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["flight_id"], name: "index_user_flights_on_flight_id"
+    t.index ["user_id", "flight_id"], name: "index_user_flights_on_user_id_and_flight_id", unique: true
+    t.index ["user_id"], name: "index_user_flights_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email_address", null: false
     t.string "password_digest", null: false
@@ -59,7 +119,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_12_062743) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "airports", "countries"
   add_foreign_key "countries", "regions"
+  add_foreign_key "flights", "aircrafts"
+  add_foreign_key "flights", "airlines"
+  add_foreign_key "flights", "airports", column: "arrival_airport_id"
+  add_foreign_key "flights", "airports", column: "departure_airport_id"
   add_foreign_key "regions", "continents"
   add_foreign_key "sessions", "users"
+  add_foreign_key "user_flights", "flights"
+  add_foreign_key "user_flights", "users"
 end

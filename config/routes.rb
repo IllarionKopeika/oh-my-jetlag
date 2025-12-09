@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get "profile", to: "users#show", as: "profile"
 
     # flights
+    resources :flights, only: [ :index, :create ]
     get "search", to: "flights#search", as: "search"
     get "fetch_flight", to: "flights#fetch", as: "fetch_flight"
   end

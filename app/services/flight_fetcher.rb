@@ -44,10 +44,8 @@ class FlightFetcher
       { message: I18n.t("flight_not_found") }
     else
       response_data.map do |flight|
-        flight_number = flight.dig(:number)
-
         {
-          flight_number: flight_number.delete(" "),
+          number: flight.dig(:number),
           departure_airport_code: flight.dig(:departure, :airport, :iata),
           departure_country_code: flight.dig(:departure, :airport, :countryCode),
           departure_local: flight.dig(:departure, :scheduledTime, :local),
@@ -55,7 +53,10 @@ class FlightFetcher
           arrival_airport_code: flight.dig(:arrival, :airport, :iata),
           arrival_country_code: flight.dig(:arrival, :airport, :countryCode),
           arrival_local: flight.dig(:arrival, :scheduledTime, :local),
-          arrival_utc: flight.dig(:arrival, :scheduledTime, :utc)
+          arrival_utc: flight.dig(:arrival, :scheduledTime, :utc),
+          distance: flight.dig(:greatCircleDistance, :km),
+          airline_code: flight.dig(:airline, :iata),
+          aircraft_model: flight.dig(:aircraft, :model)
         }
       end
     end

@@ -31,6 +31,11 @@ en:
       departure_date: Departure date
       choose_departure_date: Choose a departure date
       search: Search
+    create:
+      create_success: Flight was successfully added!
+      error: Error :(
+    index:
+      title: My flights
   pages:
     home:
       hi: Working hard on the app!
