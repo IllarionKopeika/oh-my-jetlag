@@ -32,10 +32,10 @@ class FlightsController < ApplicationController
       departure_airport: departure_airport,
       arrival_airport: arrival_airport
     ) do |flight|
-      flight.departure_local = fp[:departure_local],
-      flight.arrival_utc = fp[:arrival_utc],
-      flight.arrival_local = fp[:arrival_local],
-      flight.distance = fp[:distance],
+      flight.departure_local = fp[:departure_local]
+      flight.arrival_utc = fp[:arrival_utc]
+      flight.arrival_local = fp[:arrival_local]
+      flight.distance = fp[:distance]
       flight.aircraft = aircraft
     end
 

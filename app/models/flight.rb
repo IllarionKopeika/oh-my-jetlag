@@ -12,7 +12,7 @@ class Flight < ApplicationRecord
   has_many :users, through: :user_flights
 
   enum :status, { upcoming: 0, completed: 1 }
-  enum :type, { domestic: 0, international: 1 }
+  enum :flight_type, { domestic: 0, international: 1 }
 
   before_save :set_duration_status_type
 
@@ -36,12 +36,12 @@ class Flight < ApplicationRecord
     # type
     if departure_airport.present? && arrival_airport.present?
       if departure_airport.country_id == arrival_airport.country_id
-        self.type = :domestic
+        self.flight_type = :domestic
       else
-        self.type = :international
+        self.flight_type = :international
       end
     else
-      self.type = nil
+      self.flight_type = nil
     end
   end
 end
