@@ -1,10 +1,9 @@
 FROM ruby:3.3
 
-RUN apt-get update -o Acquire::Check-Valid-Until=false -o Acquire::http::No-Cache=true -qq \
-  && apt-get install -y \
-    build-essential \
-    libpq-dev \
-    curl \
+RUN apt-get update -qq && apt-get install -y \
+  build-essential \
+  libpq-dev \
+  curl \
   && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
