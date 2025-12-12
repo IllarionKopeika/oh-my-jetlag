@@ -1,4 +1,9 @@
 class FlightsController < ApplicationController
+  def index
+    @upcoming_flights = Current.user.flights.upcoming.order(departure_local: :asc)
+    @completed_flights = Current.user.flights.completed.order(departure_local: :desc)
+  end
+
   def search; end
 
   def fetch

@@ -1,0 +1,83 @@
+.flight-card {
+  background: rgba(white,0.6);
+  border-radius: 25px;
+  box-shadow: 2px 2px 4px gray;
+  overflow: hidden;
+  img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  }
+  .map-icon {
+    color: $primary;
+    font-size: 20px;
+  }
+  .aircraft-icon {
+    color: $info;
+    font-size: 20px;
+  }
+  h4 {
+    color: $primary;
+  }
+  p {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  @media (max-width: 450px) {
+    img {
+      width: 15px;
+      height: 15px;
+      object-fit: contain;
+    }
+    .map-icon {
+      font-size: 12px;
+    }
+    .aircraft-icon {
+      font-size: 12px;
+    }
+    h4 {
+      font-size: 16px;
+    }
+    p {
+      font-size: 9px;
+    }
+  }
+  @media (min-width: 451px) and (max-width: 767px) {
+    img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
+    .map-icon {
+      font-size: 14px;
+    }
+    .aircraft-icon {
+      font-size: 14px;
+    }
+    h4 {
+      font-size: 18px;
+    }
+    p {
+      font-size: 10px;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    img {
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+    }
+    .map-icon {
+      font-size: 16px;
+    }
+    .aircraft-icon {
+      font-size: 16px;
+    }
+    h4 {
+      font-size: 20px;
+    }
+    p {
+      font-size: 11px;
+    }
+  }
+}

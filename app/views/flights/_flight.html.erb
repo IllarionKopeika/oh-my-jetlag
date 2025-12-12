@@ -1,0 +1,38 @@
+<div class="flight-card d-flex flex-column p-3 mb-2">
+
+  <!-- airline logo, flight number & date -->
+  <div class="d-flex justify-content-around align-items-center mb-2">
+    <div class="d-flex align-items-center gap-2">
+      <img src="<%= flight.airline.logo_url %>" alt="<%= flight.airline.name %>">
+      <p class="m-0"><%= flight.number %></p>
+    </div>
+    <div>
+      <i class="map-icon fa-solid fa-map-location-dot"></i>
+    </div>
+    <div>
+      <p class="m-0"><%= format_date(flight.departure_local) %></p>
+    </div>
+  </div>
+
+  <!-- other info -->
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex flex-column align-items-center">
+      <h4 class="my-0"><strong><%= flight.departure_airport.code %></strong></h4>
+      <p class="my-0"><%= format_time(flight.departure_local) %></p>
+    </div>
+    <div>
+      <i class="aircraft-icon fa-solid fa-plane-departure"></i>
+    </div>
+    <div>
+      <p class="my-0 text-center"><%= flight.aircraft.name %></p>
+      <p class="my-0 text-center"><%= format_duration(flight.departure_local, flight.arrival_local) %></p>
+    </div>
+    <div>
+      <i class="aircraft-icon fa-solid fa-plane-arrival"></i>
+    </div>
+    <div class="d-flex flex-column align-items-center">
+      <h4 class="my-0"><strong><%= flight.arrival_airport.code %></strong></h4>
+      <p class="my-0 position-relative"><%= format_time(flight.arrival_local) %></p>
+    </div>
+  </div>
+</div>

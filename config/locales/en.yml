@@ -36,6 +36,8 @@ en:
       error: Error :(
     index:
       title: My flights
+      upcoming: Upcoming
+      completed: Completed
   pages:
     home:
       hi: Working hard on the app!

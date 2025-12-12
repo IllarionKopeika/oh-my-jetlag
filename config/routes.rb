@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   scope "(:locale)", locale: /ru|en/ do
-    root "pages#home"
-
     # sessions
     resource :session, only: :create
     get "login", to: "sessions#new", as: "login"
@@ -18,6 +16,7 @@ Rails.application.routes.draw do
 
     # flights
     resources :flights, only: [ :index, :create ]
+    root "flights#index"
     get "search", to: "flights#search", as: "search"
     get "fetch_flight", to: "flights#fetch", as: "fetch_flight"
   end

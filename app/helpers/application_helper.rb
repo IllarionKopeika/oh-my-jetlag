@@ -15,7 +15,7 @@ module ApplicationHelper
     Time.parse(time).strftime("%H:%M")
   end
 
-  def format_departure_date(date)
+  def format_date(date)
     return unless date.present?
 
     time = Time.parse(date)
