@@ -24,6 +24,15 @@ services:
       - appnet
     restart: always
 
+  worker:
+    build: .
+    command: bin/jobs work
+    env_file:
+      - .env
+    depends_on:
+      - db
+    restart: always
+
 networks:
   appnet:
     driver: bridge

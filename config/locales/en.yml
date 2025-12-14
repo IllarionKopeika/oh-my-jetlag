@@ -1,5 +1,4 @@
 en:
-  flight_not_found: Flight not found :(
   date:
     formats:
       flight: "%b %d, %Y"
@@ -38,9 +37,7 @@ en:
       title: My flights
       upcoming: Upcoming
       completed: Completed
-  pages:
-    home:
-      hi: Working hard on the app!
+      flight_not_found: Flights not found :(
   passwords:
     change_password:
       title: Change password

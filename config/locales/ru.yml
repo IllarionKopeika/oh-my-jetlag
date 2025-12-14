@@ -1,5 +1,4 @@
 ru:
-  flight_not_found: Рейс не найден :(
   date:
     formats:
       flight: "%-d %b %Y"
@@ -38,9 +37,7 @@ ru:
       title: Мои рейсы
       upcoming: Будущие
       completed: Прошедшие
-  pages:
-    home:
-      hi: Работаем над приложением!
+      flight_not_found: Рейсов не найдено :(
   passwords:
     change_password:
       title: Изменить пароль
