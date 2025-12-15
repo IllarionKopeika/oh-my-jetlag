@@ -17,6 +17,7 @@ test:
   database: oh_my_jetlag_test
 
 production:
-  <<: *default
-  database: app_production
-  url: <%= ENV["DATABASE_URL"] %>
+  primary:
+    <<: *default
+    database: app_production
+    url: <%= ENV["DATABASE_URL"] %>
