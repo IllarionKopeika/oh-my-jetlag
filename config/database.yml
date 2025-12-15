@@ -11,9 +11,6 @@ development:
   primary:
     <<: *default
     database: oh_my_jetlag_development
-  queue:
-    <<: *default
-    database: oh_my_jetlag_development
 
 test:
   <<: *default
