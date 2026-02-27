@@ -39,7 +39,7 @@ class UpdateAirportJob < ApplicationJob
   private
 
   def reset_fields(airport)
-    airport_name = "Unknown Airport #{airport.id}"
+    airport_name = "Unknown Airport #{airport.code}"
     airport.update!(name: airport_name)
   end
 end

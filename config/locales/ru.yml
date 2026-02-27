@@ -1,4 +1,5 @@
 ru:
+  flight_not_found: Рейс не найден
   date:
     formats:
       flight: "%-d %b %Y"
@@ -21,6 +22,8 @@ ru:
     hours: ч
     mins: мин
     fetch:
+      check_search_params: Проверьте параметы поиска или
+      add_manually: добавьте рейс вручную!
       title: Результат поиска
       add_flight: Добавить
     search:
@@ -30,6 +33,19 @@ ru:
       departure_date: Дата вылета
       choose_departure_date: Выберите дату вылета
       search: Поиск
+    new:
+      title: Добавить вручную
+      flight_number: Номер рейса
+      departure: Вылет
+      departure_airport_code: Код аэропорта вылета
+      departure_country_code: Страна вылета
+      departure_datetime: Дата и время вылета
+      arrival: Прилет
+      arrival_airport_code: Код аэропорта прилета
+      arrival_country_code: Страна прилета
+      arrival_datetime: Дата и время прилета
+      aircraft_model: Самолет
+      add: Добавить
     create:
       create_success: Рейс успешно добавлен!
       error: Ошибка :(
@@ -37,7 +53,9 @@ ru:
       title: Мои рейсы
       upcoming: Будущие
       completed: Прошедшие
-      flight_not_found: Рейсов не найдено :(
+      no_flights: Нет рейсов
+      lets: Давайте
+      add: добавим!
   passwords:
     change_password:
       title: Изменить пароль

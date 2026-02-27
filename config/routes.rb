@@ -17,8 +17,31 @@ Rails.application.routes.draw do
     # flights
     resources :flights, only: [ :index, :create ]
     root "flights#index"
+    get "add", to: "flights#new", as: "add"
     get "search", to: "flights#search", as: "search"
     get "fetch_flight", to: "flights#fetch", as: "fetch_flight"
+
+    # airports
+    resources :airports, only: [ ] do
+      collection do
+        get :search
+      end
+    end
+
+    # aircrafts
+    resources :aircrafts, only: [ ] do
+      collection do
+        get :search
+      end
+    end
+
+    # countries
+    resources :countries, only: [ ] do
+      collection do
+        get :search
+      end
+    end
+
   end
 
   get "up" => "rails/health#show", as: :rails_health_check

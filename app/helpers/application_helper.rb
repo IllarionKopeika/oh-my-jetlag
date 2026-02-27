@@ -22,7 +22,7 @@ module ApplicationHelper
     I18n.l(time.to_date, format: :flight)
   end
 
-  def format_duration(departure_utc, arrival_utc)
+  def count_duration(departure_utc, arrival_utc)
     return if departure_utc.blank? || arrival_utc.blank?
 
     departure_time = Time.parse(departure_utc)
@@ -31,6 +31,16 @@ module ApplicationHelper
     total = ((arrival_time - departure_time) / 60).to_i
     hours, mins = total.divmod(60)
 
+    [].tap do |parts|
+      parts << "#{hours} #{I18n.t('flights.hours')}" if hours.positive?
+      parts << "#{mins} #{I18n.t('flights.mins')}" if mins.positive?
+    end.join(" ")
+  end
+
+  def format_duration(duration)
+    return if duration.blank?
+
+    hours, mins = duration.divmod(60)
     [].tap do |parts|
       parts << "#{hours} #{I18n.t('flights.hours')}" if hours.positive?
       parts << "#{mins} #{I18n.t('flights.mins')}" if mins.positive?

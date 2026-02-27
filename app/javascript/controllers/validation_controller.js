@@ -9,7 +9,6 @@ export default class extends Controller {
       form.addEventListener("submit", event => {
         let valid = true
 
-        // Проверка flatpickr (hidden input)
         const flatpickrInputs = form.querySelectorAll(".flatpickr-input[required]")
 
         flatpickrInputs.forEach(input => {
@@ -24,7 +23,6 @@ export default class extends Controller {
             altInput?.classList.remove("is-invalid")
           }
 
-          // Добавляем обработчик, чтобы тултип исчезал при выборе даты
           if (fp && !fp._validationListenerAdded) {
             fp._validationListenerAdded = true
             fp.config.onChange.push(() => {

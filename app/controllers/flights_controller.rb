@@ -19,34 +19,21 @@ class FlightsController < ApplicationController
     end
   end
 
+  def new
+    @flight = Flight.new
+  end
+
   def create
-    fp = flight_params
-    airline = Airline.find_or_create_by!(code: fp[:airline_code].to_s.upcase)
-    aircraft = Aircraft.find_or_create_by!(name: fp[:aircraft_model].to_s)
-    departure_airport = Airport.find_or_create_by!(code: fp[:departure_airport_code].to_s.upcase) do |airport|
-      airport.country = Country.find_by(code: fp[:departure_country_code].to_s.upcase)
-    end
-    arrival_airport = Airport.find_or_create_by!(code: fp[:arrival_airport_code].to_s.upcase) do |airport|
-      airport.country = Country.find_by(code: fp[:arrival_country_code].to_s.upcase)
+    service = case params[:flight][:data_source]
+    when "api"
+      ApiFlight
+    when "manual_add"
+      ManualAddFlight
     end
 
-    @flight = Flight.find_or_create_by(
-      airline: airline,
-      number: fp[:number],
-      departure_utc: fp[:departure_utc],
-      departure_airport: departure_airport,
-      arrival_airport: arrival_airport
-    ) do |flight|
-      flight.departure_local = fp[:departure_local]
-      flight.arrival_utc = fp[:arrival_utc]
-      flight.arrival_local = fp[:arrival_local]
-      flight.distance = fp[:distance]
-      flight.aircraft = aircraft
-    end
+    result = service.new(flight_params, Current.user).call
 
-    UserFlight.find_or_create_by!(user: Current.user, flight: @flight)
-
-    if @flight&.persisted?
+    if result&.persisted?
       flash[:success] = t(".create_success")
       redirect_to flights_path
     else
@@ -62,6 +49,6 @@ class FlightsController < ApplicationController
   end
 
   def flight_params
-    params.require(:flight).permit(:number, :departure_airport_code, :departure_country_code, :departure_utc, :departure_local, :arrival_airport_code, :arrival_country_code, :arrival_utc, :arrival_local, :distance, :airline_code, :aircraft_model)
+    params.require(:flight).permit(:number, :departure_airport_code, :departure_country_code, :departure_utc, :departure_local, :arrival_airport_code, :arrival_country_code, :arrival_utc, :arrival_local, :distance, :airline_code, :aircraft_model, :data_source)
   end
 end

@@ -1,16 +1,20 @@
 <%= turbo_frame_tag "flight_result" do %>
-  <h2 class="text-center mb-3"><%= t(".title") %></h2>
 
   <% if @flight_data.is_a?(Hash) && @flight_data[:message] %>
-    <h4 class="text-center text-secondary mb-3"><%= @flight_data[:message] %></h4>
+    <h2 class="text-center mb-3"><%= @flight_data[:message] %></h4>
+    <div class="form-footer d-flex justify-content-center align-items-center">
+      <p class="mb-0 me-2"><%= t(".check_search_params") %></p>
+      <strong><%= link_to t(".add_manually"), add_path %></strong>
+    </div>
   <% else %>
+    <h2 class="text-center mb-3"><%= t(".title") %></h2>
     <% @flight_data.each do |flight| %>
-      <div class="search-flight-card p-3 mb-2">
+      <div class="flight-card p-3 mb-2">
         <div class="d-flex justify-content-between align-items-center mb-2">
 
           <!-- departure info -->
           <div class="d-flex justify-content-center align-items-center">
-            <img class="me-xl-2 me-1" src="https://flagcdn.com/<%= flight[:departure_country_code].downcase %>.svg" alt="<%= flight[:departure_country_code] %>">
+            <img class="me-xl-2 me-1 flag-img" src="https://flagcdn.com/<%= flight[:departure_country_code].downcase %>.svg" alt="<%= flight[:departure_country_code] %>">
             <div class="d-flex flex-column align-items-center">
               <h4 class="my-0"><strong><%= flight[:departure_airport_code] %></strong></h4>
               <p class="my-0"><%= format_time(flight[:departure_local]) %></p>
@@ -26,7 +30,7 @@
           <div class="d-flex flex-column align-items-center">
             <p class="my-0"><%= flight[:number] %></p>
             <p class="my-0"><%= format_date(flight[:departure_local]) %></p>
-            <p class="my-0"><%= format_duration(flight[:departure_utc], flight[:arrival_utc]) %></p>
+            <p class="my-0"><%= count_duration(flight[:departure_utc], flight[:arrival_utc]) %></p>
           </div>
 
           <!-- arrival icon -->
@@ -40,7 +44,7 @@
               <h4 class="my-0"><strong><%= flight[:arrival_airport_code] %></strong></h4>
               <p class="my-0"><%= format_time(flight[:arrival_local]) %></p>
             </div>
-            <img class="ms-xl-2 ms-1" src="https://flagcdn.com/<%= flight[:arrival_country_code].downcase %>.svg" alt="<%= flight[:arrival_country_code] %>">
+            <img class="ms-xl-2 ms-1 flag-img" src="https://flagcdn.com/<%= flight[:arrival_country_code].downcase %>.svg" alt="<%= flight[:arrival_country_code] %>">
           </div>
 
         </div>
@@ -63,6 +67,7 @@
                 <%= f.hidden_field :distance, value: flight[:distance] %>
                 <%= f.hidden_field :airline_code, value: flight[:airline_code] %>
                 <%= f.hidden_field :aircraft_model, value: flight[:aircraft_model] %>
+                <%= f.hidden_field :data_source, value: "api" %>
               </div>
 
               <%= f.submit t(".add_flight"), class: "btn btn-info w-100 text-white", style: "font-size: 16px;" %>

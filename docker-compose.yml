@@ -16,7 +16,7 @@ services:
 
   web:
     build: .
-    command: bash -c "bundle exec rails db:prepare && bundle exec rails db:schema:load && bundle exec rails s -b 0.0.0.0"
+    command: bash -c "bundle exec rails db:prepare && bundle exec rails s -b 0.0.0.0"
     volumes:
       - .:/app
     ports:

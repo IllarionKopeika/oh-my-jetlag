@@ -1,0 +1,80 @@
+<div class="row justify-content-center">
+  <div class="col-xl-6 col-md-8 col-sm-10 col-12">
+    <div class="custom-form p-3">
+
+      <h1 class="text-center mb-3"><%= t(".title") %></h1>
+
+      <%= render "shared/errors", object: @flight %>
+
+      <%= form_with model: @flight do |f| %>
+
+          <div class="row justify-content-center mb-3">
+            <div class="col-6">
+              <%= f.text_field :number, placeholder: t(".flight_number"), class: "form-control" %>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col">
+              <h6 class="text-center"><%= t(".departure") %></h6>
+
+              <div class="position-relative mb-3" data-controller="airport-autocomplete">
+                <%= f.text_field :departure_airport_code, placeholder: t(".departure_airport_code"), class: "form-control", data: { airport_autocomplete_target: "input", action: "input->airport-autocomplete#search" } %>
+                <ul class="list-group position-absolute w-100 z-3" data-airport-autocomplete-target="results">
+                  <!-- > departure airport -->
+                </ul>
+              </div>
+
+              <div class="position-relative mb-3" data-controller="country-autocomplete" data-locale="<%= I18n.locale.to_s %>">
+                <%= f.text_field :departure_country_code, placeholder: t(".departure_country_code"), class: "form-control mb-3", data: { country_autocomplete_target: "input", action: "input->country-autocomplete#search" } %>
+                <ul class="list-group position-absolute w-100 z-3" data-country-autocomplete-target="results">
+                  <!-- > departure country -->
+                </ul>
+              </div>
+
+              <div>
+                <%= f.date_field :departure_local, placeholder: t(".departure_datetime"), class: "form-control", data: { controller: 'datetime-picker', locale: I18n.locale } %>
+              </div>
+            </div>
+
+            <div class="col">
+              <h6 class="text-center"><%= t(".arrival") %></h6>
+
+              <div class="position-relative mb-3" data-controller="airport-autocomplete">
+                <%= f.text_field :arrival_airport_code, placeholder: t(".arrival_airport_code"), class: "form-control", data: { airport_autocomplete_target: "input", action: "input->airport-autocomplete#search" } %>
+                <ul class="list-group position-absolute w-100 z-3" data-airport-autocomplete-target="results">
+                  <!-- > arrival airport -->
+                </ul>
+              </div>
+
+              <div class="position-relative mb-3" data-controller="country-autocomplete" data-locale="<%= I18n.locale.to_s %>">
+                <%= f.text_field :arrival_country_code, placeholder: t(".arrival_country_code"), class: "form-control mb-3", data: { country_autocomplete_target: "input", action: "input->country-autocomplete#search" } %>
+                <ul class="list-group position-absolute w-100 z-3" data-country-autocomplete-target="results">
+                  <!-- > arrival country -->
+                </ul>
+              </div>
+
+              <div>
+                <%= f.date_field :arrival_local, placeholder: t(".arrival_datetime"), class: "form-control", data: { controller: 'datetime-picker', locale: I18n.locale } %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row justify-content-center mb-3">
+            <div class="position-relative col-6" data-controller="aircraft-autocomplete">
+              <%= f.text_field :aircraft_model, placeholder: t(".aircraft_model"), class: "form-control", data: { aircraft_autocomplete_target: "input", action: "input->aircraft-autocomplete#search" } %>
+              <ul class="list-group position-absolute w-100 z-3" data-aircraft-autocomplete-target="results">
+                <!-- > aircraft -->
+              </ul>
+            </div>
+          </div>
+
+          <%= f.hidden_field :data_source, value: "manual_add" %>
+
+        <%= f.submit t(".add"), class: "btn btn-primary w-100 mb-3" %>
+      <% end %>
+
+
+    </div>
+  </div>
+</div>

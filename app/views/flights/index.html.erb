@@ -19,7 +19,11 @@
         <div class="tab-pane fade show active" id="upcoming-tab-pane" role="tabpanel" aria-labelledby="upcoming-tab" tabindex="0">
           <% if @upcoming_flights.count == 0 %>
             <div class="flight-card d-flex flex-column mb-2 p-3">
-              <h4 class="text-center text-secondary"><%= t('.flight_not_found') %></h4>
+              <h4 class="text-center text-secondary"><%= t('.no_flights') %> <i class="fa-regular fa-face-frown-open"></i></h4>
+              <div class="form-footer d-flex justify-content-center align-items-center">
+                <p class="mb-0 me-2"><%= t(".lets") %></p>
+                <strong><%= link_to t(".add"), search_path %></strong>
+              </div>
             </div>
           <% else %>
             <% @upcoming_flights.each do |flight| %>
@@ -30,7 +34,11 @@
         <div class="tab-pane fade" id="completed-tab-pane" role="tabpanel" aria-labelledby="completed-tab" tabindex="0">
           <% if @completed_flights.count == 0 %>
             <div class="flight-card d-flex flex-column mb-2 p-3">
-              <h4 class="text-center text-secondary"><%= t('.flight_not_found') %></h4>
+              <h4 class="text-center text-secondary"><%= t('.no_flights') %> <i class="fa-regular fa-face-frown-open"></i></h4>
+              <div class="form-footer d-flex justify-content-center align-items-center">
+                <p class="mb-0 me-2"><%= t(".lets") %></p>
+                <strong><%= link_to t(".add"), search_path %></strong>
+              </div>
             </div>
           <% else %>
             <% @completed_flights.each do |flight| %>

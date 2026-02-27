@@ -12,6 +12,13 @@
   .btn {
     font-size: 16px;
   }
+  h6 {
+    color: $primary;
+  }
+  p {
+    font-size: 14px;
+    font-weight: 500;
+  }
   .form-footer {
     a {
       color: $primary;
@@ -30,6 +37,21 @@
       @media (min-width: 768px) {
         font-size: 16px;
       }
+    }
+  }
+  @media (max-width: 450px) {
+    p {
+      font-size: 9px;
+    }
+  }
+  @media (min-width: 451px) and (max-width: 767px) {
+    p {
+      font-size: 10px;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    p {
+      font-size: 11px;
     }
   }
 }

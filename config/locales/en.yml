@@ -1,4 +1,5 @@
 en:
+  flight_not_found: Flight not found
   date:
     formats:
       flight: "%b %d, %Y"
@@ -21,6 +22,8 @@ en:
     hours: h
     mins: mins
     fetch:
+      check_search_params: Check search parameters or
+      add_manually: add a flight manually!
       title: Search result
       add_flight: Add flight
     search:
@@ -30,6 +33,19 @@ en:
       departure_date: Departure date
       choose_departure_date: Choose a departure date
       search: Search
+    new:
+      title: Manual add
+      flight_number: Flight number
+      departure: Departure
+      departure_airport_code: Departure airport code
+      departure_country_code: Departure country
+      departure_datetime: Departure date & time
+      arrival: Arrival
+      arrival_airport_code: Arrival airport code
+      arrival_country_code: Arrival country
+      arrival_datetime: Arrival date & time
+      aircraft_model: Aircraft
+      add: Add
     create:
       create_success: Flight was successfully added!
       error: Error :(
@@ -37,7 +53,9 @@ en:
       title: My flights
       upcoming: Upcoming
       completed: Completed
-      flight_not_found: Flights not found :(
+      no_flights: No flights
+      lets: Let's
+      add: add!
   passwords:
     change_password:
       title: Change password

@@ -3,6 +3,12 @@
   border-radius: 25px;
   box-shadow: 2px 2px 4px gray;
   overflow: hidden;
+  .flag-img {
+    width: 75px;
+    height: 50px;
+    border-radius: 5px;
+    object-fit: contain;
+  }
   img {
     width: 30px;
     height: 30px;
@@ -24,6 +30,12 @@
     font-weight: 500;
   }
   @media (max-width: 450px) {
+    .flag-img {
+      width: 51px;
+      height: 34px;
+      border-radius: 5px;
+      object-fit: contain;
+    }
     img {
       width: 15px;
       height: 15px;
@@ -43,6 +55,12 @@
     }
   }
   @media (min-width: 451px) and (max-width: 767px) {
+    .flag-img {
+      width: 60px;
+      height: 40px;
+      border-radius: 5px;
+      object-fit: contain;
+    }
     img {
       width: 20px;
       height: 20px;
@@ -62,6 +80,12 @@
     }
   }
   @media (min-width: 768px) and (max-width: 991px) {
+    .flag-img {
+      width: 69px;
+      height: 46px;
+      border-radius: 5px;
+      object-fit: contain;
+    }
     img {
       width: 25px;
       height: 25px;

@@ -37,7 +37,7 @@ class UpdateAirlineJob < ApplicationJob
   private
 
   def reset_fields(airline)
-    airline_name = "Unknown Airline #{airline.id}"
+    airline_name = "Unknown Airline #{airline.code}"
     airline.update!(
       name: airline_name,
       logo_url: 'https://res.cloudinary.com/dgjzxdtrf/image/upload/v1743490823/airplane_yix0kw.png'
