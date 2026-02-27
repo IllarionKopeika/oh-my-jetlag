@@ -4,7 +4,7 @@
     <h2 class="text-center mb-3"><%= @flight_data[:message] %></h4>
     <div class="form-footer d-flex justify-content-center align-items-center">
       <p class="mb-0 me-2"><%= t(".check_search_params") %></p>
-      <strong><%= link_to t(".add_manually"), add_path %></strong>
+      <strong><%= link_to t(".add_manually"), add_path, data: { turbo: false} %></strong>
     </div>
   <% else %>
     <h2 class="text-center mb-3"><%= t(".title") %></h2>

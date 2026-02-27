@@ -35,15 +35,15 @@ en:
       search: Search
     new:
       title: Manual add
+      flight: Flight
       flight_number: Flight number
+      aircraft: Aircraft
+      model: Model
       departure: Departure
-      departure_airport_code: Departure airport code
-      departure_country_code: Departure country
-      departure_datetime: Departure date & time
       arrival: Arrival
-      arrival_airport_code: Arrival airport code
-      arrival_country_code: Arrival country
-      arrival_datetime: Arrival date & time
+      airport_code: Airport code
+      country: Country
+      datetime: Date & time
       aircraft_model: Aircraft
       add: Add
     create:

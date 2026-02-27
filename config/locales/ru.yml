@@ -35,15 +35,15 @@ ru:
       search: Поиск
     new:
       title: Добавить вручную
+      flight: Рейс
       flight_number: Номер рейса
+      aircraft: Самолет
+      model: Модель
       departure: Вылет
-      departure_airport_code: Код аэропорта вылета
-      departure_country_code: Страна вылета
-      departure_datetime: Дата и время вылета
       arrival: Прилет
-      arrival_airport_code: Код аэропорта прилета
-      arrival_country_code: Страна прилета
-      arrival_datetime: Дата и время прилета
+      airport_code: Код аэропорта
+      country: Страна
+      datetime: Дата и время
       aircraft_model: Самолет
       add: Добавить
     create:
