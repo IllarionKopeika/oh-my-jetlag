@@ -18,6 +18,14 @@ class Flight < ApplicationRecord
   before_save :set_duration_status_type, if: :api?
   before_save :update_manually_added_flight, if: :manual_add?
 
+  def from_coordinates
+    [ departure_airport.latitude, departure_airport.longitude ] if departure_airport
+  end
+
+  def to_coordinates
+    [ arrival_airport.latitude, arrival_airport.longitude ] if arrival_airport
+  end
+
   private
 
   def set_duration_status_type

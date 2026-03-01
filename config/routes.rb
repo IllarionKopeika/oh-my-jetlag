@@ -20,28 +20,28 @@ Rails.application.routes.draw do
     get "add", to: "flights#new", as: "add"
     get "search", to: "flights#search", as: "search"
     get "fetch_flight", to: "flights#fetch", as: "fetch_flight"
+    get "map", to: "flights#map", as: "map"
 
     # airports
-    resources :airports, only: [ ] do
+    resources :airports, only: [] do
       collection do
         get :search
       end
     end
 
     # aircrafts
-    resources :aircrafts, only: [ ] do
+    resources :aircrafts, only: [] do
       collection do
         get :search
       end
     end
 
     # countries
-    resources :countries, only: [ ] do
+    resources :countries, only: [] do
       collection do
         get :search
       end
     end
-
   end
 
   get "up" => "rails/health#show", as: :rails_health_check
