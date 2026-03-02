@@ -13,8 +13,8 @@ export default class extends Controller {
     mapboxgl.accessToken = this.apiKeyValue
     this.map = new mapboxgl.Map({
       container: this.element,
-      style: "mapbox://styles/mapbox/outdoors-v12",
-      projection: "mercator"
+      style: "mapbox://styles/mapbox/streets-v12",
+      projection: "globe"
     })
 
     this.#settings()
@@ -65,11 +65,10 @@ export default class extends Controller {
     this.flightsValue.forEach((flight, index) => {
       const from = [flight.from_coordinates[1], flight.from_coordinates[0]]
       const to = [flight.to_coordinates[1], flight.to_coordinates[0]]
-      const curved = this.#createBezierCurve(from, to)
-
-      const sourceId = `flight-curve-${index}`
-      const shadowLayerId = `flight-curve-shadow-${index}`
-      const lineLayerId = `flight-curve-line-${index}`
+      const straight = [from, to]
+      const sourceId = `flight-line-${index}`
+      const shadowLayerId = `flight-line-shadow-${index}`
+      const lineLayerId = `flight-line-${index}`
 
       this.map.addSource(sourceId, {
         type: "geojson",
@@ -77,7 +76,7 @@ export default class extends Controller {
           type: "Feature",
           geometry: {
             type: "LineString",
-            coordinates: curved
+            coordinates: straight
           }
         }
       })
@@ -92,13 +91,13 @@ export default class extends Controller {
         },
         paint: {
           "line-color": "#441752",
-          "line-width": 3,
+          "line-width": 2
         }
       })
 
       this.map.addLayer({
         id: lineLayerId,
-        type: 'line',
+        type: "line",
         source: sourceId,
         layout: {
           "line-join": "round",
@@ -106,36 +105,10 @@ export default class extends Controller {
         },
         paint: {
           "line-color": "#A888B5",
-          "line-width": 2,
+          "line-width": 1
         }
       })
     })
-  }
-
-  #createBezierCurve(start, end) {
-    const line = []
-    const offsetX = end[0] - start[0]
-    const offsetY = end[1] - start[1]
-    const r = Math.sqrt(Math.pow(offsetX, 2) + Math.pow(offsetY, 2))
-    const theta = Math.atan2(offsetY, offsetX)
-
-    const thetaOffset = (3.14 / 10)
-    const r2 = (r / 2.0) / Math.cos(thetaOffset)
-    const theta2 = theta + thetaOffset
-
-    const midpointX = r2 * Math.cos(theta2) + start[0]
-    const midpointY = r2 * Math.sin(theta2) + start[1]
-    const midpoint = [midpointX, midpointY]
-
-    const steps = 50
-    for (let i = 0; i <= steps; i++) {
-      const t = i / steps
-      const x = (1 - t) * (1 - t) * start[0] + 2 * (1 - t) * t * midpoint[0] + t * t * end[0]
-      const y = (1 - t) * (1 - t) * start[1] + 2 * (1 - t) * t * midpoint[1] + t * t * end[1]
-      line.push([x, y])
-    }
-
-    return line
   }
 
   #fitMapToMarkers() {
