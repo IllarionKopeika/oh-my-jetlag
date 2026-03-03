@@ -56,6 +56,7 @@ ru:
       no_flights: Нет рейсов
       lets: Давайте
       add: добавим!
+      all: Все
     map:
       title: Карта
   passwords:

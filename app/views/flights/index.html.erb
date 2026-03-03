@@ -31,7 +31,7 @@
             <% end %>
           <% end %>
         </div>
-        <div class="tab-pane fade" id="completed-tab-pane" role="tabpanel" aria-labelledby="completed-tab" tabindex="0">
+        <div class="tab-pane fade" id="completed-tab-pane" role="tabpanel" aria-labelledby="completed-tab" tabindex="0" data-controller="year-filter">
           <% if @completed_flights.count == 0 %>
             <div class="flight-card d-flex flex-column mb-2 p-3">
               <h4 class="text-center text-secondary"><%= t('.no_flights') %> <i class="fa-regular fa-face-frown-open"></i></h4>
@@ -41,8 +41,24 @@
               </div>
             </div>
           <% else %>
-            <% @completed_flights.each do |flight| %>
-              <%= render 'flight', flight: flight %>
+            <div class="mb-3 text-center">
+              <span class="badge rounded-pill text-bg-primary me-1" role="button" data-action="click->year-filter#showAll" data-year-filter-target="badge">
+                <%= t('.all') %>
+              </span>
+
+              <% @years.each do |year| %>
+                <span class="badge rounded-pill text-bg-info text-white me-1" role="button" data-action="click->year-filter#filter" data-year="<%= year %>" data-year-filter-target="badge">
+                  <%= year %>
+                </span>
+              <% end %>
+            </div>
+
+            <% @completed_flights_year.each do |year, flights| %>
+              <div data-year-filter-target="group" data-year="<%= year %>">
+                <% flights.each do |flight| %>
+                  <%= render 'flight', flight: flight %>
+                <% end %>
+              </div>
             <% end %>
           <% end %>
         </div>

@@ -56,6 +56,7 @@ en:
       no_flights: No flights
       lets: Let's
       add: add!
+      all: All
     map:
       title: Map
   passwords:

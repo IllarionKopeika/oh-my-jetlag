@@ -1,7 +1,12 @@
 class FlightsController < ApplicationController
   def index
     @upcoming_flights = Current.user.flights.upcoming.order(departure_local: :asc)
+
     @completed_flights = Current.user.flights.completed.order(departure_local: :desc)
+    @completed_flights_year = @completed_flights.group_by do |flight|
+      flight.departure_utc.in_time_zone(flight.departure_airport.timezone).year
+    end
+    @years = @completed_flights_year.keys.sort.reverse
   end
 
   def search; end
