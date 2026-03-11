@@ -17,6 +17,7 @@ class Flight < ApplicationRecord
 
   before_save :set_duration_status_type, if: :api?
   before_save :update_manually_added_flight, if: :manual_add?
+  after_commit :schedule_complete_job, on: [ :create, :update ]
 
   def from_coordinates
     [ departure_airport.latitude, departure_airport.longitude ] if departure_airport
@@ -37,8 +38,8 @@ class Flight < ApplicationRecord
     end
 
     # status
-    if departure_utc.present?
-      self.status = departure_utc.future? ? :upcoming : :completed
+    if arrival_utc.present?
+      self.status = arrival_utc.future? ? :upcoming : :completed
     else
       self.status = nil
     end
@@ -86,8 +87,8 @@ class Flight < ApplicationRecord
     end
 
     # status
-    if departure_utc.present?
-      self.status = departure_utc.future? ? :upcoming : :completed
+    if arrival_utc.present?
+      self.status = arrival_utc.future? ? :upcoming : :completed
     else
       self.status = nil
     end
@@ -113,5 +114,19 @@ class Flight < ApplicationRecord
 
     c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
     (r * c).round(2)
+  end
+
+  def schedule_complete_job
+    return unless self.upcoming?
+    return unless self.arrival_utc.present?
+    return unless saved_change_to_arrival_utc?
+
+    return if already_scheduled?
+
+    CompleteFlightJob.set(wait_until: self.arrival_utc).perform_later(self.id)
+  end
+
+  def already_scheduled?
+    SolidQueue::Job.where(class_name: "CompleteFlightJob", finished_at: nil).any? { |job| job.arguments["arguments"] == [ self.id ] }
   end
 end

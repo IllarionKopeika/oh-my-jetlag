@@ -8,7 +8,6 @@ class FlightCalculator
   end
 
   def call
-    Rails.logger.info "сервис FlightCalculator начал работу для рейса #{@flight.id}"
     calculate_departure_utc
     calculate_arrival_utc
     calculate_duration
@@ -16,10 +15,9 @@ class FlightCalculator
     calculate_distance
 
     if @flight.changed?
-      Rails.logger.info "Рейс #{@flight.id} обновился: #{@flight.changes}"
       @flight.save!
     else
-      Rails.logger.info "Рейс #{@flight.id} не обновился"
+      Rails.logger.info "Flight id #{@flight.id} was not updated!"
     end
   end
 
@@ -48,9 +46,9 @@ class FlightCalculator
   end
 
   def calculate_status
-    return unless @flight.departure_utc.present?
+    return unless @flight.arrival_utc.present?
 
-    @flight.status = @flight.departure_utc.future? ? :upcoming : :completed
+    @flight.status = @flight.arrival_utc.future? ? :upcoming : :completed
   end
 
   def calculate_distance

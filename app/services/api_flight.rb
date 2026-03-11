@@ -31,6 +31,6 @@ class ApiFlight
 
     UserFlight.find_or_create_by!(user: @user, flight: flight)
 
-    return flight
+    flight
   end
 end
