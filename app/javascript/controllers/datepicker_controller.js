@@ -9,12 +9,12 @@ export default class extends Controller {
 
     flatpickr(this.element, {
       position: "auto center",
-      minDate: "2021-09-23",
+      minDate: new Date().fp_incr(-365),
       maxDate: new Date().fp_incr(365),
       altInput: true,
       altFormat: locale === "en" ? "M j, Y" : "j M Y",
       dateFormat: "Y-m-d",
-      disableMobile: "true",
+      disableMobile: true,
 
       onChange: (selectedDates, dateStr, instance) => {
         const input = instance.altInput
