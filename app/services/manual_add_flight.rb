@@ -24,7 +24,7 @@ class ManualAddFlight
       airport.country = Country.find_by(code: @flight_params[:arrival_country_code].to_s.upcase)
     end
 
-    flight = Flight.find_or_create_by(
+    flight = Flight.find_or_initialize_by(
       airline: airline,
       number: formatted_flight_number,
       departure_local: @flight_params[:departure_local],
@@ -36,7 +36,9 @@ class ManualAddFlight
       f.data_source = @flight_params[:data_source]
     end
 
-    UserFlight.find_or_create_by!(user: @user, flight: flight)
+    if flight.save
+      UserFlight.find_or_create_by!(user: @user, flight: flight)
+    end
 
     flight
   end

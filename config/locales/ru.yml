@@ -45,10 +45,10 @@ ru:
       country: Страна
       datetime: Дата и время
       aircraft_model: Самолет
+      idk: Не помню
       add: Добавить
     create:
       create_success: Рейс успешно добавлен!
-      error: Ошибка :(
     index:
       title: Мои рейсы
       upcoming: Будущие

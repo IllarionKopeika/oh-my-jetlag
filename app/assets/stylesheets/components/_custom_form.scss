@@ -15,7 +15,7 @@
   h6 {
     color: $primary;
   }
-  p {
+  .form-check-label, p {
     font-size: 14px;
     font-weight: 500;
   }
@@ -40,18 +40,18 @@
     }
   }
   @media (max-width: 450px) {
-    p {
-      font-size: 9px;
-    }
-  }
-  @media (min-width: 451px) and (max-width: 767px) {
-    p {
+    .form-check-label, p {
       font-size: 10px;
     }
   }
-  @media (min-width: 768px) and (max-width: 991px) {
-    p {
+  @media (min-width: 451px) and (max-width: 767px) {
+    .form-check-label, p {
       font-size: 11px;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .form-check-label, p {
+      font-size: 12px;
     }
   }
 }

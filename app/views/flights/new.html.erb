@@ -1,6 +1,8 @@
 <div class="row justify-content-center">
   <div class="col-xl-6 col-md-8 col-sm-10 col-12">
-    <div class="custom-form p-3">
+    <div class="custom-form p-3"
+         data-controller="form"
+         data-action="departure-updated@window->form#checkDeparture arrival-updated@window->form#checkArrival aircraft-updated@window->form#checkAircraft">
 
       <h1 class="text-center mb-3"><%= t(".title") %></h1>
 
@@ -10,62 +12,79 @@
 
         <div class="mb-3">
           <h6 class="text-center"><%= t(".flight") %></h6>
-          <%= f.text_field :number, placeholder: t(".flight_number"), class: "form-control" %>
+          <%= f.text_field :number, placeholder: t(".flight_number"), class: "form-control", data: { form_target: "flightNumber", action: "input->form#checkFlightNumber" } %>
         </div>
 
         <div data-controller="datetime-picker">
-          <h6 class="text-center"><%= t(".departure") %></h6>
+          <div class="d-none" data-form-target="departureSection">
+            <h6 class="text-center"><%= t(".departure") %></h6>
 
-          <div class="position-relative mb-3" data-controller="airport-autocomplete">
-            <%= f.text_field :departure_airport_code, placeholder: t(".airport_code"), class: "form-control", data: { airport_autocomplete_target: "input", action: "input->airport-autocomplete#search" } %>
-            <ul class="list-group position-absolute w-100 z-3" data-airport-autocomplete-target="results">
-              <!-- > departure airport -->
-            </ul>
+            <div class="position-relative mb-3" data-controller="airport-autocomplete" data-direction="departure">
+              <%= f.text_field :departure_airport_code, placeholder: t(".airport_code"), class: "form-control", data: { airport_autocomplete_target: "input", form_target: "departureAirport", action: "input->airport-autocomplete#search input->form#checkDeparture" } %>
+              <ul class="list-group position-absolute w-100 z-3" data-airport-autocomplete-target="results">
+                <!-- > departure airport -->
+              </ul>
+            </div>
+
+            <div class="position-relative mb-3"
+                data-controller="country-autocomplete"
+                data-direction="departure"
+                data-action="input->country-autocomplete#search airport-selected@window->country-autocomplete#fill airport-cleared@window->country-autocomplete#reset"
+                data-locale="<%= I18n.locale.to_s %>">
+              <%= f.text_field :departure_country_code, placeholder: t(".country"), class: "form-control mb-3", data: { country_autocomplete_target: "input", form_target: "departureCountry", action: "input->form#checkDeparture" } %>
+              <ul class="list-group position-absolute w-100 z-3" data-country-autocomplete-target="results">
+                <!-- > departure country -->
+              </ul>
+            </div>
+
+            <div class="mb-3">
+              <%= f.date_field :departure_local, placeholder: t(".datetime"), class: "form-control", data: { datetime_picker_target: "departure", locale: I18n.locale, form_target: "departureDatetime", action: "input->form#checkDeparture" } %>
+            </div>
           </div>
 
-          <div class="position-relative mb-3" data-controller="country-autocomplete" data-locale="<%= I18n.locale.to_s %>">
-            <%= f.text_field :departure_country_code, placeholder: t(".country"), class: "form-control mb-3", data: { country_autocomplete_target: "input", action: "input->country-autocomplete#search" } %>
-            <ul class="list-group position-absolute w-100 z-3" data-country-autocomplete-target="results">
-              <!-- > departure country -->
-            </ul>
-          </div>
+          <div class="d-none" data-form-target="arrivalSection">
+            <h6 class="text-center"><%= t(".arrival") %></h6>
 
-          <div class="mb-3">
-            <%= f.date_field :departure_local, placeholder: t(".datetime"), class: "form-control", data: { datetime_picker_target: "departure", locale: I18n.locale } %>
-          </div>
+            <div class="position-relative mb-3" data-controller="airport-autocomplete" data-direction="arrival">
+              <%= f.text_field :arrival_airport_code, placeholder: t(".airport_code"), class: "form-control", data: { airport_autocomplete_target: "input", form_target: "arrivalAirport", action: "input->airport-autocomplete#search input->form#checkArrival" } %>
+              <ul class="list-group position-absolute w-100 z-3" data-airport-autocomplete-target="results">
+                <!-- > arrival airport -->
+              </ul>
+            </div>
 
-          <h6 class="text-center"><%= t(".arrival") %></h6>
+            <div class="position-relative mb-3"
+                data-controller="country-autocomplete"
+                data-direction="arrival"
+                data-action="input->country-autocomplete#search airport-selected@window->country-autocomplete#fill airport-cleared@window->country-autocomplete#reset"
+                data-locale="<%= I18n.locale.to_s %>">
+              <%= f.text_field :arrival_country_code, placeholder: t(".country"), class: "form-control mb-3", data: { country_autocomplete_target: "input", form_target: "arrivalCountry", action: "input->form#checkArrival" } %>
+              <ul class="list-group position-absolute w-100 z-3" data-country-autocomplete-target="results">
+                <!-- > arrival country -->
+              </ul>
+            </div>
 
-          <div class="position-relative mb-3" data-controller="airport-autocomplete">
-            <%= f.text_field :arrival_airport_code, placeholder: t(".airport_code"), class: "form-control", data: { airport_autocomplete_target: "input", action: "input->airport-autocomplete#search" } %>
-            <ul class="list-group position-absolute w-100 z-3" data-airport-autocomplete-target="results">
-              <!-- > arrival airport -->
-            </ul>
-          </div>
-
-          <div class="position-relative mb-3" data-controller="country-autocomplete" data-locale="<%= I18n.locale.to_s %>">
-            <%= f.text_field :arrival_country_code, placeholder: t(".country"), class: "form-control mb-3", data: { country_autocomplete_target: "input", action: "input->country-autocomplete#search" } %>
-            <ul class="list-group position-absolute w-100 z-3" data-country-autocomplete-target="results">
-              <!-- > arrival country -->
-            </ul>
-          </div>
-
-          <div class="mb-3">
-            <%= f.date_field :arrival_local, placeholder: t(".datetime"), class: "form-control", data: { datetime_picker_target: "arrival", locale: I18n.locale } %>
+            <div class="mb-3">
+              <%= f.date_field :arrival_local, placeholder: t(".datetime"), class: "form-control", data: { datetime_picker_target: "arrival", locale: I18n.locale, form_target: "arrivalDatetime", action: "input->form#checkArrival" } %>
+            </div>
           </div>
         </div>
 
-        <div class="mb-3 position-relative" data-controller="aircraft-autocomplete">
+        <div class="position-relative mb-1 d-none" data-controller="aircraft-autocomplete" data-form-target="aircraftSection">
           <h6 class="text-center"><%= t(".aircraft") %></h6>
-          <%= f.text_field :aircraft_model, placeholder: t(".model"), class: "form-control", data: { aircraft_autocomplete_target: "input", action: "input->aircraft-autocomplete#search" } %>
+          <%= f.text_field :aircraft_model, placeholder: t(".model"), class: "form-control", data: { aircraft_autocomplete_target: "input", form_target: "aircraftModel", action: "input->aircraft-autocomplete#search input->form#checkAircraft" } %>
           <ul class="list-group position-absolute w-100 z-3" data-aircraft-autocomplete-target="results">
             <!-- > aircraft -->
           </ul>
         </div>
+        <div class="form-check mb-3 d-none" data-form-target="checkbox">
+          <input class="form-check-input" type="checkbox" value="" id="aircraft" data-form-target="aircraftCheckbox" data-action="change->form#toggleAircraftField">
+          <label class="form-check-label" for="aircraft"><%= t(".idk") %></label>
+        </div>
+
 
         <%= f.hidden_field :data_source, value: "manual_add" %>
 
-        <%= f.submit t(".add"), class: "btn btn-primary w-100 mb-3" %>
+        <%= f.submit t(".add"), class: "btn btn-primary w-100 mb-3 disabled", data: { form_target: "submitButton" }%>
       <% end %>
 
     </div>

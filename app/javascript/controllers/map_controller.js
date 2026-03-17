@@ -30,7 +30,7 @@ export default class extends Controller {
   #settings() {
     this.map.addControl(new mapboxgl.NavigationControl(), "top-right")
     this.map.setMinZoom(1)
-    this.map.setMaxZoom(10)
+    this.map.setMaxZoom(12)
   }
 
   #setLanguage() {

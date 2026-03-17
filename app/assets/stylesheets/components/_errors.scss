@@ -1,12 +1,27 @@
 .errors {
   border-radius: 5px;
-  h6 {
-    color: $danger;
-  }
   ul {
     margin-bottom: 0;
   }
   li {
     list-style-type: "❌ ";
+    font-size: 14px;
+    font-weight: 500;
+    color: $danger;
+  }
+  @media (max-width: 450px) {
+    li {
+      font-size: 10px;
+    }
+  }
+  @media (min-width: 451px) and (max-width: 767px) {
+    li {
+      font-size: 11px;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    li {
+      font-size: 12px;
+    }
   }
 }

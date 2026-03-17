@@ -40,6 +40,10 @@ export default class extends Controller {
   select(name) {
     this.inputTarget.value = name
     this.clear()
+
+    window.dispatchEvent(
+      new CustomEvent("aircraft-updated")
+    )
   }
 
   clear() {

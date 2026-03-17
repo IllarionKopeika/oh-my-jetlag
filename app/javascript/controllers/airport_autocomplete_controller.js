@@ -9,6 +9,14 @@ export default class extends Controller {
 
     if (query.length < 2) {
       this.clear()
+
+      window.dispatchEvent(
+        new CustomEvent("airport-cleared", {
+          detail: {
+            direction: this.element.dataset.direction
+          }
+        })
+      )
       return
     }
 
@@ -32,14 +40,31 @@ export default class extends Controller {
       p.textContent = `${airport.code} — ${airport.name}`
 
       li.appendChild(p)
-      li.addEventListener("click", () => this.select(airport.code))
+      li.addEventListener("click", () => this.select(airport))
       this.resultsTarget.appendChild(li)
     })
   }
 
-  select(code) {
-    this.inputTarget.value = code
+  select(airport) {
+    this.inputTarget.value = airport.code
     this.clear()
+
+    window.dispatchEvent(
+      new CustomEvent("airport-selected", {
+        detail: {
+          countryCode: airport.country_code,
+          direction: this.element.dataset.direction
+        }
+      })
+    )
+
+    window.dispatchEvent(
+      new CustomEvent("departure-updated")
+    )
+
+    window.dispatchEvent(
+      new CustomEvent("arrival-updated")
+    )
   }
 
   clear() {

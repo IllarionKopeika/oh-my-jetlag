@@ -45,10 +45,10 @@ en:
       country: Country
       datetime: Date & time
       aircraft_model: Aircraft
+      idk: Don't remember
       add: Add
     create:
       create_success: Flight was successfully added!
-      error: Error :(
     index:
       title: My flights
       upcoming: Upcoming

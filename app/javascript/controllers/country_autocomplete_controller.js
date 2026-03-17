@@ -45,6 +45,25 @@ export default class extends Controller {
     this.clear()
   }
 
+  fill(e) {
+    if (e.detail.direction !== this.element.dataset.direction) return
+
+    const code = e.detail.countryCode
+    if (!code) return
+
+    this.inputTarget.value = code
+    this.inputTarget.disabled = true
+    this.clear()
+  }
+
+  reset(event) {
+    if (event.detail.direction !== this.element.dataset.direction) return
+
+    this.inputTarget.value = ""
+    this.inputTarget.disabled = false
+    this.clear()
+  }
+
   clear() {
     this.resultsTarget.innerHTML = ""
   }

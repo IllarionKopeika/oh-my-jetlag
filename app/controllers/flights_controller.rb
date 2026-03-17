@@ -1,8 +1,8 @@
 class FlightsController < ApplicationController
   def index
-    @upcoming_flights = Current.user.flights.upcoming.order(departure_local: :asc)
+    @upcoming_flights = Current.user.flights.upcoming.where.not(departure_utc: nil).order(departure_utc: :asc)
 
-    @completed_flights = Current.user.flights.completed.order(departure_local: :desc)
+    @completed_flights = Current.user.flights.completed.where.not(departure_utc: nil).order(departure_utc: :desc)
     @completed_flights_year = @completed_flights.group_by do |flight|
       flight.departure_utc.in_time_zone(flight.departure_airport.timezone).year
     end
@@ -36,14 +36,13 @@ class FlightsController < ApplicationController
       ManualAddFlight
     end
 
-    result = service.new(flight_params, Current.user).call
+    @flight = service.new(flight_params, Current.user).call
 
-    if result&.persisted?
+    if @flight&.persisted?
       flash[:success] = t(".create_success")
       redirect_to flights_path
     else
-      flash[:danger] = t(".error")
-      render "search", status: :unprocessable_entity
+      render "new", status: :unprocessable_entity
     end
   end
 
