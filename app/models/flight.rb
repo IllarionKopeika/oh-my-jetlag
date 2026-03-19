@@ -15,8 +15,6 @@ class Flight < ApplicationRecord
   enum :flight_type, { domestic: 0, international: 1 }
   enum :data_source, { api: 0, manual_add: 1 }
 
-  validates :departure_local, :arrival_local, presence: true
-
   before_save :set_duration_status_type, if: :api?
   before_save :update_manually_added_flight, if: :manual_add?
   after_commit :schedule_complete_job, on: [ :create, :update ]

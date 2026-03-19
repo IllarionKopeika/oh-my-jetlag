@@ -36,15 +36,14 @@ ru:
     new:
       title: Добавить вручную
       flight: Рейс
-      flight_number: Номер рейса
-      aircraft: Самолет
-      model: Модель
+      flight_number: Номер рейса (AA123)
       departure: Вылет
       arrival: Прилет
-      airport_code: Код аэропорта
-      country: Страна
+      airport_code: Код аэропорта (PVG)
+      country: Страна (CN)
       datetime: Дата и время
-      aircraft_model: Самолет
+      aircraft: Самолет
+      model: Модель (Airbus A320)
       idk: Не помню
       add: Добавить
     create:
@@ -59,6 +58,9 @@ ru:
       all: Все
     map:
       title: Карта
+    modal:
+      title: Рейс
+      km: км
   passwords:
     change_password:
       title: Изменить пароль

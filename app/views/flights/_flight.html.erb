@@ -1,5 +1,6 @@
 <div class="flight-card d-flex flex-column p-3 mb-2">
 
+  <% modal_id = "flightMapModal-#{flight.id}" %>
   <!-- airline logo, flight number & date -->
   <div class="d-flex justify-content-around align-items-center mb-2">
     <div class="d-flex align-items-center gap-2">
@@ -7,7 +8,10 @@
       <p class="m-0"><%= flight.number %></p>
     </div>
     <div>
-      <i class="map-icon fa-solid fa-map-location-dot"></i>
+      <i type="button" data-bs-toggle="modal" data-bs-target="#<%= "#{modal_id}" %>" class="info-icon fa-solid fa-circle-info"></i>
+      <div class="modal fade" id="<%= modal_id %>" tabindex="-1" aria-labelledby="<%= modal_id %>Label" aria-hidden="true">
+        <%= render "modal", flight: flight, modal_id: modal_id %>
+      </div>
     </div>
     <div>
       <p class="m-0"><%= format_date(flight.departure_local) %></p>

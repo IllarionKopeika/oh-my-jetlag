@@ -26,6 +26,7 @@ class UpdateAirportJob < ApplicationJob
         airport_data = data[:data][0]
         airport.update!(
           name: airport_data.dig(:name),
+          city: airport_data.dig(:cityName),
           timezone: airport_data.dig(:timeZone),
           latitude: airport_data.dig(:latitude),
           longitude: airport_data.dig(:longitude)

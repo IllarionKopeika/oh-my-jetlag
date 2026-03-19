@@ -29,16 +29,10 @@ class FlightsController < ApplicationController
   end
 
   def create
-    service = case params[:flight][:data_source]
-    when "api"
-      ApiFlight
-    when "manual_add"
-      ManualAddFlight
-    end
-
+    service = get_service
     @flight = service.new(flight_params, Current.user).call
 
-    if @flight&.persisted?
+    if @flight.persisted?
       flash[:success] = t(".create_success")
       redirect_to flights_path
     else
@@ -70,6 +64,15 @@ class FlightsController < ApplicationController
 
   def format_flight_number(flight_number)
     flight_number.to_s.gsub(/[[:space:]]+/, "").upcase
+  end
+
+  def get_service
+    case params[:flight][:data_source]
+    when "api"
+      ApiFlight
+    when "manual_add"
+      ManualAddFlight
+    end
   end
 
   def flight_params

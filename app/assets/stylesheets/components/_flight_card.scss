@@ -1,5 +1,5 @@
 .flight-card {
-  background: rgba(white,0.6);
+  background: rgba(white,0.7);
   border-radius: 25px;
   box-shadow: 2px 2px 4px gray;
   overflow: hidden;
@@ -14,7 +14,7 @@
     height: 30px;
     object-fit: contain;
   }
-  .map-icon {
+  .info-icon {
     color: $primary;
     font-size: 20px;
   }
@@ -41,10 +41,7 @@
       height: 15px;
       object-fit: contain;
     }
-    .map-icon {
-      font-size: 12px;
-    }
-    .aircraft-icon {
+    .info-icon, .aircraft-icon {
       font-size: 12px;
     }
     h4 {
@@ -66,10 +63,7 @@
       height: 20px;
       object-fit: contain;
     }
-    .map-icon {
-      font-size: 14px;
-    }
-    .aircraft-icon {
+    .info-icon, .aircraft-icon {
       font-size: 14px;
     }
     h4 {
@@ -91,10 +85,7 @@
       height: 25px;
       object-fit: contain;
     }
-    .map-icon {
-      font-size: 16px;
-    }
-    .aircraft-icon {
+    .info-icon, .aircraft-icon {
       font-size: 16px;
     }
     h4 {

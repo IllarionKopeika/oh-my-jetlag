@@ -36,15 +36,14 @@ en:
     new:
       title: Manual add
       flight: Flight
-      flight_number: Flight number
-      aircraft: Aircraft
-      model: Model
+      flight_number: Flight number (AA123)
       departure: Departure
       arrival: Arrival
-      airport_code: Airport code
-      country: Country
+      airport_code: Airport code (PVG)
+      country: Country (CN)
       datetime: Date & time
-      aircraft_model: Aircraft
+      aircraft: Aircraft
+      model: Model (Airbus A320)
       idk: Don't remember
       add: Add
     create:
@@ -59,6 +58,9 @@ en:
       all: All
     map:
       title: Map
+    modal:
+      title: Flight
+      km: km
   passwords:
     change_password:
       title: Change password

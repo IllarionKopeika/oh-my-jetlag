@@ -1,6 +1,6 @@
 .custom-navbar {
+  background: whitesmoke;
   border-bottom: 1px solid $primary;
-  background: rgba(white,0.7);
   .nav-link {
     font-size: 16px;
     color: $primary;
@@ -40,11 +40,17 @@
   }
   @media (max-width: 991px) {
     .sidebar {
-      background-color: rgba(white, 0.85);
+      background: rgba(white,0.7);
       backdrop-filter: blur(10px);
       display: flex;
       flex-direction: column;
       height: 100%;
+      .offcanvas-header {
+        .close-icon {
+          color: $primary;
+          font-size: 20px;
+        }
+      }
       .offcanvas-body {
         display: flex;
         flex-direction: column;
