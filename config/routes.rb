@@ -45,4 +45,5 @@ Rails.application.routes.draw do
   end
 
   get "up" => "rails/health#show", as: :rails_health_check
+  get "/manifest.json", to: "pwa#manifest", as: :pwa_manifest
 end
