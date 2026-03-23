@@ -5,7 +5,6 @@ export default class extends Controller {
 
   search() {
     const query = this.inputTarget.value.trim()
-    // console.log(query)
 
     if (query.length < 2) {
       this.clear()

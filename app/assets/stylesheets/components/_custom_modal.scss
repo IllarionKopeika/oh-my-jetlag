@@ -26,6 +26,66 @@
     height: 25px;
     object-fit: contain;
   }
+  .mapboxgl-marker {
+    img {
+      width: 10px !important;
+      height: 10px !important;
+    }
+  }
+  .mapboxgl-popup {
+    min-width: 180px !important;
+    max-width: 220px !important;
+    border: 1px solid $primary;
+    border-radius: 6px;
+  }
+  .mapboxgl-popup-tip {
+    display: none;
+  }
+  .mapboxgl-popup-content {
+    padding: 6px !important;
+    font-family: "Tektur", "Helvetica", "sans-serif";
+    background: whitesmoke;
+    border-radius: 5px;
+  }
+  .popup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    text-align: center;
+  }
+  .popup-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .flag-img {
+    width: 42px !important;
+    height: 28px !important;
+    border-radius: 5px;
+    object-fit: contain;
+  }
+  .airport-code {
+    font-size: 24px !important;
+    font-weight: bold;
+    color: $info;
+    line-height: 1;
+  }
+  .airport-name {
+    font-size: 14px !important;
+    line-height: 1.2;
+    font-weight: 500;
+    opacity: 0.85;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .mapboxgl-popup-close-button {
+    color: $primary !important;
+    font-size: 20px;
+  }
   @media (max-width: 450px) {
     h4 {
       font-size: 16px !important;
@@ -45,6 +105,20 @@
       width: 60px;
       height: 15px;
       object-fit: contain;
+    }
+    .mapboxgl-popup {
+      min-width: 135px !important;
+      max-width: 175px !important;
+    }
+    .flag-img {
+      width: 24px !important;
+      height: 16px !important;
+    }
+    .airport-code {
+      font-size: 16px !important;
+    }
+    .airport-name {
+      font-size: 10px !important;
     }
   }
   @media (min-width: 451px) and (max-width: 767px) {
@@ -67,6 +141,20 @@
       height: 20px;
       object-fit: contain;
     }
+    .mapboxgl-popup {
+      min-width: 150px !important;
+      max-width: 190px !important;
+    }
+    .flag-img {
+      width: 30px !important;
+      height: 20px !important;
+    }
+    .airport-code {
+      font-size: 18px !important;
+    }
+    .airport-name {
+      font-size: 11px !important;
+    }
   }
   @media (min-width: 768px) and (max-width: 991px) {
     h4 {
@@ -87,6 +175,20 @@
       width: 100px;
       height: 25px;
       object-fit: contain;
+    }
+    .mapboxgl-popup {
+      min-width: 165px !important;
+      max-width: 205px !important;
+    }
+    .flag-img {
+      width: 36px !important;
+      height: 24px !important;
+    }
+    .airport-code {
+      font-size: 20px !important;
+    }
+    .airport-name {
+      font-size: 12px !important;
     }
   }
 }

@@ -1,6 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="validation"
 export default class extends Controller {
   connect() {
     const forms = document.querySelectorAll(".needs-validation")

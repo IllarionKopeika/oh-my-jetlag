@@ -1,7 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import mapboxgl from "mapbox-gl"
 
-// Connects to data-controller="map"
 export default class extends Controller {
   static values = {
     apiKey: String,
@@ -48,6 +47,7 @@ export default class extends Controller {
   }
 
   #addMarkers() {
+    console.log(this.markersValue)
     this.markersValue.forEach((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.popup_html)
 

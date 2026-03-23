@@ -41,7 +41,16 @@
       </div>
     </div>
     <div class="modal-map">
-      <p class="mt-3 text-center">Working on flight map!</p>
+      <div id='map-<%= flight.id %>'
+           style='width: 100%; height: 500px;'
+           data-controller='modal-map'
+           data-modal-map-api-key-value='<%= ENV['MAPBOX_API_KEY'] %>'
+           data-modal-map-departure-coordinates-value='<%= [ flight.departure_airport.longitude, flight.departure_airport.latitude ] %>'
+           data-modal-map-arrival-coordinates-value='<%= [ flight.arrival_airport.longitude, flight.arrival_airport.latitude ] %>'
+           data-modal-map-departure-popup-value='<%= raw(render(partial: 'popup', locals: { airport: flight.departure_airport })) %>'
+           data-modal-map-arrival-popup-value='<%= raw(render(partial: 'popup', locals: { airport: flight.arrival_airport })) %>'
+           data-modal-map-marker-value='<%= raw(render(partial: 'marker')) %>'>
+      </div>
     </div>
   </div>
 </div>

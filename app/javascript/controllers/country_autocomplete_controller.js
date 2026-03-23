@@ -1,14 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="country-autocomplete"
 export default class extends Controller {
   static targets = [ "input", "results" ]
 
   search() {
     const query = this.inputTarget.value.trim()
     const locale = this.element.dataset.locale
-    // console.log(query)
-    // console.log(locale)
 
     if (query.length < 2) {
       this.clear()
