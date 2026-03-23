@@ -23,9 +23,26 @@
       border: none !important;
     }
   }
+  .year-scroll {
+    text-align: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .year-scroll::-webkit-scrollbar {
+    display: none;
+  }
+  .year-scroll-inner {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
   .badge {
     font-weight: 500;
     font-size: 12px;
+    flex: 0 0 auto;
     @media (max-width: 450px) {
       font-size: 10px !important;
     }

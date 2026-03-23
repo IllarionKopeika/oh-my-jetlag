@@ -41,16 +41,18 @@
               </div>
             </div>
           <% else %>
-            <div class="mb-3 text-center">
-              <span class="badge rounded-pill text-bg-primary me-1" role="button" data-action="click->year-filter#showAll" data-year-filter-target="badge">
-                <%= t('.all') %>
-              </span>
-
-              <% @years.each do |year| %>
-                <span class="badge rounded-pill text-bg-info text-white me-1" role="button" data-action="click->year-filter#filter" data-year="<%= year %>" data-year-filter-target="badge">
-                  <%= year %>
+            <div class="year-scroll mb-3">
+              <div class="year-scroll-inner text-center">
+                <span class="badge rounded-pill text-bg-primary me-1" role="button" data-action="click->year-filter#showAll" data-year-filter-target="badge">
+                  <%= t('.all') %>
                 </span>
-              <% end %>
+
+                <% @years.each do |year| %>
+                  <span class="badge rounded-pill text-bg-info text-white me-1" role="button" data-action="click->year-filter#filter" data-year="<%= year %>" data-year-filter-target="badge">
+                    <%= year %>
+                  </span>
+                <% end %>
+              </div>
             </div>
 
             <% @completed_flights_year.each do |year, flights| %>
