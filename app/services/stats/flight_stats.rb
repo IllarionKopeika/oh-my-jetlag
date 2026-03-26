@@ -76,7 +76,7 @@ class Stats::FlightStats
       5
     when 20..29
       7
-    when 30..
+    when 30..999999
       10
     end
   end
