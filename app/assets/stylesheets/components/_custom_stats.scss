@@ -1,0 +1,80 @@
+.custom-stats {
+  background: rgba(white,0.7);
+  border: 1px solid $primary;
+  border-radius: 5px;
+  .stats-card {
+    background: rgba(white,0.7);
+    border-radius: 25px;
+    box-shadow: 2px 2px 4px gray;
+    overflow: hidden;
+    h4 {
+      color: $primary;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    p {
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .stats-icon {
+      color: $secondary;
+      font-size: 20px;
+    }
+    #margin-icon {
+      margin-left: 2px;
+    }
+    .progress {
+      height: 10px;
+    }
+    a {
+      color: $primary;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .row:last-child {
+      border-bottom: none !important;
+    }
+  }
+  @media (max-width: 450px) {
+    .stats-card {
+      p {
+        font-size: 10px;
+      }
+      .stats-icon {
+        font-size: 12px;
+      }
+      .progress {
+        height: 7px;
+      }
+    }
+  }
+  @media (min-width: 451px) and (max-width: 767px) {
+    .stats-card {
+      p {
+        font-size: 11px;
+      }
+      .stats-icon {
+        font-size: 14px;
+      }
+      .progress {
+        height: 8px;
+      }
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .stats-card {
+      p {
+        font-size: 12px;
+      }
+      .stats-icon {
+        font-size: 16px;
+      }
+      .progress {
+        height: 9px;
+      }
+    }
+  }
+
+}

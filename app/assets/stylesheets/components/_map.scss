@@ -14,7 +14,8 @@
   .mapboxgl-popup-content {
     padding: 6px !important;
     font-family: "Tektur", "Helvetica", "sans-serif";
-    background: whitesmoke;
+    background: rgba(white,0.7);
+    backdrop-filter: blur(10px);
     border-radius: 5px;
   }
   .popup {

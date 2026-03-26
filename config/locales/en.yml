@@ -19,8 +19,10 @@ en:
       taken_email_address: is already taken
       taken_nickname: is already taken
   flights:
+    weeks: w
+    days: d
     hours: h
-    mins: mins
+    mins: min
     fetch:
       check_search_params: Check search parameters or
       add_manually: add a flight manually!
@@ -28,7 +30,7 @@ en:
       add_flight: Add flight
     search:
       title: Search flights
-      flight_number: Flight number
+      flight_number: Flight number (AA123)
       enter_flight_number: Enter a flight number
       departure_date: Departure date
       choose_departure_date: Choose a departure date
@@ -85,6 +87,38 @@ en:
       try_later: Suspicious activity, please try to log in later!
     destroy:
       logout_success: Successfully logged out!
+  stats:
+    flight_stats:
+      title: Flight stats
+      general: General
+      flights: Flights
+      international_flights: International
+      domestic_flights: Domestic
+      routes: Routes
+      top_routes: Top routes
+      no_routes: No routes
+      show_all: Show all
+      distance: Distance
+      km: km
+      around_earth: Around the Earth
+      to_moon: To the Moon
+      longest_flight_distance: Longest flight
+      shortest_flight_distance: Shortest flight
+      show_more: Show more
+      duration: Duration
+      longest_flight_duration: Longest flight
+      shortest_flight_duration: Shortest flight
+    routes_modal:
+      title: All routes
+    distance_modal:
+      title: Distance
+      top_longest_flights: Top longest flights
+      top_shortest_flights: Top shortest flights
+      km: km
+    duration_modal:
+      title: Duration
+      top_longest_flights: Top longest flights
+      top_shortest_flights: Top shortest flights
   shared:
     navbar:
       hello: Hey
@@ -94,6 +128,10 @@ en:
       manual_add: Manual add
       map: Map
       stats: Stats
+      flight_stats: Flights
+      airport_stats: Airports
+      airline_stats: Airlines
+      aircraft_stats: Aircrafts
       rating: Rating
       profile: Profile
       id: Jetlagger ID

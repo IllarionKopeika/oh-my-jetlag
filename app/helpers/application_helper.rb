@@ -40,10 +40,56 @@ module ApplicationHelper
   def format_duration(duration)
     return if duration.blank?
 
-    hours, mins = duration.divmod(60)
-    [].tap do |parts|
-      parts << "#{hours} #{I18n.t('flights.hours')}" if hours.positive?
-      parts << "#{mins} #{I18n.t('flights.mins')}" if mins.positive?
-    end.join(" ")
+    if duration == 0
+      "0 #{I18n.t('flights.hours')} 0 #{I18n.t('flights.mins')}"
+    else
+      hours, mins = duration.divmod(60)
+      [].tap do |parts|
+        parts << "#{hours} #{I18n.t('flights.hours')}" if hours.positive?
+        parts << "#{mins} #{I18n.t('flights.mins')}" if mins.positive?
+      end.join(" ")
+    end
+  end
+
+  def format_total_duration(duration)
+    return if duration.blank?
+
+    if duration == 0
+      "0 #{I18n.t('flights.hours')} 0 #{I18n.t('flights.mins')}"
+    elsif duration < 60
+      "#{duration} #{I18n.t('flights.mins')}"
+    elsif duration >= 60 && duration < 1440
+      hours, mins = duration.divmod(60)
+      [].tap do |parts|
+        parts << "#{hours} #{I18n.t('flights.hours')}" if hours.positive?
+        parts << "#{mins} #{I18n.t('flights.mins')}" if mins.positive?
+      end.join(" ")
+    elsif duration >= 1440 && duration < 10080
+      days, remain = duration.divmod(1440)
+      hours, mins = remain.divmod(60)
+      [].tap do |parts|
+        parts << "#{days } #{I18n.t('.flights.days')}" if days.positive?
+        parts << "#{hours} #{I18n.t('flights.hours')}" if hours.positive?
+        parts << "#{mins} #{I18n.t('flights.mins')}" if mins.positive?
+      end.join(" ")
+    elsif duration >= 10080 && duration < 43200
+      weeks, remain_one = duration.divmod(10080)
+      days, remain_two = remain_one.divmod(1440)
+      hours, mins = remain_two.divmod(60)
+      [].tap do |parts|
+        parts << "#{weeks } #{I18n.t('.flights.weeks')}" if weeks.positive?
+        parts << "#{days } #{I18n.t('.flights.days')}" if days.positive?
+        parts << "#{hours} #{I18n.t('flights.hours')}" if hours.positive?
+        parts << "#{mins} #{I18n.t('flights.mins')}" if mins.positive?
+      end.join(" ")
+    end
+  end
+
+  def around_earth(distance)
+    (distance / 40075).round(2)
+  end
+
+  def to_moon(distance)
+    (distance / 384400).round(2)
   end
 end

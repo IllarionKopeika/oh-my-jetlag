@@ -1,0 +1,243 @@
+<div class="row justify-content-center">
+  <div class="col-xl-6 col-md-8 col-sm-10 col-12">
+    <div class="custom-stats p-3">
+      <h1 class="text-center mb-3"><%= t(".title") %></h1>
+
+      <!-- > general <-->
+      <div class="stats-card p-3 mb-2">
+        <h4 class="text-center"><%= t(".general") %></h4>
+        <div class="row align-items-center border-bottom">
+          <div class="col d-flex justify-content-start align-items-center">
+            <i class="my-1 stats-icon fa-solid fa-plane-up"></i>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".flights") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p class="my-1 text-secondary"><strong><%= @flight_stats.flights_count %></strong></p>
+          </div>
+        </div>
+
+        <div class="row align-items-center border-bottom">
+          <div class="col d-flex justify-content-start align-items-center">
+            <i class="my-1 stats-icon fa-solid fa-globe"></i>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".international_flights") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p class="my-1 text-secondary"><strong><%= @flight_stats.international_flights_count %></strong></p>
+          </div>
+        </div>
+
+        <div class="row align-items-center border-bottom">
+          <div class="col d-flex justify-content-start align-items-center">
+            <i class="my-1 stats-icon fa-solid fa-house"></i>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".domestic_flights") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p class="my-1 text-secondary"><strong><%= @flight_stats.domestic_flight_count %></strong></p>
+          </div>
+        </div>
+
+        <div class="row align-items-center border-bottom">
+          <div class="col d-flex justify-content-start align-items-center">
+            <i class="my-1 stats-icon fa-solid fa-route"></i>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".routes") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p class="my-1 text-secondary"><strong><%= @flight_stats.routes_count %></strong></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- > routes <-->
+      <div class="stats-card p-3 mb-2">
+        <h4 class="text-center"><%= t(".top_routes") %></h4>
+        <% if @flight_stats.all_routes.empty? %>
+          <div class="d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".no_routes") %></p>
+          </div>
+        <% else %>
+          <% @flight_stats.top_routes.each do |route| %>
+            <div class="row align-items-center">
+              <div class="col-2 d-flex justify-content-start align-items-center">
+                <p class="my-1 text-secondary"><strong><%= route[:departure].code %> - <%= route[:arrival].code %></strong></p>
+              </div>
+              <div class="col">
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped" style="width: <%= route[:percent] %>%;"></div>
+                </div>
+              </div>
+              <div class="col-1 d-flex justify-content-end align-items-center">
+                <p class="my-1 text-secondary"><strong><%= route[:count] %></strong></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        <% if @flight_stats.all_routes.count > 5 %>
+          <div class="d-flex justify-content-center align-items-center mt-1">
+            <%= link_to t(".show_all"), "#", data: { bs_toggle: 'modal', bs_target: "#routesModal" } %>
+          </div>
+        <% end %>
+      </div>
+
+      <%= render "routes_modal" %>
+
+      <!-- > distance <-->
+      <div class="stats-card p-3 mb-2">
+        <h4 class="text-center"><%= t(".distance") %></h4>
+        <div class="row align-items-center border-bottom">
+          <div class="col d-flex justify-content-start align-items-center">
+            <i class="my-1 stats-icon fa-solid fa-calculator" id="margin-icon"></i>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".distance") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p class="my-1 text-secondary"><strong><%= @flight_stats.total_distance %> <%= t(".km") %></strong></p>
+          </div>
+        </div>
+
+        <div class="row align-items-center border-bottom">
+          <div class="col d-flex justify-content-start align-items-center">
+            <i class="my-1 stats-icon fa-solid fa-earth-europe"></i>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".around_earth") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p class="my-1 text-secondary"><strong><%= "#{around_earth(@flight_stats.total_distance)}x" %></strong></p>
+          </div>
+        </div>
+
+        <div class="row align-items-center border-bottom">
+          <div class="col d-flex justify-content-start align-items-center">
+            <i class="my-1 stats-icon fa-solid fa-moon" id="margin-icon"></i>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".to_moon") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p class="my-1 text-secondary"><strong><%= "#{to_moon(@flight_stats.total_distance)}x" %></strong></p>
+          </div>
+        </div>
+
+        <div class="row align-items-center border-bottom">
+          <div class="col d-flex justify-content-start align-items-center">
+            <% if @flight_stats.desc_distance_flights.empty? %>
+              <i class="my-1 stats-icon fa-solid fa-xmark"></i>
+            <% else %>
+              <p class="my-1 text-secondary"><strong><%= @flight_stats.desc_distance_flights.first.departure_airport.code %> - <%= @flight_stats.desc_distance_flights.first.arrival_airport.code %></strong></p>
+            <% end %>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".longest_flight_distance") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <% if @flight_stats.desc_distance_flights.empty? %>
+              <p class="my-1 text-secondary"><strong>0 <%= t(".km") %></strong></p>
+            <% else %>
+              <p class="my-1 text-secondary"><strong><%= @flight_stats.desc_distance_flights.first.distance %> <%= t(".km") %></strong></p>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col d-flex justify-content-start align-items-center">
+            <% if @flight_stats.asc_distance_flights.empty? %>
+              <i class="my-1 stats-icon fa-solid fa-xmark"></i>
+            <% else %>
+              <p class="my-1 text-secondary"><strong><%= @flight_stats.asc_distance_flights.first.departure_airport.code %> - <%= @flight_stats.asc_distance_flights.first.arrival_airport.code %></strong></p>
+            <% end %>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".shortest_flight_distance") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <% if @flight_stats.asc_distance_flights.empty? %>
+              <p class="my-1 text-secondary"><strong>0 <%= t(".km") %></strong></p>
+            <% else %>
+              <p class="my-1 text-secondary"><strong><%= @flight_stats.asc_distance_flights.first.distance %> <%= t(".km") %></strong></p>
+            <% end %>
+          </div>
+        </div>
+        <% if @flight_stats.flights_count > 4 %>
+          <div class="d-flex justify-content-center align-items-center mt-1">
+            <%= link_to t(".show_more"), "#", data: { bs_toggle: 'modal', bs_target: "#distanceModal" } %>
+          </div>
+        <% end %>
+      </div>
+
+      <%= render "distance_modal" %>
+
+      <!-- > duration <-->
+      <div class="stats-card p-3 mb-2">
+        <h4 class="text-center"><%= t(".duration") %></h4>
+        <div class="row align-items-center border-bottom">
+          <div class="col d-flex justify-content-start align-items-center">
+            <i class="my-1 stats-icon fa-solid fa-clock"></i>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".duration") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p class="my-1 text-secondary"><strong><%= format_total_duration(@flight_stats.total_duration) %></strong></p>
+          </div>
+        </div>
+
+        <div class="row align-items-center border-bottom">
+          <div class="col d-flex justify-content-start align-items-center">
+            <% if @flight_stats.desc_duration_flights.empty? %>
+              <i class="my-1 stats-icon fa-solid fa-xmark"></i>
+            <% else %>
+              <p class="my-1 text-secondary"><strong><%= @flight_stats.desc_duration_flights.first.departure_airport.code %> - <%= @flight_stats.desc_duration_flights.first.arrival_airport.code %></strong></p>
+            <% end %>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".longest_flight_duration") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <% if @flight_stats.desc_duration_flights.empty? %>
+              <p class="my-1 text-secondary"><strong><%= format_duration(0) %></strong></p>
+            <% else %>
+              <p class="my-1 text-secondary"><strong><%= format_duration(@flight_stats.desc_duration_flights.first.duration) %></strong></p>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col d-flex justify-content-start align-items-center">
+            <% if @flight_stats.asc_duration_flights.empty? %>
+              <i class="my-1 stats-icon fa-solid fa-xmark"></i>
+            <% else %>
+              <p class="my-1 text-secondary"><strong><%= @flight_stats.asc_duration_flights.first.departure_airport.code %> - <%= @flight_stats.asc_duration_flights.first.arrival_airport.code %></strong></p>
+            <% end %>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".shortest_flight_duration") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <% if @flight_stats.asc_duration_flights.empty? %>
+              <p class="my-1 text-secondary"><strong><%= format_duration(0) %></strong></p>
+            <% else %>
+              <p class="my-1 text-secondary"><strong><%= format_duration(@flight_stats.asc_duration_flights.first.duration) %></strong></p>
+            <% end %>
+          </div>
+        </div>
+        <% if @flight_stats.flights_count > 4 %>
+          <div class="d-flex justify-content-center align-items-center mt-1">
+            <%= link_to t(".show_more"), "#", data: { bs_toggle: 'modal', bs_target: "#durationModal" } %>
+          </div>
+        <% end %>
+      </div>
+
+      <%= render "duration_modal" %>
+
+    </div>
+  </div>
+</div>

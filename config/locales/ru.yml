@@ -19,6 +19,8 @@ ru:
       taken_email_address: уже используется
       taken_nickname: уже занят
   flights:
+    weeks: нед
+    days: дн
     hours: ч
     mins: мин
     fetch:
@@ -28,7 +30,7 @@ ru:
       add_flight: Добавить
     search:
       title: Поиск рейсов
-      flight_number: Номер рейса
+      flight_number: Номер рейса (AA123)
       enter_flight_number: Введите номер рейса
       departure_date: Дата вылета
       choose_departure_date: Выберите дату вылета
@@ -85,6 +87,38 @@ ru:
       try_later: Подозрительная активность, попробуйте войти позже!
     destroy:
       logout_success: Вы вышли из системы!
+  stats:
+    flight_stats:
+      title: Статистика по рейсам
+      general: Общая
+      flights: Рейсы
+      international_flights: Международные
+      domestic_flights: Внутренние
+      routes: Маршруты
+      top_routes: Топ маршрутов
+      no_routes: Нет маршрутов
+      show_all: Показать все
+      distance: Дальность
+      km: км
+      around_earth: Вокруг Земли
+      to_moon: До Луны
+      longest_flight_distance: Самый дальний рейс
+      shortest_flight_distance: Самый короткий рейс
+      show_more: Показать ещё
+      duration: Продолжительность
+      longest_flight_duration: Самый длинный рейс
+      shortest_flight_duration: Самый короткий рейс
+    routes_modal:
+      title: Все маршруты
+    distance_modal:
+      title: Дальность
+      top_longest_flights: Топ дальних рейсов
+      top_shortest_flights: Топ коротких рейсов
+      km: км
+    duration_modal:
+      title: Продолжительность
+      top_longest_flights: Топ длинных рейсов
+      top_shortest_flights: Топ коротких рейсов
   shared:
     navbar:
       hello: Ку
@@ -94,6 +128,10 @@ ru:
       manual_add: Добавить вручную
       map: Карта
       stats: Статистика
+      flight_stats: Рейсы
+      airport_stats: Аэропорты
+      airline_stats: Авиакомпании
+      aircraft_stats: Самолеты
       rating: Рейтинг
       profile: Профиль
       id: Джетлаггер ID

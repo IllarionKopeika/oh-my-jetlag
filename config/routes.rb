@@ -22,6 +22,9 @@ Rails.application.routes.draw do
     get "fetch_flight", to: "flights#fetch", as: "fetch_flight"
     get "map", to: "flights#map", as: "map"
 
+    # stats
+    get "flight_stats", to: "stats#flight_stats", as: "flight_stats"
+
     # airports
     resources :airports, only: [] do
       collection do
