@@ -11,6 +11,7 @@ class Aircraft < ApplicationRecord
   end
 
   def update_aircraft
+    return unless saved_change_to_manufacturer?
     UpdateAircraftJob.perform_later(self.id) if self.manufacturer.present?
   end
 end
