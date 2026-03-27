@@ -1,4 +1,4 @@
-class ManualAddFlight
+class Flights::ManualAddFlight
   def initialize(flight_params, user)
     @flight_params = flight_params
     @user = user

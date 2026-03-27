@@ -15,7 +15,7 @@ class FlightsController < ApplicationController
     flight_number = format_flight_number(params[:flight_number])
     departure_date = params[:departure_date]
 
-    @flight_data = FlightFetcher.new(flight_number, departure_date).call
+    @flight_data = Flights::FlightFetcher.new(flight_number, departure_date).call
     Rails.logger.info "Flight data: #{@flight_data}"
 
     respond_to do |format|
@@ -69,9 +69,9 @@ class FlightsController < ApplicationController
   def get_service
     case params[:flight][:data_source]
     when "api"
-      ApiFlight
+      Flights::ApiFlight
     when "manual_add"
-      ManualAddFlight
+      Flights::ManualAddFlight
     end
   end
 

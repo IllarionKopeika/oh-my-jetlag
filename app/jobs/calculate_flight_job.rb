@@ -8,7 +8,7 @@ class CalculateFlightJob < ApplicationJob
     flights = Flight.where(departure_airport_id: airport.id).or(Flight.where(arrival_airport_id: airport.id))
 
     flights.each do |flight|
-      FlightCalculator.call(flight)
+      Flights::FlightCalculator.call(flight)
     end
   end
 end

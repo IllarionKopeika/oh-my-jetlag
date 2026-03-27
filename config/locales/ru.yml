@@ -19,10 +19,12 @@ ru:
       taken_email_address: уже используется
       taken_nickname: уже занят
   flights:
-    weeks: нед
-    days: дн
     hours: ч
     mins: мин
+    wks: н
+    dys: д
+    hrs: ч
+    mns: м
     fetch:
       check_search_params: Проверьте параметы поиска или
       add_manually: добавьте рейс вручную!
@@ -119,6 +121,22 @@ ru:
       title: Продолжительность
       top_longest_flights: Топ длинных рейсов
       top_shortest_flights: Топ коротких рейсов
+    airport_stats:
+      title: Статистика по аэропортам
+      general: Общая
+      airports: Аэропорты
+      departure_airports: Аэропорты вылета
+      arrival_airports: Аэропорты прилета
+      first_airport: Первый аэропорт
+      top_airports: Топ аэропортов
+      no_visits: Нет аэропортов
+      show_all: Показать все
+      top_airports_by_countries: Топ аэропортов по странам
+      no_countries: Нет стран
+    airport_visits_modal:
+      title: Все аэропорты
+    airports_by_countries_modal:
+      title: Все аэропорты по странам
   shared:
     navbar:
       hello: Ку

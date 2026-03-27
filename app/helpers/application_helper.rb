@@ -68,19 +68,19 @@ module ApplicationHelper
       days, remain = duration.divmod(1440)
       hours, mins = remain.divmod(60)
       [].tap do |parts|
-        parts << "#{days } #{I18n.t('.flights.days')}" if days.positive?
-        parts << "#{hours} #{I18n.t('flights.hours')}" if hours.positive?
-        parts << "#{mins} #{I18n.t('flights.mins')}" if mins.positive?
+        parts << "#{days } #{I18n.t('.flights.dys')}" if days.positive?
+        parts << "#{hours} #{I18n.t('flights.hrs')}" if hours.positive?
+        parts << "#{mins} #{I18n.t('flights.mns')}" if mins.positive?
       end.join(" ")
     elsif duration >= 10080 && duration < 43200
       weeks, remain_one = duration.divmod(10080)
       days, remain_two = remain_one.divmod(1440)
       hours, mins = remain_two.divmod(60)
       [].tap do |parts|
-        parts << "#{weeks } #{I18n.t('.flights.weeks')}" if weeks.positive?
-        parts << "#{days } #{I18n.t('.flights.days')}" if days.positive?
-        parts << "#{hours} #{I18n.t('flights.hours')}" if hours.positive?
-        parts << "#{mins} #{I18n.t('flights.mins')}" if mins.positive?
+        parts << "#{weeks } #{I18n.t('.flights.wks')}" if weeks.positive?
+        parts << "#{days } #{I18n.t('.flights.dys')}" if days.positive?
+        parts << "#{hours} #{I18n.t('flights.hrs')}" if hours.positive?
+        parts << "#{mins} #{I18n.t('flights.mns')}" if mins.positive?
       end.join(" ")
     end
   end

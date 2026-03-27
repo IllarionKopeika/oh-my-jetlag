@@ -1,0 +1,124 @@
+<div class="row justify-content-center">
+  <div class="col-xl-6 col-md-8 col-sm-10 col-12">
+    <div class="custom-stats p-3">
+      <h1 class="text-center mb-3"><%= t(".title") %></h1>
+
+      <!-- > general <-->
+      <div class="stats-card p-3 mb-2">
+        <h4 class="text-center"><%= t(".general") %></h4>
+        <div class="row align-items-center border-bottom">
+          <div class="col d-flex justify-content-start align-items-center">
+            <i class="my-1 stats-icon fa-solid fa-cart-flatbed-suitcase"></i>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".airports") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p class="my-1 text-secondary"><strong><%= @airport_stats.airports_count %></strong></p>
+          </div>
+        </div>
+
+        <div class="row align-items-center border-bottom">
+          <div class="col d-flex justify-content-start align-items-center">
+            <i class="my-1 stats-icon fa-solid fa-plane-departure"></i>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".departure_airports") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p class="my-1 text-secondary"><strong><%= @airport_stats.departure_airports_count %></strong></p>
+          </div>
+        </div>
+
+        <div class="row align-items-center border-bottom">
+          <div class="col d-flex justify-content-start align-items-center">
+            <i class="my-1 stats-icon fa-solid fa-plane-arrival"></i>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".arrival_airports") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p class="my-1 text-secondary"><strong><%= @airport_stats.arrival_airports_count %></strong></p>
+          </div>
+        </div>
+
+        <div class="row align-items-center border-bottom">
+          <div class="col d-flex justify-content-start align-items-center">
+            <i class="my-1 stats-icon fa-solid fa-heart"></i>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".first_airport") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p class="my-1 text-secondary"><strong><%= @airport_stats.first_airport %></strong></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- > airport visits <-->
+      <div class="stats-card p-3 mb-2">
+        <h4 class="text-center"><%= t(".top_airports") %></h4>
+        <% if @airport_stats.all_airport_visits.empty? %>
+          <div class="d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".no_visits") %></p>
+          </div>
+        <% else %>
+          <% @airport_stats.top_airport_visits.each do |visit| %>
+            <div class="row align-items-center">
+              <div class="col-1 d-flex justify-content-start align-items-center">
+                <p class="my-1 text-secondary"><strong><%= visit[:airport].code %></strong></p>
+              </div>
+              <div class="col">
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped" style="width: <%= visit[:percent] %>%;"></div>
+                </div>
+              </div>
+              <div class="col-1 d-flex justify-content-end align-items-center">
+                <p class="my-1 text-secondary"><strong><%= visit[:count] %></strong></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        <% if @airport_stats.all_airport_visits.count > 5 %>
+          <div class="d-flex justify-content-center align-items-center mt-1">
+            <%= link_to t(".show_all"), "#", data: { bs_toggle: 'modal', bs_target: "#airportVisitsModal" } %>
+          </div>
+        <% end %>
+      </div>
+
+      <%= render "airport_visits_modal" %>
+
+      <!-- > airport countries <-->
+      <div class="stats-card p-3 mb-2">
+        <h4 class="text-center"><%= t(".top_airports_by_countries") %></h4>
+        <% if @airport_stats.all_airports_by_countries.empty? %>
+          <div class="d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".no_countries") %></p>
+          </div>
+        <% else %>
+          <% @airport_stats.top_airports_by_countries.each do |country, count| %>
+            <div class="row align-items-center border-bottom">
+              <div class="col-1 d-flex justify-content-start align-items-center">
+                <img src="<%= country.flag_url %>" alt="<%= country.code %>">
+              </div>
+              <div class="col d-flex justify-content-center align-items-center">
+                <p class="my-1"><%= country.name["#{I18n.locale}"] %></p>
+              </div>
+              <div class="col-1 d-flex justify-content-end align-items-center">
+                <p class="my-1 text-secondary"><strong><%= count %></strong></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        <% if @airport_stats.all_airports_by_countries.count > 5 %>
+          <div class="d-flex justify-content-center align-items-center mt-1">
+            <%= link_to t(".show_all"), "#", data: { bs_toggle: 'modal', bs_target: "#airportsByCountriesModal" } %>
+          </div>
+        <% end %>
+      </div>
+
+      <%= render "airports_by_countries_modal" %>
+
+    </div>
+  </div>
+</div>

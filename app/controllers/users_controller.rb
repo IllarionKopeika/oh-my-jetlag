@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def new
     if authenticated?
-      flash[:info] = t('.already_signed_up')
+      flash[:info] = t(".already_signed_up")
       redirect_to root_path
     else
       @user = User.new
@@ -13,10 +13,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = t('.signup_success')
+      flash[:success] = t(".signup_success")
       redirect_to root_path
     else
-      render 'new', status: :unprocessable_entity
+      render "new", status: :unprocessable_entity
     end
   end
 

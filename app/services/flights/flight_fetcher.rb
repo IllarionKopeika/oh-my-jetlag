@@ -1,6 +1,6 @@
 require "httparty"
 
-class FlightFetcher
+class Flights::FlightFetcher
   def initialize(flight_number, departure_date)
     @flight_number = flight_number
     @departure_date = departure_date

@@ -47,8 +47,8 @@ class Stats::FlightStats
     end
   end
 
-  def top_routes(limit = 5)
-    all_routes.first(limit)
+  def top_routes
+    all_routes.first(5)
   end
 
   # distance

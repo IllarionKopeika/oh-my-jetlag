@@ -1,4 +1,4 @@
-class FlightCalculator
+class Flights::FlightCalculator
   def self.call(flight)
     new(flight).call
   end

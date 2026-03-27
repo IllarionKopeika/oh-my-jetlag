@@ -1,4 +1,4 @@
-class ApiFlight
+class Flights::ApiFlight
   def initialize(flight_params, user)
     @flight_params = flight_params
     @user = user

@@ -36,6 +36,12 @@
     .row:last-child {
       border-bottom: none !important;
     }
+    img {
+      width: 30px;
+      height: 20px;
+      border-radius: 5px;
+      object-fit: contain;
+    }
   }
   @media (max-width: 450px) {
     .stats-card {
@@ -47,6 +53,10 @@
       }
       .progress {
         height: 7px;
+      }
+      img {
+        width: 21px;
+        height: 14px;
       }
     }
   }
@@ -61,6 +71,10 @@
       .progress {
         height: 8px;
       }
+      img {
+        width: 24px;
+        height: 16px;
+      }
     }
   }
   @media (min-width: 768px) and (max-width: 991px) {
@@ -73,6 +87,10 @@
       }
       .progress {
         height: 9px;
+      }
+      img {
+        width: 27px;
+        height: 18px;
       }
     }
   }

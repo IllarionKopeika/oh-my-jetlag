@@ -19,10 +19,12 @@ en:
       taken_email_address: is already taken
       taken_nickname: is already taken
   flights:
-    weeks: w
-    days: d
     hours: h
     mins: min
+    wks: w
+    dys: d
+    hrs: h
+    mns: m
     fetch:
       check_search_params: Check search parameters or
       add_manually: add a flight manually!
@@ -119,6 +121,22 @@ en:
       title: Duration
       top_longest_flights: Top longest flights
       top_shortest_flights: Top shortest flights
+    airport_stats:
+      title: Airport stats
+      general: General
+      airports: Airports
+      departure_airports: Departure airports
+      arrival_airports: Arrival airports
+      first_airport: First airport
+      top_airports: Top airports
+      no_visits: No airports
+      show_all: Show all
+      top_airports_by_countries: Top airports by countries
+      no_countries: No countries
+    airport_visits_modal:
+      title: All airports
+    airports_by_countries_modal:
+      title: Top airports by countries
   shared:
     navbar:
       hello: Hey
