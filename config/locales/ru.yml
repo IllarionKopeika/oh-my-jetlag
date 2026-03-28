@@ -137,6 +137,17 @@ ru:
       title: Все аэропорты
     airports_by_countries_modal:
       title: Все аэропорты по странам
+    airline_stats:
+      title: Статистика по авиакомпаниям
+      general: Общая
+      airlines: Авиакомпании
+      first_airline: Первая авиакомпания
+      favorite_airline: Любимая авиакомпания
+      top_airlines: Топ авиакомпаний
+      no_airlines: Нет авиакомпаний
+      show_all: Показать все
+    all_airlines_modal:
+      title: Все авиакомпании
   shared:
     navbar:
       hello: Ку

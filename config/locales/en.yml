@@ -137,6 +137,17 @@ en:
       title: All airports
     airports_by_countries_modal:
       title: Top airports by countries
+    airline_stats:
+      title: Airline stats
+      general: General
+      airlines: Airlines
+      first_airline: First airline
+      favorite_airline: Favorite airline
+      top_airlines: Top airlines
+      no_airlines: No airlines
+      show_all: Show all
+    all_airlines_modal:
+      title: All airlines
   shared:
     navbar:
       hello: Hey
