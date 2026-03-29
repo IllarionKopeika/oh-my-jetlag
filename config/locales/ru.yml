@@ -19,12 +19,10 @@ ru:
       taken_email_address: уже используется
       taken_nickname: уже занят
   flights:
+    weeks: н
+    days: д
     hours: ч
-    mins: мин
-    wks: н
-    dys: д
-    hrs: ч
-    mns: м
+    minutes: м
     fetch:
       check_search_params: Проверьте параметы поиска или
       add_manually: добавьте рейс вручную!
@@ -110,14 +108,14 @@ ru:
       duration: Продолжительность
       longest_flight_duration: Самый длинный рейс
       shortest_flight_duration: Самый короткий рейс
-    routes_modal:
+    flights_routes_modal:
       title: Все маршруты
-    distance_modal:
+    flights_distance_modal:
       title: Дальность
       top_longest_flights: Топ дальних рейсов
       top_shortest_flights: Топ коротких рейсов
       km: км
-    duration_modal:
+    flights_duration_modal:
       title: Продолжительность
       top_longest_flights: Топ длинных рейсов
       top_shortest_flights: Топ коротких рейсов
@@ -133,7 +131,7 @@ ru:
       show_all: Показать все
       top_airports_by_countries: Топ аэропортов по странам
       no_countries: Нет стран
-    airport_visits_modal:
+    airports_modal:
       title: Все аэропорты
     airports_by_countries_modal:
       title: Все аэропорты по странам
@@ -146,8 +144,16 @@ ru:
       top_airlines: Топ авиакомпаний
       no_airlines: Нет авиакомпаний
       show_all: Показать все
-    all_airlines_modal:
+      airlines_by_distance: Топ авиакомпаний по дальности
+      km: км
+      airlines_by_duration: Топ авиакомпаний по продолжительности
+    airlines_modal:
       title: Все авиакомпании
+    airlines_by_distance_modal:
+      title: Все авиакомпании по дальности
+      km: км
+    airlines_by_duration_modal:
+      title: Все авиакомпании по продолжительности
   shared:
     navbar:
       hello: Ку

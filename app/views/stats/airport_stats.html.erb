@@ -81,12 +81,12 @@
         <% end %>
         <% if @airport_stats.all_airport_visits.count > 5 %>
           <div class="d-flex justify-content-center align-items-center mt-1">
-            <%= link_to t(".show_all"), "#", data: { bs_toggle: 'modal', bs_target: "#airportVisitsModal" } %>
+            <%= link_to t(".show_all"), "#", data: { bs_toggle: 'modal', bs_target: "#airportsModal" } %>
           </div>
         <% end %>
       </div>
 
-      <%= render "airport_visits_modal" %>
+      <%= render "airports_modal" %>
 
       <!-- > airport countries <-->
       <div class="stats-card p-3 mb-2">

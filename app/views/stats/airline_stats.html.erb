@@ -26,12 +26,16 @@
             <p class="my-1"><%= t(".first_airline") %></p>
           </div>
           <div class="col d-flex justify-content-end align-items-center">
-            <p class="my-1 text-secondary"><strong><%= @airline_stats.first_airline %></strong></p>
+            <% if @airline_stats.first_airline == "-" %>
+              <p class="my-1 text-secondary"><strong><%= @airline_stats.first_airline %></strong></p>
+            <% else %>
+              <img src="<%= @airline_stats.first_airline.logo_url %>" alt="<%= @airline_stats.first_airline.code %>">
+            <% end %>
           </div>
         </div>
       </div>
 
-      <!-- > general <-->
+      <!-- > airlines count <-->
       <div class="stats-card p-3 mb-2">
         <h4 class="text-center"><%= t(".top_airlines") %></h4>
           <% if @airline_stats.all_airlines.empty? %>
@@ -55,12 +59,78 @@
           <% end %>
           <% if @airline_stats.all_airlines.count > 5 %>
             <div class="d-flex justify-content-center align-items-center mt-1">
-              <%= link_to t(".show_all"), "#", data: { bs_toggle: 'modal', bs_target: "#allAirlinesModal" } %>
+              <%= link_to t(".show_all"), "#", data: { bs_toggle: 'modal', bs_target: "#airlinesModal" } %>
             </div>
           <% end %>
       </div>
 
-      <%= render "all_airlines_modal" %>
+      <%= render "airlines_modal" %>
+
+      <!-- > airlines by distance <-->
+      <div class="stats-card p-3 mb-2">
+        <h4 class="text-center"><%= t(".airlines_by_distance") %></h4>
+          <% if @airline_stats.all_airlines_by_distance.empty? %>
+            <div class="d-flex justify-content-center align-items-center">
+              <p class="my-1"><%= t(".no_airlines") %></p>
+            </div>
+          <% else %>
+            <% @airline_stats.top_airlines_by_distance.each do |airline| %>
+              <div class="row align-items-center border-bottom">
+                <div class="col-1 d-flex justify-content-start align-items-center">
+                  <img src="<%= airline[:airline].logo_url %>" alt="<%= airline[:airline].code %>">
+                </div>
+                <div class="col">
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-striped" style="width: <%= airline[:percent] %>%;"></div>
+                  </div>
+                </div>
+                <div class="col-3 d-flex justify-content-end align-items-center">
+                  <p class="my-1 text-secondary"><strong><%= airline[:distance] %> <%= t(".km") %></strong></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+          <% if @airline_stats.all_airlines_by_distance.count > 5 %>
+            <div class="d-flex justify-content-center align-items-center mt-1">
+              <%= link_to t(".show_all"), "#", data: { bs_toggle: 'modal', bs_target: "#airlinesByDistanceModal" } %>
+            </div>
+          <% end %>
+      </div>
+
+      <%= render "airlines_by_distance_modal" %>
+
+      <!-- > airlines by duration <-->
+      <div class="stats-card p-3 mb-2">
+        <h4 class="text-center"><%= t(".airlines_by_duration") %></h4>
+          <% if @airline_stats.all_airlines_by_duration.empty? %>
+            <div class="d-flex justify-content-center align-items-center">
+              <p class="my-1"><%= t(".no_airlines") %></p>
+            </div>
+          <% else %>
+            <% @airline_stats.top_airlines_by_duration.each do |airline| %>
+              <div class="row align-items-center border-bottom">
+                <div class="col-1 d-flex justify-content-start align-items-center">
+                  <img src="<%= airline[:airline].logo_url %>" alt="<%= airline[:airline].code %>">
+                </div>
+                <div class="col">
+                  <div class="progress">
+                    <div class="progress-bar progress-bar-striped" style="width: <%= airline[:percent] %>%;"></div>
+                  </div>
+                </div>
+                <div class="col-3 d-flex justify-content-end align-items-center">
+                  <p class="my-1 text-secondary"><strong><%= format_total_duration(airline[:duration]) %></strong></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+          <% if @airline_stats.all_airlines_by_duration.count > 5 %>
+            <div class="d-flex justify-content-center align-items-center mt-1">
+              <%= link_to t(".show_all"), "#", data: { bs_toggle: 'modal', bs_target: "#airlinesByDurationModal" } %>
+            </div>
+          <% end %>
+      </div>
+
+      <%= render "airlines_by_duration_modal" %>
 
     </div>
   </div>

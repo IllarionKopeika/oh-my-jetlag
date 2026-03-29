@@ -19,12 +19,10 @@ en:
       taken_email_address: is already taken
       taken_nickname: is already taken
   flights:
+    weeks: w
+    days: d
     hours: h
-    mins: min
-    wks: w
-    dys: d
-    hrs: h
-    mns: m
+    minutes: m
     fetch:
       check_search_params: Check search parameters or
       add_manually: add a flight manually!
@@ -110,14 +108,14 @@ en:
       duration: Duration
       longest_flight_duration: Longest flight
       shortest_flight_duration: Shortest flight
-    routes_modal:
+    flights_routes_modal:
       title: All routes
-    distance_modal:
+    flights_distance_modal:
       title: Distance
       top_longest_flights: Top longest flights
       top_shortest_flights: Top shortest flights
       km: km
-    duration_modal:
+    flights_duration_modal:
       title: Duration
       top_longest_flights: Top longest flights
       top_shortest_flights: Top shortest flights
@@ -133,10 +131,10 @@ en:
       show_all: Show all
       top_airports_by_countries: Top airports by countries
       no_countries: No countries
-    airport_visits_modal:
+    airports_modal:
       title: All airports
     airports_by_countries_modal:
-      title: Top airports by countries
+      title: All airports by countries
     airline_stats:
       title: Airline stats
       general: General
@@ -146,8 +144,16 @@ en:
       top_airlines: Top airlines
       no_airlines: No airlines
       show_all: Show all
-    all_airlines_modal:
+      airlines_by_distance: Top airlines by distance
+      km: km
+      airlines_by_duration: Top airlines by duration
+    airlines_modal:
       title: All airlines
+    airlines_by_distance_modal:
+      title: All airlines by distance
+      km: km
+    airlines_by_duration_modal:
+      title: All airlines by duration
   shared:
     navbar:
       hello: Hey

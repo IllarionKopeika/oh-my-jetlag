@@ -81,12 +81,12 @@
         <% end %>
         <% if @flight_stats.all_routes.count > 5 %>
           <div class="d-flex justify-content-center align-items-center mt-1">
-            <%= link_to t(".show_all"), "#", data: { bs_toggle: 'modal', bs_target: "#routesModal" } %>
+            <%= link_to t(".show_all"), "#", data: { bs_toggle: 'modal', bs_target: "#flightsRoutesModal" } %>
           </div>
         <% end %>
       </div>
 
-      <%= render "routes_modal" %>
+      <%= render "flights_routes_modal" %>
 
       <!-- > distance <-->
       <div class="stats-card p-3 mb-2">
@@ -168,12 +168,12 @@
         </div>
         <% if @flight_stats.flights_count > 4 %>
           <div class="d-flex justify-content-center align-items-center mt-1">
-            <%= link_to t(".show_more"), "#", data: { bs_toggle: 'modal', bs_target: "#distanceModal" } %>
+            <%= link_to t(".show_more"), "#", data: { bs_toggle: 'modal', bs_target: "#flightsDistanceModal" } %>
           </div>
         <% end %>
       </div>
 
-      <%= render "distance_modal" %>
+      <%= render "flights_distance_modal" %>
 
       <!-- > duration <-->
       <div class="stats-card p-3 mb-2">
@@ -231,12 +231,12 @@
         </div>
         <% if @flight_stats.flights_count > 4 %>
           <div class="d-flex justify-content-center align-items-center mt-1">
-            <%= link_to t(".show_more"), "#", data: { bs_toggle: 'modal', bs_target: "#durationModal" } %>
+            <%= link_to t(".show_more"), "#", data: { bs_toggle: 'modal', bs_target: "#flightsDurationModal" } %>
           </div>
         <% end %>
       </div>
 
-      <%= render "duration_modal" %>
+      <%= render "flights_duration_modal" %>
 
     </div>
   </div>

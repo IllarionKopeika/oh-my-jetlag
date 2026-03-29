@@ -1,4 +1,4 @@
-<div class="modal fade" id="routesModal" tabindex="-1" aria-labelledby="routesModalLabel" aria-hidden="true">
+<div class="modal fade" id="airportsModal" tabindex="-1" aria-labelledby="airportsModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg custom-modal">
     <div class="modal-content">
       <div class="modal-title d-flex justify-content-between align-items-center p-3">
@@ -8,18 +8,18 @@
       <div class="modal-info p-3">
         <div class="stats-card p-3 mb-2">
 
-          <% @flight_stats.all_routes.each do |route| %>
+          <% @airport_stats.all_airport_visits.each do |visit| %>
             <div class="row align-items-center">
-              <div class="col-2 d-flex justify-content-start align-items-center">
-                <p class="my-1 text-secondary"><strong><%= route[:departure].code %> - <%= route[:arrival].code %></strong></p>
+              <div class="col-1 d-flex justify-content-start align-items-center">
+                <p class="my-1 text-secondary"><strong><%= visit[:airport].code %></strong></p>
               </div>
               <div class="col">
                 <div class="progress">
-                  <div class="progress-bar progress-bar-striped" style="width: <%= route[:percent] %>%;"></div>
+                  <div class="progress-bar progress-bar-striped" style="width: <%= visit[:percent] %>%;"></div>
                 </div>
               </div>
               <div class="col-1 d-flex justify-content-end align-items-center">
-                <p class="my-1 text-secondary"><strong><%= route[:count] %></strong></p>
+                <p class="my-1 text-secondary"><strong><%= visit[:count] %></strong></p>
               </div>
             </div>
           <% end %>

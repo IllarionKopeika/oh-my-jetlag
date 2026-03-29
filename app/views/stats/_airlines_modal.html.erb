@@ -1,0 +1,29 @@
+<div class="modal fade" id="airlinesModal" tabindex="-1" aria-labelledby="airlinesModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg custom-modal">
+    <div class="modal-content">
+      <div class="modal-title d-flex justify-content-between align-items-center p-3">
+        <h4 class="m-0 text-primary"><%= t(".title") %></h4>
+        <i type="button" data-bs-dismiss="modal" aria-label="Close" class="close-icon fa-regular fa-circle-xmark"></i>
+      </div>
+      <div class="modal-info p-3">
+        <div class="stats-card p-3 mb-2">
+
+          <% @airline_stats.all_airlines.each do |airline| %>
+            <div class="row align-items-center border-bottom">
+              <div class="col-1 d-flex justify-content-start align-items-center">
+                <img src="<%= airline[:airline].logo_url %>" alt="<%= airline[:airline].code %>">
+              </div>
+              <div class="col d-flex justify-content-center align-items-center">
+                <p class="my-1"><%= airline[:airline].name %></p>
+              </div>
+              <div class="col-1 d-flex justify-content-end align-items-center">
+                <p class="my-1 text-secondary"><strong><%= airline[:count] %></strong></p>
+              </div>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

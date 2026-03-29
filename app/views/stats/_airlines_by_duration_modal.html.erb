@@ -1,4 +1,4 @@
-<div class="modal fade" id="allAirlinesModal" tabindex="-1" aria-labelledby="allAirlinesModalLabel" aria-hidden="true">
+<div class="modal fade" id="airlinesByDurationModal" tabindex="-1" aria-labelledby="airlinesByDurationModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg custom-modal">
     <div class="modal-content">
       <div class="modal-title d-flex justify-content-between align-items-center p-3">
@@ -8,16 +8,18 @@
       <div class="modal-info p-3">
         <div class="stats-card p-3 mb-2">
 
-          <% @airline_stats.all_airlines.each do |airline| %>
+          <% @airline_stats.all_airlines_by_duration.each do |airline| %>
             <div class="row align-items-center border-bottom">
               <div class="col-1 d-flex justify-content-start align-items-center">
                 <img src="<%= airline[:airline].logo_url %>" alt="<%= airline[:airline].code %>">
               </div>
-              <div class="col d-flex justify-content-center align-items-center">
-                <p class="my-1"><%= airline[:airline].name %></p>
+              <div class="col">
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped" style="width: <%= airline[:percent] %>%;"></div>
+                </div>
               </div>
-              <div class="col-1 d-flex justify-content-end align-items-center">
-                <p class="my-1 text-secondary"><strong><%= airline[:count] %></strong></p>
+              <div class="col-3 d-flex justify-content-end align-items-center">
+                <p class="my-1 text-secondary"><strong><%= format_total_duration(airline[:duration]) %></strong></p>
               </div>
             </div>
           <% end %>
