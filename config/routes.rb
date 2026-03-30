@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     get "flight_stats", to: "stats#flight_stats", as: "flight_stats"
     get "airport_stats", to: "stats#airport_stats", as: "airport_stats"
     get "airline_stats", to: "stats#airline_stats", as: "airline_stats"
+    get "aircraft_stats", to: "stats#aircraft_stats", as: "aircraft_stats"
 
     # airports
     resources :airports, only: [] do

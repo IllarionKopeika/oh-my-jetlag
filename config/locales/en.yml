@@ -154,6 +154,17 @@ en:
       km: km
     airlines_by_duration_modal:
       title: All airlines by duration
+    aircraft_stats:
+      title: Aircraft stats
+      general: General
+      aircrafts: Aircrafts
+      manufacturers: Manufacturers
+      first_aircraft: First aircraft
+      top_aircrafts: Top aircrafts
+      no_aircrafts: No aircrafts
+      show_all: Show all
+    aircrafts_modal:
+      title: All aircrafts
   shared:
     navbar:
       hello: Hey

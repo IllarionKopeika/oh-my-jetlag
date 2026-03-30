@@ -154,6 +154,17 @@ ru:
       km: км
     airlines_by_duration_modal:
       title: Все авиакомпании по продолжительности
+    aircraft_stats:
+      title: Статистика по самолетам
+      general: Общая
+      aircrafts: Самолеты
+      manufacturers: Производители
+      first_aircraft: Первый самолет
+      top_aircrafts: Топ самолетов
+      no_aircrafts: Нет самолетов
+      show_all: Показать все
+    aircrafts_modal:
+      title: Все самолеты
   shared:
     navbar:
       hello: Ку

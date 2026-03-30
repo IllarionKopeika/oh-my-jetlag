@@ -1,0 +1,81 @@
+<div class="row justify-content-center">
+  <div class="col-xl-6 col-md-8 col-sm-10 col-12">
+    <div class="custom-stats p-3">
+      <h1 class="text-center mb-3"><%= t(".title") %></h1>
+
+      <!-- > general <-->
+      <div class="stats-card p-3 mb-2">
+        <h4 class="text-center"><%= t(".general") %></h4>
+        <div class="row align-items-center border-bottom">
+          <div class="col d-flex justify-content-start align-items-center">
+            <i class="my-1 stats-icon fa-solid fa-plane-circle-check"></i>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".aircrafts") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p class="my-1 text-secondary"><strong><%= @aircraft_stats.aircrafts_count %></strong></p>
+          </div>
+        </div>
+
+        <div class="row align-items-center border-bottom">
+          <div class="col d-flex justify-content-start align-items-center">
+            <i class="my-1 stats-icon fa-solid fa-industry"></i>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".manufacturers") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p class="my-1 text-secondary"><strong><%= @aircraft_stats.manufacturers_count %></strong></p>
+          </div>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col d-flex justify-content-start align-items-center">
+            <i class="my-1 stats-icon fa-solid fa-clock-rotate-left"></i>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".first_aircraft") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p class="my-1 text-secondary"><strong><%= @aircraft_stats.first_aircraft %></strong></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- > aircrafts count <-->
+      <div class="stats-card p-3 mb-2">
+        <h4 class="text-center"><%= t(".top_aircrafts") %></h4>
+          <% if @aircraft_stats.all_aircrafts.empty? %>
+            <div class="d-flex justify-content-center align-items-center">
+              <p class="my-1"><%= t(".no_aircrafts") %></p>
+            </div>
+          <% else %>
+            <% @aircraft_stats.top_aircrafts.each do |aircraft| %>
+              <div class="row align-items-center border-bottom">
+                <div class="col-1 d-flex justify-content-start align-items-center">
+                  <img id="manufacturer-logo" src="<%= aircraft[:aircraft].manufacturer_logo %>" alt="<%= aircraft[:aircraft].name %>">
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                  <p class="my-1"><%= aircraft[:aircraft].name %></p>
+                </div>
+                <div class="col-1 d-flex justify-content-end align-items-center">
+                  <p class="my-1 text-secondary"><strong><%= aircraft[:count] %></strong></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+          <% if @aircraft_stats.all_aircrafts.count > 5 %>
+            <div class="d-flex justify-content-center align-items-center mt-1">
+              <%= link_to t(".show_all"), "#", data: { bs_toggle: 'modal', bs_target: "#aircraftsModal" } %>
+            </div>
+          <% end %>
+      </div>
+
+      <%= render "aircrafts_modal" %>
+
+      <!-- > aircrafts by manufacturer <-->
+
+    </div>
+  </div>
+</div>
