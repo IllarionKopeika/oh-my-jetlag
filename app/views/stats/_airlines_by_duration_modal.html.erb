@@ -9,7 +9,7 @@
         <div class="stats-card p-3 mb-2">
 
           <% @airline_stats.all_airlines_by_duration.each do |airline| %>
-            <div class="row align-items-center border-bottom">
+            <div class="row align-items-center">
               <div class="col-1 d-flex justify-content-start align-items-center">
                 <img src="<%= airline[:airline].logo_url %>" alt="<%= airline[:airline].code %>">
               </div>

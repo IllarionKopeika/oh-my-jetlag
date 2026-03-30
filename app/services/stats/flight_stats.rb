@@ -4,7 +4,7 @@ class Stats::FlightStats
   end
 
   def completed_flights
-    @user.flights.completed
+    @completed_flights ||= @user.flights.completed
   end
 
   # general
@@ -26,24 +26,21 @@ class Stats::FlightStats
 
   # routes
   def all_routes
-    all_routes = completed_flights.group(:departure_airport_id, :arrival_airport_id).order(Arel.sql("COUNT(*) DESC")).count
-    airport_ids = all_routes.keys.flatten.uniq
+    routes = completed_flights.select("departure_airport_id, arrival_airport_id, COUNT(*) as flights_count").group(:departure_airport_id, :arrival_airport_id).order("flights_count DESC")
+
+    return [] if routes.empty?
+
+    airport_ids = routes.map { |route| [ route.departure_airport_id, route.arrival_airport_id ] }.flatten.uniq
     airports = Airport.where(id: airport_ids).index_by(&:id)
+    max = routes.first.flights_count.to_f
 
-    routes_data = all_routes.map do |(departure_airport_id, arrival_airport_id), count|
+    routes.map do |route|
       {
-        departure: airports[departure_airport_id],
-        arrival: airports[arrival_airport_id],
-        count: count
+        departure: airports[route.departure_airport_id],
+        arrival: airports[route.arrival_airport_id],
+        count: route.flights_count,
+        percent: ((route.flights_count / max) * 100).round
       }
-    end
-
-    return [] if routes_data.empty?
-
-    max = routes_data.first[:count].to_f
-
-    routes_data.map do |route|
-      route.merge(percent: ((route[:count] / max) * 100).round)
     end
   end
 
@@ -51,19 +48,7 @@ class Stats::FlightStats
     all_routes.first(5)
   end
 
-  # distance
-  def total_distance
-    completed_flights.sum(:distance).round(2)
-  end
-
-  def desc_distance_flights
-    completed_flights.order(distance: :desc)
-  end
-
-  def asc_distance_flights
-    completed_flights.order(distance: :asc)
-  end
-
+  # limit
   def limit
     case flights_count
     when 0..4
@@ -76,9 +61,22 @@ class Stats::FlightStats
       5
     when 20..29
       7
-    when 30..999999
+    else
       10
     end
+  end
+
+  # distance
+  def total_distance
+    completed_flights.sum(:distance).round(2)
+  end
+
+  def desc_distance_flights
+    completed_flights.includes(:departure_airport, :arrival_airport).order(distance: :desc)
+  end
+
+  def asc_distance_flights
+    completed_flights.includes(:departure_airport, :arrival_airport).order(distance: :asc)
   end
 
   def top_desc_distance_flights
@@ -95,11 +93,11 @@ class Stats::FlightStats
   end
 
   def desc_duration_flights
-    completed_flights.order(duration: :desc)
+    completed_flights.includes(:departure_airport, :arrival_airport).order(duration: :desc)
   end
 
   def asc_duration_flights
-    completed_flights.order(duration: :asc)
+    completed_flights.includes(:departure_airport, :arrival_airport).order(duration: :asc)
   end
 
   def top_desc_duration_flights

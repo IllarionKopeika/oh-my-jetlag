@@ -163,6 +163,8 @@ ru:
       top_aircrafts: Топ самолетов
       no_aircrafts: Нет самолетов
       show_all: Показать все
+      aircrafts_by_manufacturers: Самолеты по производителям
+      no_manufacturers: Нет производителей
     aircrafts_modal:
       title: Все самолеты
   shared:

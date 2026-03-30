@@ -4,20 +4,20 @@ class Stats::AirportStats
   end
 
   def completed_flights
-    @user.flights.completed
+    @completed_flights ||= @user.flights.completed
   end
 
   # general
   def airports_count
-    (completed_flights.map(&:departure_airport) + completed_flights.map(&:arrival_airport)).uniq.count
+    completed_flights.pluck(:departure_airport_id, :arrival_airport_id).flatten.uniq.count
   end
 
   def departure_airports_count
-    completed_flights.map(&:departure_airport).uniq.count
+    completed_flights.select(:departure_airport_id).distinct.count
   end
 
   def arrival_airports_count
-    completed_flights.map(&:arrival_airport).uniq.count
+    completed_flights.select(:arrival_airport_id).distinct.count
   end
 
   def first_airport
@@ -26,17 +26,17 @@ class Stats::AirportStats
 
   # visits
   def all_airport_visits
-    visits = completed_flights.flat_map { |flight| [ flight.departure_airport, flight.arrival_airport ] }.group_by { |airport| airport }.transform_values(&:count)
-    sorted_visits = visits.sort_by { |_, count| -count }
-    max = sorted_visits.first&.last.to_f
+    airport_ids = completed_flights.pluck(:departure_airport_id, :arrival_airport_id).flatten
+    ids_counts = airport_ids.tally
+    sorted_counts = ids_counts.sort_by { |_, count| -count }
+    airports = Airport.where(id: sorted_counts.map(&:first)).index_by(&:id)
+    max = sorted_counts.first&.last.to_f
 
-    sorted_visits.map do |airport, count|
-      percent = max.zero? ? 0 : (count / max * 100).round
-
+    sorted_counts.map do |airport_id, count|
       {
-        airport: airport,
+        airport: airports[airport_id],
         count: count,
-        percent: percent
+        percent: max.zero? ? 0 : (count / max * 100).round
       }
     end
   end
@@ -47,8 +47,8 @@ class Stats::AirportStats
 
   # by countries
   def all_airports_by_countries
-    airports = completed_flights.flat_map { |flight| [ flight.departure_airport, flight.arrival_airport ] }.uniq.group_by(&:country).transform_values(&:count)
-    airports.sort_by { |_, count| -count }
+    airport_ids = completed_flights.pluck(:departure_airport_id, :arrival_airport_id).flatten.uniq
+    Airport.where(id: airport_ids).group(:country).order(Arel.sql("COUNT(*) DESC")).count
   end
 
   def top_airports_by_countries

@@ -163,6 +163,8 @@ en:
       top_aircrafts: Top aircrafts
       no_aircrafts: No aircrafts
       show_all: Show all
+      aircrafts_by_manufacturers: Aircrafts by manufacturers
+      no_manufacturers: No manufacturers
     aircrafts_modal:
       title: All aircrafts
   shared:

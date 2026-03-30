@@ -75,7 +75,7 @@
             </div>
           <% else %>
             <% @airline_stats.top_airlines_by_distance.each do |airline| %>
-              <div class="row align-items-center border-bottom">
+              <div class="row align-items-center">
                 <div class="col-1 d-flex justify-content-start align-items-center">
                   <img src="<%= airline[:airline].logo_url %>" alt="<%= airline[:airline].code %>">
                 </div>
@@ -108,7 +108,7 @@
             </div>
           <% else %>
             <% @airline_stats.top_airlines_by_duration.each do |airline| %>
-              <div class="row align-items-center border-bottom">
+              <div class="row align-items-center">
                 <div class="col-1 d-flex justify-content-start align-items-center">
                   <img src="<%= airline[:airline].logo_url %>" alt="<%= airline[:airline].code %>">
                 </div>

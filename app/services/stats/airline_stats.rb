@@ -4,7 +4,7 @@ class Stats::AirlineStats
   end
 
   def completed_flights
-    @user.flights.completed
+    @completed_flights ||= @user.flights.completed
   end
 
   # general
@@ -18,12 +18,13 @@ class Stats::AirlineStats
 
   # top airlines
   def all_airlines
-    airlines = completed_flights.flat_map { |flight| [ flight.airline ] }.group_by { |airline| airline }.transform_values(&:count)
-    sorted_airlines = airlines.sort_by { |_, count| -count }
+    airlines = completed_flights.group(:airline_id).order(Arel.sql("COUNT(*) DESC")).count
+    airline_ids = airlines.keys
+    airlines_data = Airline.where(id: airline_ids).index_by(&:id)
 
-    sorted_airlines.map do |airline, count|
+    airlines.map do |airline_id, count|
       {
-        airline: airline,
+        airline: airlines_data[airline_id],
         count: count
       }
     end
@@ -35,16 +36,16 @@ class Stats::AirlineStats
 
   # airlines by distance
   def all_airlines_by_distance
-    all_airlines = completed_flights.group_by(&:airline).transform_values { |flights| flights.sum(&:distance).to_f.round(2) }
-    sorted_airlines = all_airlines.sort_by { |_, distance| -distance }
-    max = sorted_airlines.first&.last.to_f
+    airlines = completed_flights.group(:airline_id).order(Arel.sql("SUM(distance) DESC")).sum(:distance)
+    airline_ids = airlines.keys
+    airlines_data = Airline.where(id: airline_ids).index_by(&:id)
+    max = airlines.values.first.to_f
 
-    sorted_airlines.map do |airline, distance|
-      percent = max.zero? ? 0 : (distance / max * 100).round
+    airlines.map do |airline_id, distance|
       {
-        airline: airline,
-        distance: distance,
-        percent: percent
+        airline: airlines_data[airline_id],
+        distance: distance.to_f.round(2),
+        percent: max.zero? ? 0 : (distance / max * 100).round
       }
     end
   end
@@ -55,16 +56,16 @@ class Stats::AirlineStats
 
   # airlines by duration
   def all_airlines_by_duration
-    all_airlines = completed_flights.group_by(&:airline).transform_values { |flights| flights.sum(&:duration).round }
-    sorted_airlines = all_airlines.sort_by { |_, duration| -duration }
-    max = sorted_airlines.first&.last.to_f
+    airlines = completed_flights.group(:airline_id).order(Arel.sql("SUM(duration) DESC")).sum(:duration)
+    airline_ids = airlines.keys
+    airlines_data = Airline.where(id: airline_ids).index_by(&:id)
+    max = airlines.values.first.to_f
 
-    sorted_airlines.map do |airline, duration|
-      percent = max.zero? ? 0 : (duration / max * 100).round
+    airlines.map do |airline_id, duration|
       {
-        airline: airline,
-        duration: duration,
-        percent: percent
+        airline: airlines_data[airline_id],
+        duration: duration.round,
+        percent: max.zero? ? 0 : (duration / max * 100).round
       }
     end
   end
