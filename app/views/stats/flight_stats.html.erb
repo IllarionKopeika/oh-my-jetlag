@@ -55,7 +55,7 @@
         </div>
       </div>
 
-      <!-- > routes <-->
+      <!-- > top routes <-->
       <div class="stats-card p-3 mb-2">
         <h4 class="text-center"><%= t(".top_routes") %></h4>
         <% if @flight_stats.all_routes.empty? %>
@@ -132,7 +132,7 @@
             <% if @flight_stats.desc_distance_flights.empty? %>
               <i class="my-1 stats-icon fa-solid fa-xmark"></i>
             <% else %>
-              <p class="my-1 text-secondary"><strong><%= @flight_stats.desc_distance_flights.first.departure_airport.code %> - <%= @flight_stats.desc_distance_flights.first.arrival_airport.code %></strong></p>
+              <p class="my-1 text-secondary"><strong><%= @flight_stats.desc_distance_flights.first.number %></strong></p>
             <% end %>
           </div>
           <div class="col d-flex justify-content-center align-items-center">
@@ -152,7 +152,7 @@
             <% if @flight_stats.asc_distance_flights.empty? %>
               <i class="my-1 stats-icon fa-solid fa-xmark"></i>
             <% else %>
-              <p class="my-1 text-secondary"><strong><%= @flight_stats.asc_distance_flights.first.departure_airport.code %> - <%= @flight_stats.asc_distance_flights.first.arrival_airport.code %></strong></p>
+              <p class="my-1 text-secondary"><strong><%= @flight_stats.asc_distance_flights.first.number %></strong></p>
             <% end %>
           </div>
           <div class="col d-flex justify-content-center align-items-center">
@@ -195,7 +195,7 @@
             <% if @flight_stats.desc_duration_flights.empty? %>
               <i class="my-1 stats-icon fa-solid fa-xmark"></i>
             <% else %>
-              <p class="my-1 text-secondary"><strong><%= @flight_stats.desc_duration_flights.first.departure_airport.code %> - <%= @flight_stats.desc_duration_flights.first.arrival_airport.code %></strong></p>
+              <p class="my-1 text-secondary"><strong><%= @flight_stats.desc_duration_flights.first.number %></strong></p>
             <% end %>
           </div>
           <div class="col d-flex justify-content-center align-items-center">
@@ -215,7 +215,7 @@
             <% if @flight_stats.asc_duration_flights.empty? %>
               <i class="my-1 stats-icon fa-solid fa-xmark"></i>
             <% else %>
-              <p class="my-1 text-secondary"><strong><%= @flight_stats.asc_duration_flights.first.departure_airport.code %> - <%= @flight_stats.asc_duration_flights.first.arrival_airport.code %></strong></p>
+              <p class="my-1 text-secondary"><strong><%= @flight_stats.asc_duration_flights.first.number %></strong></p>
             <% end %>
           </div>
           <div class="col d-flex justify-content-center align-items-center">

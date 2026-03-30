@@ -13,8 +13,8 @@
               <div class="col-1 d-flex justify-content-start align-items-center">
                 <img src="<%= airline[:airline].logo_url %>" alt="<%= airline[:airline].code %>">
               </div>
-              <div class="col d-flex justify-content-center align-items-center">
-                <p class="my-1"><%= airline[:airline].name %></p>
+              <div class="col d-flex align-items-center" style="min-width: 0;">
+                <p class="my-1 text-truncate w-100 text-center"><%= airline[:airline].name %></p>
               </div>
               <div class="col-1 d-flex justify-content-end align-items-center">
                 <p class="my-1 text-secondary"><strong><%= airline[:count] %></strong></p>

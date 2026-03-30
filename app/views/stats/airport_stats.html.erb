@@ -55,7 +55,7 @@
         </div>
       </div>
 
-      <!-- > airport visits <-->
+      <!-- > top airports <-->
       <div class="stats-card p-3 mb-2">
         <h4 class="text-center"><%= t(".top_airports") %></h4>
         <% if @airport_stats.all_airport_visits.empty? %>
@@ -63,15 +63,13 @@
             <p class="my-1"><%= t(".no_visits") %></p>
           </div>
         <% else %>
-          <% @airport_stats.top_airport_visits.each do |visit| %>
-            <div class="row align-items-center">
+          <% @airport_stats.top_airport_visits.each_with_index do |visit, index| %>
+            <div class="row align-items-center <%= 'border-bottom' unless index == @airport_stats.top_airport_visits.size - 1 %>">
               <div class="col-1 d-flex justify-content-start align-items-center">
                 <p class="my-1 text-secondary"><strong><%= visit[:airport].code %></strong></p>
               </div>
-              <div class="col">
-                <div class="progress">
-                  <div class="progress-bar progress-bar-striped" style="width: <%= visit[:percent] %>%;"></div>
-                </div>
+              <div class="col d-flex align-items-center" style="min-width: 0;">
+                <p class="my-1 text-truncate w-100 text-center"><%= visit[:airport].name %></p>
               </div>
               <div class="col-1 d-flex justify-content-end align-items-center">
                 <p class="my-1 text-secondary"><strong><%= visit[:count] %></strong></p>
@@ -88,7 +86,7 @@
 
       <%= render "airports_modal" %>
 
-      <!-- > airport countries <-->
+      <!-- > airports by countries <-->
       <div class="stats-card p-3 mb-2">
         <h4 class="text-center"><%= t(".top_airports_by_countries") %></h4>
         <% if @airport_stats.all_airports_by_countries.empty? %>
@@ -96,13 +94,14 @@
             <p class="my-1"><%= t(".no_countries") %></p>
           </div>
         <% else %>
-          <% @airport_stats.top_airports_by_countries.each do |country, count| %>
-            <div class="row align-items-center border-bottom">
+          <% countries = @airport_stats.top_airports_by_countries %>
+          <% countries.each_with_index do |(country, count), index| %>
+            <div class="row align-items-center <%= 'border-bottom' unless index == countries.size - 1 %>">
               <div class="col-1 d-flex justify-content-start align-items-center">
                 <img src="<%= country.flag_url %>" alt="<%= country.code %>">
               </div>
-              <div class="col d-flex justify-content-center align-items-center">
-                <p class="my-1"><%= country.name["#{I18n.locale}"] %></p>
+              <div class="col d-flex align-items-center" style="min-width: 0;">
+                <p class="my-1 text-truncate w-100 text-center"><%= country.name[I18n.locale.to_s] %></p>
               </div>
               <div class="col-1 d-flex justify-content-end align-items-center">
                 <p class="my-1 text-secondary"><strong><%= count %></strong></p>

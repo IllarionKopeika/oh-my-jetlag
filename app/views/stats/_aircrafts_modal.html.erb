@@ -10,13 +10,13 @@
 
           <% @aircraft_stats.all_aircrafts.each do |aircraft| %>
             <div class="row align-items-center border-bottom">
-              <div class="col d-flex justify-content-start align-items-center">
+              <div class="col-1 d-flex justify-content-start align-items-center">
                 <img id="manufacturer-logo" src="<%= aircraft[:aircraft].manufacturer_logo %>" alt="<%= aircraft[:aircraft].name %>">
               </div>
-              <div class="col d-flex justify-content-center align-items-center">
-                <p class="my-1"><%= aircraft[:aircraft].name %></p>
+              <div class="col d-flex align-items-center" style="min-width: 0;">
+                <p class="my-1 text-truncate w-100 text-center"><%= aircraft[:aircraft].name %></p>
               </div>
-              <div class="col d-flex justify-content-end align-items-center">
+              <div class="col-1 d-flex justify-content-end align-items-center">
                 <p class="my-1 text-secondary"><strong><%= aircraft[:count] %></strong></p>
               </div>
             </div>

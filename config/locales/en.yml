@@ -167,6 +167,8 @@ en:
       no_manufacturers: No manufacturers
     aircrafts_modal:
       title: All aircrafts
+    geo_stats:
+      title: Geography stats
   shared:
     navbar:
       hello: Hey
@@ -180,6 +182,7 @@ en:
       airport_stats: Airports
       airline_stats: Airlines
       aircraft_stats: Aircrafts
+      geo_stats: Geography
       rating: Rating
       profile: Profile
       id: Jetlagger ID

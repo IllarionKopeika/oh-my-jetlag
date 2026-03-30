@@ -9,14 +9,12 @@
         <div class="stats-card p-3 mb-2">
 
           <% @airport_stats.all_airport_visits.each do |visit| %>
-            <div class="row align-items-center">
+            <div class="row align-items-center border-bottom">
               <div class="col-1 d-flex justify-content-start align-items-center">
                 <p class="my-1 text-secondary"><strong><%= visit[:airport].code %></strong></p>
               </div>
-              <div class="col">
-                <div class="progress">
-                  <div class="progress-bar progress-bar-striped" style="width: <%= visit[:percent] %>%;"></div>
-                </div>
+              <div class="col d-flex align-items-center" style="min-width: 0;">
+                <p class="my-1 text-truncate w-100 text-center"><%= visit[:airport].name %></p>
               </div>
               <div class="col-1 d-flex justify-content-end align-items-center">
                 <p class="my-1 text-secondary"><strong><%= visit[:count] %></strong></p>

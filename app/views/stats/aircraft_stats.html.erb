@@ -43,7 +43,7 @@
         </div>
       </div>
 
-      <!-- > aircrafts count <-->
+      <!-- > top aircrafts <-->
       <div class="stats-card p-3 mb-2">
         <h4 class="text-center"><%= t(".top_aircrafts") %></h4>
           <% if @aircraft_stats.all_aircrafts.empty? %>
@@ -51,13 +51,13 @@
               <p class="my-1"><%= t(".no_aircrafts") %></p>
             </div>
           <% else %>
-            <% @aircraft_stats.top_aircrafts.each do |aircraft| %>
-              <div class="row align-items-center border-bottom">
+            <% @aircraft_stats.top_aircrafts.each_with_index do |aircraft, index| %>
+              <div class="row align-items-center <%= 'border-bottom' unless index == @aircraft_stats.top_aircrafts.size - 1 %>">
                 <div class="col-1 d-flex justify-content-start align-items-center">
                   <img id="manufacturer-logo" src="<%= aircraft[:aircraft].manufacturer_logo %>" alt="<%= aircraft[:aircraft].name %>">
                 </div>
-                <div class="col d-flex justify-content-center align-items-center">
-                  <p class="my-1"><%= aircraft[:aircraft].name %></p>
+                <div class="col d-flex align-items-center" style="min-width: 0;">
+                  <p class="my-1 text-truncate w-100 text-center"><%= aircraft[:aircraft].name %></p>
                 </div>
                 <div class="col-1 d-flex justify-content-end align-items-center">
                   <p class="my-1 text-secondary"><strong><%= aircraft[:count] %></strong></p>
@@ -74,7 +74,7 @@
 
       <%= render "aircrafts_modal" %>
 
-      <!-- > aircrafts by manufacturer <-->
+      <!-- > aircrafts by manufacturers <-->
       <div class="stats-card p-3 mb-2">
         <h4 class="text-center"><%= t(".aircrafts_by_manufacturers") %></h4>
         <% if @aircraft_stats.aircrafts_by_manufacturer.empty? %>

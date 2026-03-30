@@ -10,13 +10,13 @@
           <h4 class="text-center"><%= t(".top_longest_flights") %></h4>
           <% @flight_stats.top_desc_distance_flights.each do |flight| %>
             <div class="row align-items-center border-bottom">
-              <div class="col d-flex justify-content-start align-items-center">
+              <div class="col-2 d-flex justify-content-start align-items-center">
                 <p class="my-1 text-secondary"><strong><%= flight.number %></strong></p>
               </div>
-              <div class="col d-flex justify-content-center align-items-center">
-                <p class="my-1"><%= flight.departure_airport.city %> - <%= flight.arrival_airport.city %></p>
+              <div class="col d-flex align-items-center" style="min-width: 0;">
+                <p class="my-1 text-truncate w-100 text-center"><%= flight.departure_airport.city %> - <%= flight.arrival_airport.city %></p>
               </div>
-              <div class="col d-flex justify-content-end align-items-center">
+              <div class="col-2 d-flex justify-content-end align-items-center">
                 <p class="my-1 text-secondary"><strong><%= flight.distance %> <%= t(".km") %></strong></p>
               </div>
             </div>
@@ -27,13 +27,13 @@
           <h4 class="text-center"><%= t(".top_shortest_flights") %></h4>
           <% @flight_stats.top_asc_distance_flights.each do |flight| %>
             <div class="row align-items-center border-bottom">
-              <div class="col d-flex justify-content-start align-items-center">
+              <div class="col-2 d-flex justify-content-start align-items-center">
                 <p class="my-1 text-secondary"><strong><%= flight.number %></strong></p>
               </div>
-              <div class="col d-flex justify-content-center align-items-center">
-                <p class="my-1"><%= flight.departure_airport.city %> - <%= flight.arrival_airport.city %></p>
+              <div class="col d-flex align-items-center" style="min-width: 0;">
+                <p class="my-1 text-truncate w-100 text-center"><%= flight.departure_airport.city %> - <%= flight.arrival_airport.city %></p>
               </div>
-              <div class="col d-flex justify-content-end align-items-center">
+              <div class="col-2 d-flex justify-content-end align-items-center">
                 <p class="my-1 text-secondary"><strong><%= flight.distance %> <%= t(".km") %></strong></p>
               </div>
             </div>

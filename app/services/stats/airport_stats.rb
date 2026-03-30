@@ -30,13 +30,11 @@ class Stats::AirportStats
     ids_counts = airport_ids.tally
     sorted_counts = ids_counts.sort_by { |_, count| -count }
     airports = Airport.where(id: sorted_counts.map(&:first)).index_by(&:id)
-    max = sorted_counts.first&.last.to_f
 
     sorted_counts.map do |airport_id, count|
       {
         airport: airports[airport_id],
-        count: count,
-        percent: max.zero? ? 0 : (count / max * 100).round
+        count: count
       }
     end
   end

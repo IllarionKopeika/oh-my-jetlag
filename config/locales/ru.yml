@@ -167,6 +167,8 @@ ru:
       no_manufacturers: Нет производителей
     aircrafts_modal:
       title: Все самолеты
+    geo_stats:
+      title: Географическая статистика
   shared:
     navbar:
       hello: Ку
@@ -180,6 +182,7 @@ ru:
       airport_stats: Аэропорты
       airline_stats: Авиакомпании
       aircraft_stats: Самолеты
+      geo_stats: География
       rating: Рейтинг
       profile: Профиль
       id: Джетлаггер ID

@@ -13,8 +13,8 @@
               <div class="col-1 d-flex justify-content-start align-items-center">
                 <img src="<%= country.flag_url %>" alt="<%= country.code %>">
               </div>
-              <div class="col d-flex justify-content-center align-items-center">
-                <p class="my-1"><%= country.name["#{I18n.locale}"] %></p>
+              <div class="col d-flex align-items-center" style="min-width: 0;">
+                <p class="my-1 text-truncate w-100 text-center"><%= country.name[I18n.locale.to_s] %></p>
               </div>
               <div class="col-1 d-flex justify-content-end align-items-center">
                 <p class="my-1 text-secondary"><strong><%= count %></strong></p>

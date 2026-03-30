@@ -14,4 +14,8 @@ class StatsController < ApplicationController
   def aircraft_stats
     @aircraft_stats = Stats::AircraftStats.new(Current.user)
   end
+
+  def geo_stats
+    @geo_stats = Stats::GeoStats.new(Current.user)
+  end
 end

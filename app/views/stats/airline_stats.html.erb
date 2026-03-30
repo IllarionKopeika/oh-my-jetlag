@@ -35,7 +35,7 @@
         </div>
       </div>
 
-      <!-- > airlines count <-->
+      <!-- > top airlines <-->
       <div class="stats-card p-3 mb-2">
         <h4 class="text-center"><%= t(".top_airlines") %></h4>
           <% if @airline_stats.all_airlines.empty? %>
@@ -43,13 +43,13 @@
               <p class="my-1"><%= t(".no_airlines") %></p>
             </div>
           <% else %>
-            <% @airline_stats.top_airlines.each do |airline| %>
-              <div class="row align-items-center border-bottom">
+            <% @airline_stats.top_airlines.each_with_index do |airline, index| %>
+              <div class="row align-items-center <%= 'border-bottom' unless index == @airline_stats.top_airlines.size - 1 %>">
                 <div class="col-1 d-flex justify-content-start align-items-center">
                   <img src="<%= airline[:airline].logo_url %>" alt="<%= airline[:airline].code %>">
                 </div>
-                <div class="col d-flex justify-content-center align-items-center">
-                  <p class="my-1"><%= airline[:airline].name %></p>
+                <div class="col d-flex align-items-center" style="min-width: 0;">
+                  <p class="my-1 text-truncate w-100 text-center"><%= airline[:airline].name %></p>
                 </div>
                 <div class="col-1 d-flex justify-content-end align-items-center">
                   <p class="my-1 text-secondary"><strong><%= airline[:count] %></strong></p>
