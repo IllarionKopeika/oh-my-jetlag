@@ -169,6 +169,12 @@ en:
       title: All aircrafts
     geo_stats:
       title: Geography stats
+      general: General
+      countries: Countries
+      regions: Regions
+      continents: Continents
+      visited_countries: Visited countries
+      no_countries: No countries
   shared:
     navbar:
       hello: Hey

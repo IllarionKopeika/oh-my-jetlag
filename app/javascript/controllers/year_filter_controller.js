@@ -11,7 +11,7 @@ export default class extends Controller {
         group.dataset.year === year ? "block" : "none"
     })
 
-    this.#updateBadges(event.currentTarget)
+    this.#updateBadges(e.currentTarget)
   }
 
   showAll(e) {

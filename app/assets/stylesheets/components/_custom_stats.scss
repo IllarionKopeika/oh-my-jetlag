@@ -47,6 +47,36 @@
       height: 20px;
       object-fit: contain;
     }
+    .badge-scroll {
+      text-align: center;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .badge-scroll::-webkit-scrollbar {
+      display: none;
+    }
+    .badge-scroll-inner {
+      display: inline-flex;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+    }
+    .badge {
+      font-weight: 500;
+      font-size: 12px;
+      flex: 0 0 auto;
+      @media (max-width: 450px) {
+        font-size: 10px !important;
+      }
+      @media (min-width: 451px) and (max-width: 767px) {
+        font-size: 11px !important;
+      }
+      @media (min-width: 768px) and (max-width: 991px) {
+        font-size: 12px !important;
+      }
+    }
   }
   @media (max-width: 450px) {
     .stats-card {

@@ -3,6 +3,90 @@
     <div class="custom-stats p-3">
       <h1 class="text-center mb-3"><%= t(".title") %></h1>
 
+      <div class="stats-card p-3 mb-2">
+        <h4 class="text-center"><%= t(".general") %></h4>
+        <div class="row align-items-center border-bottom">
+          <div class="col d-flex justify-content-start align-items-center">
+            <i class="my-1 stats-icon fa-solid fa-flag"></i>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".countries") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p class="my-1 text-secondary"><strong><%= @geo_stats.countries_count %></strong></p>
+          </div>
+        </div>
+
+        <div class="row align-items-center border-bottom">
+          <div class="col d-flex justify-content-start align-items-center">
+            <i class="my-1 stats-icon fa-solid fa-earth-americas"></i>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".regions") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p class="my-1 text-secondary"><strong><%= @geo_stats.regions_count %></strong></p>
+          </div>
+        </div>
+
+        <div class="row align-items-center">
+          <div class="col d-flex justify-content-start align-items-center">
+            <i class="my-1 stats-icon fa-solid fa-globe"></i>
+          </div>
+          <div class="col d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".continents") %></p>
+          </div>
+          <div class="col d-flex justify-content-end align-items-center">
+            <p class="my-1 text-secondary"><strong><%= @geo_stats.continents_count %></strong></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-card p-3 mb-2" data-controller="geo" data-geo-data-value="<%= @geo_stats.geo_tree.to_json %>" data-geo-locale-value="<%= I18n.locale %>">
+        <h4 class="text-center"><%= t(".visited_countries") %></h4>
+        <% if @geo_stats.completed_flights.empty? %>
+          <div class="d-flex justify-content-center align-items-center">
+            <p class="my-1"><%= t(".no_countries") %></p>
+          </div>
+        <% else %>
+          <div class="badge-scroll mb-1">
+            <div class="badge-scroll-inner text-center" data-geo-target="continents">
+              <% @geo_stats.geo_tree.each_with_index do |continent, index| %>
+                <span class="badge rounded-pill me-1 <%= index == 0 ? "text-bg-primary" : "text-bg-info text-white" %>" role="button" data-action="click->geo#selectContinent" data-geo-id-param="<%= continent[:id] %>">
+                  <%= continent[:name][I18n.locale.to_s] %>
+                </span>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="badge-scroll mb-1">
+            <div class="badge-scroll-inner text-center" data-geo-target="regions">
+              <% @geo_stats.geo_tree.first[:regions].each_with_index do |region, index| %>
+                <span class="badge rounded-pill me-1 <%= index == 0 ? "text-bg-primary" : "text-bg-info text-white" %>" role="button" data-action="click->geo#selectRegion" data-geo-id-param="<%= region[:id] %>">
+                  <%= region[:name][I18n.locale.to_s] %>
+                </span>
+              <% end %>
+            </div>
+          </div>
+
+          <div data-geo-target="countries">
+            <% @geo_stats.geo_tree.first[:regions].first[:countries].each do |country| %>
+              <div class="row align-items-center border-bottom">
+                <div class="col-1 d-flex justify-content-start align-items-center">
+                  <img src="<%= country[:flag_url] %>" alt="<%= country[:code] %>">
+                </div>
+                <div class="col d-flex align-items-center" style="min-width: 0;">
+                  <p class="my-1 text-truncate w-100 text-center"><%= country[:name][I18n.locale.to_s] %></p>
+                </div>
+                <div class="col-1 d-flex justify-content-end align-items-center">
+                  <i class="my-1 stats-icon <%= country[:visited] ? "fa-solid fa-circle-check text-success" : "fa-regular fa-circle-xmark text-danger" %>"></i>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
     </div>
   </div>
 </div>

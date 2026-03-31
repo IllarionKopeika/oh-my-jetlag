@@ -169,6 +169,12 @@ ru:
       title: Все самолеты
     geo_stats:
       title: Географическая статистика
+      general: Общая
+      countries: Страны
+      regions: Регионы
+      continents: Континенты
+      visited_countries: Посещенные страны
+      no_countries: Нет стран
   shared:
     navbar:
       hello: Ку
