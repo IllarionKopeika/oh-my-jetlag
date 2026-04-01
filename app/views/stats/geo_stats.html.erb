@@ -59,7 +59,7 @@
             </div>
           </div>
 
-          <div class="badge-scroll mb-1">
+          <div class="badge-scroll mb-3">
             <div class="badge-scroll-inner text-center" data-geo-target="regions">
               <% @geo_stats.geo_tree.first[:regions].each_with_index do |region, index| %>
                 <span class="badge rounded-pill me-1 <%= index == 0 ? "text-bg-primary" : "text-bg-info text-white" %>" role="button" data-action="click->geo#selectRegion" data-geo-id-param="<%= region[:id] %>">
