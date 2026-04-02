@@ -6,28 +6,30 @@ class UpdateAirportJob < ApplicationJob
     airport = Airport.find(airport_id)
     return unless airport
 
-    url = "https://iata-code-decoder.p.rapidapi.com/airports"
+    url = "https://aviation-data1.p.rapidapi.com/airports/iata/#{airport.code}"
+    Rails.logger.info "URL > #{url}"
     headers = {
-      "x-rapidapi-key" => ENV.fetch("IATA_DECODER_KEY"),
-      "x-rapidapi-host" => ENV.fetch("IATA_DECODER_HOST")
+      "x-rapidapi-key" => ENV.fetch("AVIATION_DATA_KEY"),
+      "x-rapidapi-host" => ENV.fetch("AVIATION_DATA_HOST"),
+      "Content-Type" => "application/json"
     }
-    querystring = {
-      query: airport.code
-    }
-    response = HTTParty.get(url, headers: headers, query: querystring)
+
+    response = HTTParty.get(url, headers: headers)
     Rails.logger.info "Airport response > #{response}"
 
     if response.success?
-      data = JSON.parse(response.body, symbolize_names: true)
+      res_data = JSON.parse(response.body, symbolize_names: true)
+      Rails.logger.info "Res data > #{res_data}"
 
-      if data.dig(:data).blank?
+      if res_data.dig(:data).blank?
         reset_fields(airport)
       else
-        airport_data = data[:data][0]
+        airport_data = res_data[:data]
+        Rails.logger.info "Airport data > #{airport_data}"
         airport.update!(
           name: airport_data.dig(:name),
-          city: airport_data.dig(:cityName),
-          timezone: airport_data.dig(:timeZone),
+          city: airport_data.dig(:municipality),
+          timezone: airport_data.dig(:timezone),
           latitude: airport_data.dig(:latitude),
           longitude: airport_data.dig(:longitude)
         )
@@ -44,3 +46,16 @@ class UpdateAirportJob < ApplicationJob
     airport.update!(name: airport_name)
   end
 end
+
+# IATA DECODER
+
+# # url = "https://iata-code-decoder.p.rapidapi.com/airports"
+# headers = {
+#   "x-rapidapi-key" => ENV.fetch("IATA_DECODER_KEY"),
+#   "x-rapidapi-host" => ENV.fetch("IATA_DECODER_HOST")
+# }
+# querystring = {
+#   query: airport.code
+# }
+#
+# response = HTTParty.get(url, headers: headers, query: querystring)
