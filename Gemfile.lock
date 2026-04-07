@@ -334,15 +334,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
-    solid_cable (3.0.12)
-      actioncable (>= 7.2)
-      activejob (>= 7.2)
-      activerecord (>= 7.2)
-      railties (>= 7.2)
-    solid_cache (1.0.10)
-      activejob (>= 7.2)
-      activerecord (>= 7.2)
-      railties (>= 7.2)
     solid_queue (1.2.4)
       activejob (>= 7.1)
       activerecord (>= 7.1)
@@ -369,11 +360,11 @@ GEM
       railties (>= 6.0.0)
     stringio (3.1.9)
     thor (1.4.0)
-    thruster (0.1.16)
-    thruster (0.1.16-aarch64-linux)
-    thruster (0.1.16-arm64-darwin)
-    thruster (0.1.16-x86_64-darwin)
-    thruster (0.1.16-x86_64-linux)
+    thruster (0.1.17)
+    thruster (0.1.17-aarch64-linux)
+    thruster (0.1.17-arm64-darwin)
+    thruster (0.1.17-x86_64-darwin)
+    thruster (0.1.17-x86_64-linux)
     tilt (2.6.1)
     timeout (0.5.0)
     tsort (0.2.0)
@@ -433,8 +424,6 @@ DEPENDENCIES
   rubocop-rails-omakase
   sassc-rails
   selenium-webdriver
-  solid_cable
-  solid_cache
   solid_queue
   stimulus-rails
   thruster
