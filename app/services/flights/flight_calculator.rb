@@ -71,9 +71,7 @@ class Flights::FlightCalculator
     dlat = (dep_lat - arr_lat) * rad
     dlon = (dep_lng - arr_lng) * rad
 
-    a = Math.sin(dlat / 2)**2 +
-        Math.cos(dep_lat * rad) * Math.cos(arr_lat * rad) *
-        Math.sin(dlon / 2)**2
+    a = Math.sin(dlat / 2)**2 + Math.cos(dep_lat * rad) * Math.cos(arr_lat * rad) * Math.sin(dlon / 2)**2
 
     c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
     (r * c).round(2)

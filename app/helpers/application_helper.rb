@@ -33,7 +33,7 @@ module ApplicationHelper
 
     [].tap do |parts|
       parts << "#{hours} #{I18n.t('flights.hours')}" if hours.positive?
-      parts << "#{mins} #{I18n.t('flights.mins')}" if mins.positive?
+      parts << "#{mins} #{I18n.t('flights.minutes')}" if mins.positive?
     end.join(" ")
   end
 
