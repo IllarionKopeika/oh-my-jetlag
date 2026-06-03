@@ -47,6 +47,9 @@
       height: 20px;
       object-fit: contain;
     }
+    .blurred {
+      filter: blur(4px);
+    }
     .badge-scroll {
       text-align: center;
       overflow-x: auto;

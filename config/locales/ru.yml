@@ -175,6 +175,13 @@ ru:
       continents: Континенты
       visited_countries: Посещенные страны
       no_countries: Нет стран
+  ratings:
+    rating:
+      title: Рейтинг
+      flights: Рейсы
+      distance: Дальность
+      km: км
+      duration: Продолжительность
   shared:
     navbar:
       hello: Ку

@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+  <div class="col-xl-6 col-md-8 col-sm-10 col-12">
+    <div class="custom-stats p-3">
+      <h1 class="text-center mb-3"><%= t(".title") %></h1>
+
+      <div class="stats-card p-3 mb-2" data-controller="rating">
+        <div class="badge-scroll mb-1">
+          <div class="badge-scroll-inner text-center">
+            <span class="badge rounded-pill me-1 text-bg-primary text-white" role="button" data-rating-target="flightsBadge" data-action="click->rating#showFlights">
+              <%= t(".flights") %>
+            </span>
+            <span class="badge rounded-pill me-1 text-bg-info text-white" role="button" data-rating-target="distanceBadge" data-action="click->rating#showDistance">
+              <%= t(".distance") %>
+            </span>
+            <span class="badge rounded-pill me-1 text-bg-info text-white" role="button" data-rating-target="durationBadge" data-action="click->rating#showDuration">
+              <%= t(".duration") %>
+            </span>
+          </div>
+        </div>
+
+        <div data-rating-target="flights">
+          <% @rating_by_flights.each_with_index do |user, index| %>
+            <div class="row align-items-center <%= 'border-bottom' unless index == @rating_by_flights.size - 1 %>">
+              <div class="col-1 d-flex justify-content-start align-items-center">
+                <p class="my-1 text-secondary"><strong><%= index + 1 %></strong></p>
+              </div>
+              <div class="col d-flex align-items-center" style="min-width: 0;">
+                <p class="my-1 text-truncate w-100 text-center <%= 'blurred' unless Current.user.nickname == user[:nickname] %>"><%= user[:nickname] %></p>
+              </div>
+              <div class="col-1 d-flex justify-content-end align-items-center">
+                <p class="my-1 text-secondary"><strong><%= user[:flights_count] %></strong></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div data-rating-target="distance" class="d-none">
+          <% @rating_by_distance.each_with_index do |user, index| %>
+            <div class="row align-items-center <%= 'border-bottom' unless index == @rating_by_flights.size - 1 %>">
+              <div class="col-1 d-flex justify-content-start align-items-center">
+                <p class="my-1 text-secondary"><strong><%= index + 1 %></strong></p>
+              </div>
+              <div class="col d-flex align-items-center" style="min-width: 0;">
+                <p class="my-1 text-truncate w-100 text-center <%= 'blurred' unless Current.user.nickname == user[:nickname] %>"><%= user[:nickname] %></p>
+              </div>
+              <div class="col-1 d-flex justify-content-end align-items-center">
+                <p class="my-1 text-secondary"><strong><%= user[:flights_distance] %> <%= t(".km") %></strong></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div data-rating-target="duration" class="d-none">
+          <% @rating_by_duration.each_with_index do |user, index| %>
+            <div class="row align-items-center <%= 'border-bottom' unless index == @rating_by_flights.size - 1 %>">
+              <div class="col-1 d-flex justify-content-start align-items-center">
+                <p class="my-1 text-secondary"><strong><%= index + 1 %></strong></p>
+              </div>
+              <div class="col d-flex align-items-center" style="min-width: 0;">
+                <p class="my-1 text-truncate w-100 text-center <%= 'blurred' unless Current.user.nickname == user[:nickname] %>"><%= user[:nickname] %></p>
+              </div>
+              <div class="col-1 d-flex justify-content-end align-items-center">
+                <p class="my-1 text-secondary"><strong><%= format_total_duration(user[:flights_duration]) %></strong></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

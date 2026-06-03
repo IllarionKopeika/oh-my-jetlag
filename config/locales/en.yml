@@ -175,6 +175,13 @@ en:
       continents: Continents
       visited_countries: Visited countries
       no_countries: No countries
+  ratings:
+    rating:
+      title: Rating
+      flights: Flights
+      distance: Distance
+      km: km
+      duration: Duration
   shared:
     navbar:
       hello: Hey
