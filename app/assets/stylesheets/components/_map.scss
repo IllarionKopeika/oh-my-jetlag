@@ -1,108 +1,82 @@
 .map {
-  background: rgba(white, 0.7);
-  border: 1px solid $primary;
-  border-radius: 5px;
+  background: rgba(white,0.8);
+  border: 1.5px solid $primary;
+  border-radius: 20px;
+  overflow: hidden;
+  h1 {
+    color: $primary;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+  }
+  .mapboxgl-canvas {
+    display: block;
+  }
   .mapboxgl-popup {
-    min-width: 180px !important;
-    max-width: 220px !important;
-    border: 1px solid $primary;
-    border-radius: 6px;
+    min-width: 160px !important;
+    max-width: 210px !important;
   }
   .mapboxgl-popup-tip {
     display: none;
   }
   .mapboxgl-popup-content {
-    padding: 6px !important;
+    padding: 8px 10px !important;
+    background: white;
+    border: 1.5px solid $primary;
+    border-radius: 12px;
+    box-shadow: none;
     font-family: "Tektur", "Helvetica", "sans-serif";
-    background: rgba(white,0.7);
-    backdrop-filter: blur(10px);
-    border-radius: 5px;
+  }
+  .mapboxgl-popup-close-button {
+    color: $primary !important;
+    font-size: 16px;
+    line-height: 1;
+    top: 6px;
+    right: 6px;
+    &:hover { color: $secondary !important; }
   }
   .popup {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2px;
+    gap: 3px;
     text-align: center;
   }
   .popup-header {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 7px;
     white-space: nowrap;
   }
   .flag-img {
-    width: 42px;
-    height: 28px;
-    border-radius: 5px;
-    object-fit: contain;
+    width: 38px !important;
+    height: 25px !important;
+    border-radius: 4px;
+    object-fit: cover;
+    @media (max-width: 450px)  { width: 24px !important; height: 16px !important; }
+    @media (min-width: 451px) and (max-width: 767px) { width: 30px !important; height: 20px !important; }
+    @media (min-width: 768px) and (max-width: 991px) { width: 34px !important; height: 22px !important; }
   }
   .airport-code {
-    font-size: 24px;
-    font-weight: bold;
-    color: $info;
+    font-size: 20px !important;
+    font-weight: 700;
+    color: $primary;
     line-height: 1;
+    @media (max-width: 450px)  { font-size: 16px !important; }
+    @media (min-width: 451px) and (max-width: 767px) { font-size: 17px !important; }
+    @media (min-width: 768px) and (max-width: 991px) { font-size: 18px !important; }
   }
   .airport-name {
-    font-size: 14px;
+    font-size: 14px !important;
+    font-weight: 600;
+    color: $secondary;
     line-height: 1.2;
-    font-weight: 500;
-    opacity: 0.85;
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-  }
-  .mapboxgl-popup-close-button {
-    color: $primary !important;
-    font-size: 20px;
-  }
-  @media (max-width: 450px) {
-    .mapboxgl-popup {
-      min-width: 135px !important;
-      max-width: 175px !important;
-    }
-    .flag-img {
-      width: 24px;
-      height: 16px;
-    }
-    .airport-code {
-      font-size: 16px;
-    }
-    .airport-name {
-      font-size: 10px;
-    }
-  }
-  @media (min-width: 451px) and (max-width: 767px) {
-    .mapboxgl-popup {
-      min-width: 150px !important;
-      max-width: 190px !important;
-    }
-    .flag-img {
-      width: 30px;
-      height: 20px;
-    }
-    .airport-code {
-      font-size: 18px;
-    }
-    .airport-name {
-      font-size: 11px;
-    }
-  }
-  @media (min-width: 768px) and (max-width: 991px) {
-    .mapboxgl-popup {
-      min-width: 165px !important;
-      max-width: 205px !important;
-    }
-    .flag-img {
-      width: 36px;
-      height: 24px;
-    }
-    .airport-code {
-      font-size: 20px;
-    }
-    .airport-name {
-      font-size: 12px;
-    }
+    @media (max-width: 450px)  { font-size: 11px !important; }
+    @media (min-width: 451px) and (max-width: 767px) { font-size: 12px !important; }
+    @media (min-width: 768px) and (max-width: 991px) { font-size: 13px !important; }
   }
 }

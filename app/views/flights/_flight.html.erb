@@ -1,42 +1,50 @@
-<div class="flight-card d-flex flex-column p-3 mb-2">
+<div class="flight-card d-flex flex-column mb-2">
 
   <% modal_id = "flightMapModal-#{flight.id}" %>
-  <!-- airline logo, flight number & date -->
-  <div class="d-flex justify-content-around align-items-center mb-2">
-    <div class="d-flex align-items-center gap-2">
+
+  <div class="card-top">
+    <div class="airline-info">
       <img src="<%= flight.airline.logo_url %>" alt="<%= flight.airline.name %>">
-      <p class="m-0"><%= flight.number %></p>
+      <p class="m-0 flight-number"><%= flight.number %></p>
     </div>
-    <div>
-      <i type="button" data-bs-toggle="modal" data-bs-target="#<%= "#{modal_id}" %>" class="info-icon fa-solid fa-circle-info"></i>
-      <div class="modal fade" id="<%= modal_id %>" tabindex="-1" aria-labelledby="<%= modal_id %>Label" aria-hidden="true">
+
+    <div class="card-top-center">
+      <i type="button"
+         data-bs-toggle="modal"
+         data-bs-target="#<%= modal_id %>"
+         class="info-icon fa-solid fa-circle-info">
+      </i>
+      <div class="modal fade" id="<%= modal_id %>"
+           tabindex="-1"
+           aria-labelledby="<%= modal_id %>Label"
+           aria-hidden="true">
         <%= render "modal", flight: flight, modal_id: modal_id %>
       </div>
     </div>
-    <div>
-      <p class="m-0"><%= format_date(flight.departure_local) %></p>
-    </div>
+
+    <p class="m-0 flight-date"><%= format_date(flight.departure_local) %></p>
   </div>
 
-  <!-- other info -->
-  <div class="d-flex justify-content-between align-items-center">
-    <div class="d-flex flex-column align-items-center">
+  <div class="route-row">
+    <div class="airport">
       <h4 class="my-0"><strong><%= flight.departure_airport.code %></strong></h4>
       <p class="my-0"><%= format_time(flight.departure_local) %></p>
     </div>
-    <div>
-      <i class="aircraft-icon fa-solid fa-plane-departure"></i>
+
+    <div class="middle-col">
+      <span class="flight-duration"><%= format_duration(flight.duration) %></span>
+      <div class="plane-line">
+        <div class="route-line"></div>
+        <i class="aircraft-icon fa-solid fa-plane"></i>
+        <div class="route-line"></div>
+      </div>
+      <span class="aircraft-name"><%= flight.aircraft.name %></span>
     </div>
-    <div>
-      <p class="my-0 text-center"><%= flight.aircraft.name %></p>
-      <p class="my-0 text-center"><%= format_duration(flight.duration) %></p>
-    </div>
-    <div>
-      <i class="aircraft-icon fa-solid fa-plane-arrival"></i>
-    </div>
-    <div class="d-flex flex-column align-items-center">
+
+    <div class="airport">
       <h4 class="my-0"><strong><%= flight.arrival_airport.code %></strong></h4>
-      <p class="my-0 position-relative"><%= format_time(flight.arrival_local) %></p>
+      <p class="my-0"><%= format_time(flight.arrival_local) %></p>
     </div>
   </div>
+
 </div>

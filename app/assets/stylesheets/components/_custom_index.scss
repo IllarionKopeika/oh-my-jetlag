@@ -1,76 +1,85 @@
 .custom-index {
-  background: rgba(white,0.7);
-  border: 1px solid $primary;
-  border-radius: 5px;
+  background: rgba(white,0.8);
+  border: 1.5px solid $primary;
+  border-radius: 20px;
+  h1 {
+    color: $primary;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+  }
   .nav {
     background: transparent !important;
-    border-bottom: none !important;
+    border-bottom: 1.5px solid rgba($primary, 0.15) !important;
+    margin-bottom: 20px;
   }
   .nav-link {
-    color: $primary;
-    font-size: 16px;
-    font-weight: 600;
-  }
-  .nav-tabs .nav-link.active {
-    background-color: transparent !important;
-    border-bottom: 2px solid $primary !important;
-    color: $primary;
-    pointer-events: none;
-  }
-  .nav-tabs .nav-link {
+    color: $secondary;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 20px;
     border: none !important;
+    border-bottom: 2.5px solid transparent !important;
+    margin-bottom: -1.5px;
+    transition: color 0.2s, border-color 0.2s;
     &:hover {
+      color: $primary;
       border: none !important;
     }
   }
+  .nav-tabs .nav-link.active {
+    background-color: transparent !important;
+    border-bottom: 2.5px solid $primary !important;
+    color: $primary !important;
+    font-weight: 600;
+    pointer-events: none;
+  }
   .year-scroll {
-    text-align: center;
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
     scrollbar-width: none;
-  }
-  .year-scroll::-webkit-scrollbar {
-    display: none;
+    &::-webkit-scrollbar { display: none; }
   }
   .year-scroll-inner {
     display: inline-flex;
     flex-wrap: nowrap;
     white-space: nowrap;
+    gap: 4px;
+    padding-bottom: 2px;
   }
   .badge {
-    font-weight: 500;
-    font-size: 12px;
+    font-weight: 600;
+    border-radius: 50px !important;
+    padding: 5px 14px !important;
     flex: 0 0 auto;
-    @media (max-width: 450px) {
-      font-size: 10px !important;
+    border: 1.5px solid transparent;
+    transition: opacity 0.15s;
+    &.text-bg-primary {
+      background: $primary !important;
+      color: white !important;
     }
-    @media (min-width: 451px) and (max-width: 767px) {
-      font-size: 11px !important;
+    &.text-bg-info {
+      background: $light !important;
+      color: $primary !important;
     }
-    @media (min-width: 768px) and (max-width: 991px) {
-      font-size: 12px !important;
-    }
+    &:hover { opacity: 0.85; }
+    @media (max-width: 450px)  { font-size: 10px !important; }
+    @media (min-width: 451px) and (max-width: 767px)  { font-size: 11px !important; }
+    @media (min-width: 768px) and (max-width: 991px) { font-size: 12px !important; }
   }
   .form-footer {
     a {
       color: $primary;
-      text-decoration: none;
-      @media (max-width: 767px) {
-        font-size: 14px;
-      }
-      @media (min-width: 768px) {
-        font-size: 16px;
-      }
+      font-weight: 600;
+      text-decoration: none !important;
+      @media (max-width: 767px)  { font-size: 14px; }
+      @media (min-width: 768px) { font-size: 16px; }
     }
     p {
-      @media (max-width: 767px) {
-        font-size: 14px;
-      }
-      @media (min-width: 768px) {
-        font-size: 16px;
-      }
+      @media (max-width: 767px)  { font-size: 14px; }
+      @media (min-width: 768px) { font-size: 16px; }
     }
   }
 }

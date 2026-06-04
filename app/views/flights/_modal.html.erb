@@ -1,42 +1,36 @@
 <div class="modal-dialog modal-dialog-centered modal-lg custom-modal">
   <div class="modal-content">
-    <div class="modal-title d-flex justify-content-between align-items-center p-3">
+    <div class="modal-header-bar d-flex justify-content-between align-items-center p-3">
       <h4 class="m-0" id="<%= modal_id %>Label"><%= t(".title") %> <%= flight.number %></h4>
       <i type="button" data-bs-dismiss="modal" aria-label="Close" class="close-icon fa-regular fa-circle-xmark"></i>
     </div>
     <div class="modal-info">
-      <div class="row border-primary border-bottom py-2 mx-0">
-        <!-- from -->
-        <div class="col d-flex flex-column justify-content-center align-items-center border-primary border-end p-0">
+      <div class="row border-bottom py-2 mx-0">
+        <div class="col d-flex flex-column justify-content-center align-items-center border-end p-0">
           <i class="mb-1 modal-icon fa-solid fa-plane-departure"></i>
-          <p class="my-0 text-center"><strong><%= flight.departure_airport.city %></strong></p>
+          <p class="my-0 text-center"><%= flight.departure_airport.city %></p>
         </div>
-        <!-- distance -->
         <div class="col d-flex flex-column justify-content-center align-items-center p-0">
           <i class="mb-1 modal-icon fa-solid fa-plane"></i>
-          <p class="my-0 text-center"><strong><%= flight.distance %> <%= t(".km") %></strong></p>
+          <p class="my-0 text-center"><%= flight.distance %> <%= t(".km") %></p>
         </div>
-        <!-- to -->
-        <div class="col d-flex flex-column justify-content-center align-items-center border-primary border-start p-0">
+        <div class="col d-flex flex-column justify-content-center align-items-center border-start p-0">
           <i class="mb-1 modal-icon fa-solid fa-plane-arrival"></i>
-          <p class="my-0 text-center"><strong><%= flight.arrival_airport.city %></strong></p>
+          <p class="my-0 text-center"><%= flight.arrival_airport.city %></p>
         </div>
       </div>
-      <div class="row border-primary border-bottom py-2 mx-0" style="height: ">
-        <!-- airline -->
-        <div class="col d-flex flex-column justify-content-center align-items-center border-primary border-end p-0">
+      <div class="row border-bottom py-2 mx-0">
+        <div class="col d-flex flex-column justify-content-center align-items-center border-end p-0">
           <img class="airline-img mt-0" src="<%= flight.airline.logo_url %>" alt="<%= flight.airline.name %>">
-          <p class="my-0 text-center"><strong><%= flight.airline.name %></strong></p>
+          <p class="my-0 text-center"><%= flight.airline.name %></p>
         </div>
-        <!-- route -->
         <div class="col d-flex flex-column justify-content-center align-items-center p-0">
           <i class="mb-1 modal-icon fa-solid fa-route"></i>
-          <p class="my-0 text-center"><strong><%= flight.departure_airport.code %> - <%= flight.arrival_airport.code %></strong></p>
+          <p class="my-0 text-center"><%= flight.departure_airport.code %> - <%= flight.arrival_airport.code %></p>
         </div>
-        <!-- aircraft -->
-        <div class="col d-flex flex-column justify-content-center align-items-center border-primary border-start p-0">
+        <div class="col d-flex flex-column justify-content-center align-items-center border-start p-0">
           <img class="aircraft-img mt-0" src="<%= flight.aircraft.manufacturer_logo %>" alt="<%= flight.aircraft.manufacturer %>">
-          <p class="my-0 text-center"><strong><%= flight.aircraft.name %></strong></p>
+          <p class="my-0 text-center"><%= flight.aircraft.name %></p>
         </div>
       </div>
     </div>
