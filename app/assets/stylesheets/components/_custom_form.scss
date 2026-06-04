@@ -8,15 +8,53 @@
     font-weight: 600;
     letter-spacing: -0.3px;
   }
-  input::placeholder {
+  .form-control {
+    border: 1px solid rgba($primary, 0.25);
+    border-radius: 12px;
+    padding: 10px 14px;
     font-size: 14px;
-    color: $secondary;
+    font-weight: 500;
+    color: $primary;
+    background: #fdfaff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    &::placeholder {
+      color: $secondary;
+      font-weight: 400;
+    }
+    &:focus {
+      border-color: $primary;
+      box-shadow: 0 0 0 3px rgba($primary, 0.1);
+      background: white;
+      outline: none;
+    }
+    &.is-invalid {
+      border-color: $danger;
+      &:focus { box-shadow: 0 0 0 3px rgba($danger, 0.1); }
+    }
   }
-  .eye-icon {
-    color: $secondary;
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0.4;
+    cursor: pointer;
+    filter: invert(20%) sepia(60%) saturate(500%) hue-rotate(250deg);
+  }
+  .btn-primary {
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 9px;
+    letter-spacing: 0.2px;
+    transition: opacity 0.15s;
+    &:hover { opacity: 0.88; }
+  }
+  .invalid-tooltip {
+    background-color: $danger;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
   }
   .btn {
-    font-size: 16px;
+    font-size: 15px;
   }
   h6 {
     color: $primary;
@@ -29,35 +67,33 @@
     a {
       color: $primary;
       text-decoration: none;
-      @media (max-width: 767px) {
-        font-size: 14px;
-      }
-      @media (min-width: 768px) {
-        font-size: 16px;
-      }
+      font-weight: 600;
+      transition: border-color 0.15s;
+      &:hover { border-color: $primary; }
+      @media (max-width: 767px) { font-size: 14px; }
+      @media (min-width: 768px) { font-size: 16px; }
     }
     p {
-      @media (max-width: 767px) {
-        font-size: 14px;
-      }
-      @media (min-width: 768px) {
-        font-size: 16px;
-      }
+      @media (max-width: 767px) { font-size: 14px; }
+      @media (min-width: 768px) { font-size: 16px; }
     }
+  }
+  .eye-icon {
+    color: $secondary;
+    cursor: pointer;
+    transition: color 0.15s;
+    &:hover { color: $primary; }
   }
   @media (max-width: 450px) {
-    .form-check-label, p {
-      font-size: 10px;
-    }
+    .form-check-label, p { font-size: 10px; }
+    .form-control { font-size: 12px; padding: 8px 12px; }
+    .btn-primary { font-size: 13px; }
   }
   @media (min-width: 451px) and (max-width: 767px) {
-    .form-check-label, p {
-      font-size: 11px;
-    }
+    .form-check-label, p { font-size: 11px; }
+    .form-control { font-size: 13px; }
   }
   @media (min-width: 768px) and (max-width: 991px) {
-    .form-check-label, p {
-      font-size: 12px;
-    }
+    .form-check-label, p { font-size: 12px; }
   }
 }

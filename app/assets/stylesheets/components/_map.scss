@@ -49,13 +49,15 @@
     white-space: nowrap;
   }
   .flag-img {
-    width: 38px !important;
-    height: 25px !important;
-    border-radius: 4px;
-    object-fit: cover;
+    width: 36px !important;
+    height: 24px !important;
+    object-fit: contain;
+    border-radius: 6px;
+    background: rgba($primary, 0.08);
+    padding: 2px;
     @media (max-width: 450px)  { width: 24px !important; height: 16px !important; }
-    @media (min-width: 451px) and (max-width: 767px) { width: 30px !important; height: 20px !important; }
-    @media (min-width: 768px) and (max-width: 991px) { width: 34px !important; height: 22px !important; }
+    @media (min-width: 451px) and (max-width: 767px) { width: 27px !important; height: 18px !important; }
+    @media (min-width: 768px) and (max-width: 991px) { width: 30px !important; height: 20px !important; }
   }
   .airport-code {
     font-size: 20px !important;

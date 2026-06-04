@@ -24,10 +24,16 @@
           <img class="airline-img mt-0" src="<%= flight.airline.logo_url %>" alt="<%= flight.airline.name %>">
           <p class="my-0 text-center"><%= flight.airline.name %></p>
         </div>
+
         <div class="col d-flex flex-column justify-content-center align-items-center p-0">
           <i class="mb-1 modal-icon fa-solid fa-route"></i>
-          <p class="my-0 text-center"><%= flight.departure_airport.code %> - <%= flight.arrival_airport.code %></p>
+          <div class="modal-route">
+            <img class="modal-flag" src="https://flagcdn.com/<%= flight.departure_airport.country.code.downcase %>.svg">
+            <p class="my-0 text-center"><%= flight.departure_airport.code %> - <%= flight.arrival_airport.code %></p>
+            <img class="modal-flag" src="https://flagcdn.com/<%= flight.arrival_airport.country.code.downcase %>.svg">
+          </div>
         </div>
+
         <div class="col d-flex flex-column justify-content-center align-items-center border-start p-0">
           <img class="aircraft-img mt-0" src="<%= flight.aircraft.manufacturer_logo %>" alt="<%= flight.aircraft.manufacturer %>">
           <p class="my-0 text-center"><%= flight.aircraft.name %></p>

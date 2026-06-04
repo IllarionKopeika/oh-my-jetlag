@@ -14,7 +14,7 @@
 
         <div class="position-relative mb-3">
           <%= f.date_field :departure_date, placeholder: t(".departure_date"), class: "form-control", data: { controller: 'datepicker', locale: I18n.locale }, required: true %>
-          <div class="invalid-tooltip centered-tooltip">
+          <div class="invalid-tooltip">
             <%= t(".choose_departure_date") %>
           </div>
         </div>
