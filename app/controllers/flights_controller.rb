@@ -41,7 +41,7 @@ class FlightsController < ApplicationController
   end
 
   def map
-    completed_flights = Current.user.flights.completed.includes(:departure_airport, :arrival_airport)
+    completed_flights = Current.user.flights.completed.includes(departure_airport: :country, arrival_airport: :country)
     @flights = completed_flights.map do |flight|
       {
         from_coordinates: flight.from_coordinates,

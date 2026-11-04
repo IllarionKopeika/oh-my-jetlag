@@ -15,7 +15,7 @@ export default class extends Controller {
     this.map = new mapboxgl.Map({
       container: this.element,
       style: "mapbox://styles/mapbox/streets-v12",
-      projection: isMobile ? "mercator" : "globe",
+      projection: "globe",
       antialias: !isMobile,
       fadeDuration: isMobile ? 0 : 300
     })
@@ -55,19 +55,10 @@ export default class extends Controller {
       const customMarker = document.createElement("div")
       customMarker.innerHTML = marker.marker_html
 
-      const mapMarker = new mapboxgl.Marker({ element: customMarker })
+      new mapboxgl.Marker({ element: customMarker })
         .setLngLat([ marker.lng, marker.lat ])
+        .setPopup(new mapboxgl.Popup().setHTML(marker.popup_html))
         .addTo(this.map)
-
-      let popup = null
-      mapMarker.getElement().addEventListener("click", () => {
-        if (!popup) {
-          popup = new mapboxgl.Popup()
-            .setLngLat([ marker.lng, marker.lat ])
-            .setHTML(marker.popup_html)
-        }
-        popup.addTo(this.map)
-      })
     })
   }
 
