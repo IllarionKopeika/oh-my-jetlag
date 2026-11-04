@@ -10,10 +10,14 @@ export default class extends Controller {
 
   connect() {
     mapboxgl.accessToken = this.apiKeyValue
+    const isMobile = window.matchMedia("(max-width: 768px)").matches
+
     this.map = new mapboxgl.Map({
       container: this.element,
       style: "mapbox://styles/mapbox/streets-v12",
-      projection: "globe"
+      projection: isMobile ? "mercator" : "globe",
+      antialias: !isMobile,
+      fadeDuration: isMobile ? 0 : 300
     })
 
     this.#settings()
@@ -47,67 +51,73 @@ export default class extends Controller {
   }
 
   #addMarkers() {
-    console.log(this.markersValue)
     this.markersValue.forEach((marker) => {
-      const popup = new mapboxgl.Popup().setHTML(marker.popup_html)
-
       const customMarker = document.createElement("div")
       customMarker.innerHTML = marker.marker_html
 
-      new mapboxgl.Marker(customMarker)
+      const mapMarker = new mapboxgl.Marker({ element: customMarker })
         .setLngLat([ marker.lng, marker.lat ])
-        .setPopup(popup)
         .addTo(this.map)
+
+      let popup = null
+      mapMarker.getElement().addEventListener("click", () => {
+        if (!popup) {
+          popup = new mapboxgl.Popup()
+            .setLngLat([ marker.lng, marker.lat ])
+            .setHTML(marker.popup_html)
+        }
+        popup.addTo(this.map)
+      })
     })
   }
 
   #addLines() {
-    this.flightsValue.forEach((flight, index) => {
+    const features = this.flightsValue.map((flight) => {
       const from = [flight.from_coordinates[1], flight.from_coordinates[0]]
       const to = [flight.to_coordinates[1], flight.to_coordinates[0]]
-      const straight = [from, to]
-      const sourceId = `flight-line-${index}`
-      const shadowLayerId = `flight-line-shadow-${index}`
-      const lineLayerId = `flight-line-${index}`
-
-      this.map.addSource(sourceId, {
-        type: "geojson",
-        data: {
-          type: "Feature",
-          geometry: {
-            type: "LineString",
-            coordinates: straight
-          }
+      return {
+        type: "Feature",
+        geometry: {
+          type: "LineString",
+          coordinates: [from, to]
         }
-      })
+      }
+    })
 
-      this.map.addLayer({
-        id: shadowLayerId,
-        type: "line",
-        source: sourceId,
-        layout: {
-          "line-join": "round",
-          "line-cap": "round"
-        },
-        paint: {
-          "line-color": "#441752",
-          "line-width": 2
-        }
-      })
+    this.map.addSource("flight-lines", {
+      type: "geojson",
+      data: {
+        type: "FeatureCollection",
+        features: features
+      }
+    })
 
-      this.map.addLayer({
-        id: lineLayerId,
-        type: "line",
-        source: sourceId,
-        layout: {
-          "line-join": "round",
-          "line-cap": "round"
-        },
-        paint: {
-          "line-color": "#A888B5",
-          "line-width": 1
-        }
-      })
+    this.map.addLayer({
+      id: "flight-lines-shadow",
+      type: "line",
+      source: "flight-lines",
+      layout: {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      paint: {
+        "line-color": "#441752",
+        "line-width": 2
+      }
+    })
+
+    this.map.addLayer({
+      id: "flight-lines-main",
+      type: "line",
+      source: "flight-lines",
+      layout: {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      paint: {
+        "line-color": "#A888B5",
+        "line-width": 1
+      }
     })
   }
 
